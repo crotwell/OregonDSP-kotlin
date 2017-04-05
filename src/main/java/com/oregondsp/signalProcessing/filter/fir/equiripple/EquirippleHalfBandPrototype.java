@@ -27,7 +27,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple;
  * interpolating sequences by a factor of two.  It is used in conjuction with the half-band "trick"
  * described in:</p>
  * 
- * <p>A “TRICK” for the Design of FIR Half-Band Filters, P. P. VAIDYANATHAN AND TRUONG Q. NGUYEN (1987),
+ * <p>A &#8220;TRICK&#8221; for the Design of FIR Half-Band Filters, P. P. VAIDYANATHAN AND TRUONG Q. NGUYEN (1987),
  * IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS, VOL. CAS-34, NO. 3, pp. 297-300.</p>
  * 
  *  @author David B. Harris,   Deschutes Signal Processing LLC

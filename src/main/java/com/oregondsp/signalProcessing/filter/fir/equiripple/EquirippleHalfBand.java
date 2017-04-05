@@ -25,7 +25,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple;
  * <p>This class designs a half-band filter (a filter suitable for interpolating data by a factor of 2).
  * It uses the "half-band trick" described in </p>
  * 
- * <p>A “TRICK” for the Design of FIR Half-Band Filters, P. P. VAIDYANATHAN AND TRUONG Q. NGUYEN (1987),
+ * <p>A &#8220;TRICK&#8221; for the Design of FIR Half-Band Filters, P. P. VAIDYANATHAN AND TRUONG Q. NGUYEN (1987),
  * IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS, VOL. CAS-34, NO. 3, pp. 297-300.</p>
  * 
  * <p>The filter is obtained as a transformation of a EquirippleHalfBandPrototype, which is designed
