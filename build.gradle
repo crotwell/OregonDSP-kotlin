@@ -1,0 +1,8 @@
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse' 
+
+group = 'com.oregondsp'
+version = 1.0
+
