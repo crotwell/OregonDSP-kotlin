@@ -34,8 +34,8 @@ internal open class CDFTsr {
     protected var xi: FloatArray
 
     /** float[] pair specifying complex output transform.  */
-    protected var Xr: FloatArray
-    protected var Xi: FloatArray
+    protected var outXr: FloatArray
+    protected var outXi: FloatArray
 
     /** int specifying offset into the top-level length-N sequence arrays.  */
     protected var xoffset: Int = 0
@@ -44,7 +44,7 @@ internal open class CDFTsr {
     protected var xstride: Int = 0
 
     /** int specifying the offset into the top-level length-N transform arrays.  */
-    protected var Xoffset: Int = 0
+    protected var outXoffset: Int = 0
 
     /** Log base 2 of the length of this DFT.  */
     protected var m: Int = 0
@@ -103,7 +103,7 @@ internal open class CDFTsr {
         N4 = N / 4
         xoffset = 0
         xstride = 1
-        Xoffset = 0
+        outXoffset = 0
 
         this.c = c
         this.c3 = c3
@@ -166,7 +166,7 @@ internal open class CDFTsr {
         N4 = N / 4
         this.xoffset = dataOffset
         this.xstride = dataStride
-        this.Xoffset = transformOffset
+        this.outXoffset = transformOffset
 
         f = c!!.size / N8
         reflect = 2 * c!!.size
@@ -202,8 +202,8 @@ internal open class CDFTsr {
     internal open fun link(xr: FloatArray, xi: FloatArray, Xr: FloatArray, Xi: FloatArray) {
         this.xr = xr
         this.xi = xi
-        this.Xr = Xr
-        this.Xi = Xi
+        this.outXr = Xr
+        this.outXi = Xi
         dft1!!.link(xr, xi, Xr, Xi)
         dft2!!.link(xr, xi, Xr, Xi)
         dft3!!.link(xr, xi, Xr, Xi)
@@ -232,25 +232,25 @@ internal open class CDFTsr {
 
         // k = 0 butterfly
 
-        var kp = Xoffset
+        var kp = outXoffset
         var kpN4 = kp + N4
         var kpN2 = kpN4 + N4
         var kp3N4 = kpN2 + N4
 
-        Rr = Xr[kpN2] + Xr[kp3N4]
-        Ri = Xi[kpN2] + Xi[kp3N4]
-        Sr = Xi[kp3N4] - Xi[kpN2]
-        Si = Xr[kpN2] - Xr[kp3N4]
+        Rr = outXr[kpN2] + outXr[kp3N4]
+        Ri = outXi[kpN2] + outXi[kp3N4]
+        Sr = outXi[kp3N4] - outXi[kpN2]
+        Si = outXr[kpN2] - outXr[kp3N4]
 
-        Xr[kpN2] = Xr[kp] - Rr
-        Xi[kpN2] = Xi[kp] - Ri
-        Xr[kp3N4] = Xr[kpN4] + Sr
-        Xi[kp3N4] = Xi[kpN4] + Si
+        outXr[kpN2] = outXr[kp] - Rr
+        outXi[kpN2] = outXi[kp] - Ri
+        outXr[kp3N4] = outXr[kpN4] + Sr
+        outXi[kp3N4] = outXi[kpN4] + Si
 
-        Xr[kp] += Rr
-        Xi[kp] += Ri
-        Xr[kpN4] -= Sr
-        Xi[kpN4] -= Si
+        outXr[kp] += Rr
+        outXi[kp] += Ri
+        outXr[kpN4] -= Sr
+        outXi[kpN4] -= Si
 
         // k = 1 through N8-1 butterflies
 
@@ -259,7 +259,7 @@ internal open class CDFTsr {
         for (k in 1..N8 - 1) {
 
             fk = f * k
-            kp = k + Xoffset
+            kp = k + outXoffset
             kpN4 = kp + N4
             kpN2 = kpN4 + N4
             kp3N4 = kpN2 + N4
@@ -269,12 +269,12 @@ internal open class CDFTsr {
 
             Wr = c!![fk]
             Wi = s!![fk]
-            T1r = Wr * Xr[kpN2] - Wi * Xi[kpN2]
-            T1i = Wr * Xi[kpN2] + Wi * Xr[kpN2]
+            T1r = Wr * outXr[kpN2] - Wi * outXi[kpN2]
+            T1i = Wr * outXi[kpN2] + Wi * outXr[kpN2]
             Wr = c3!![fk]
             Wi = s3!![fk]
-            T3r = Wr * Xr[kp3N4] - Wi * Xi[kp3N4]
-            T3i = Wr * Xi[kp3N4] + Wi * Xr[kp3N4]
+            T3r = Wr * outXr[kp3N4] - Wi * outXi[kp3N4]
+            T3i = Wr * outXi[kp3N4] + Wi * outXr[kp3N4]
 
             // R = T1 + T3
             // S = i*(T1 - T3)
@@ -284,20 +284,20 @@ internal open class CDFTsr {
             Sr = T3i - T1i
             Si = T1r - T3r
 
-            Xr[kpN2] = Xr[kp] - Rr
-            Xi[kpN2] = Xi[kp] - Ri
-            Xr[kp3N4] = Xr[kpN4] + Sr
-            Xi[kp3N4] = Xi[kpN4] + Si
+            outXr[kpN2] = outXr[kp] - Rr
+            outXi[kpN2] = outXi[kp] - Ri
+            outXr[kp3N4] = outXr[kpN4] + Sr
+            outXi[kp3N4] = outXi[kpN4] + Si
 
-            Xr[kp] += Rr
-            Xi[kp] += Ri
-            Xr[kpN4] -= Sr
-            Xi[kpN4] -= Si
+            outXr[kp] += Rr
+            outXi[kp] += Ri
+            outXr[kpN4] -= Sr
+            outXi[kpN4] -= Si
         }
 
         // k = N/8 butterfly
 
-        kp = N8 + Xoffset
+        kp = N8 + outXoffset
         kpN4 = kp + N4
         kpN2 = kpN4 + N4
         kp3N4 = kpN2 + N4
@@ -305,11 +305,11 @@ internal open class CDFTsr {
         // T1 = Wk*O1
         // T3 = W3k*O3
 
-        T1r = SQRT2BY2 * (Xr[kpN2] + Xi[kpN2])
-        T1i = SQRT2BY2 * (Xi[kpN2] - Xr[kpN2])
+        T1r = SQRT2BY2 * (outXr[kpN2] + outXi[kpN2])
+        T1i = SQRT2BY2 * (outXi[kpN2] - outXr[kpN2])
 
-        T3r = SQRT2BY2 * (Xi[kp3N4] - Xr[kp3N4])
-        T3i = -SQRT2BY2 * (Xi[kp3N4] + Xr[kp3N4])
+        T3r = SQRT2BY2 * (outXi[kp3N4] - outXr[kp3N4])
+        T3i = -SQRT2BY2 * (outXi[kp3N4] + outXr[kp3N4])
 
         // R = T1 + T3
         // S = i*(T1 - T3)
@@ -319,22 +319,22 @@ internal open class CDFTsr {
         Sr = T3i - T1i
         Si = T1r - T3r
 
-        Xr[kpN2] = Xr[kp] - Rr
-        Xi[kpN2] = Xi[kp] - Ri
-        Xr[kp3N4] = Xr[kpN4] + Sr
-        Xi[kp3N4] = Xi[kpN4] + Si
+        outXr[kpN2] = outXr[kp] - Rr
+        outXi[kpN2] = outXi[kp] - Ri
+        outXr[kp3N4] = outXr[kpN4] + Sr
+        outXi[kp3N4] = outXi[kpN4] + Si
 
-        Xr[kp] += Rr
-        Xi[kp] += Ri
-        Xr[kpN4] -= Sr
-        Xi[kpN4] -= Si
+        outXr[kp] += Rr
+        outXi[kp] += Ri
+        outXr[kpN4] -= Sr
+        outXi[kpN4] -= Si
 
         // k = N/8+1 through N/4-1 butterflies
 
         for (k in N8 + 1..N4 - 1) {
 
             fk = reflect - f * k
-            kp = k + Xoffset
+            kp = k + outXoffset
             kpN4 = kp + N4
             kpN2 = kpN4 + N4
             kp3N4 = kpN2 + N4
@@ -344,12 +344,12 @@ internal open class CDFTsr {
 
             Wr = -s!![fk]
             Wi = -c!![fk]
-            T1r = Wr * Xr[kpN2] - Wi * Xi[kpN2]
-            T1i = Wr * Xi[kpN2] + Wi * Xr[kpN2]
+            T1r = Wr * outXr[kpN2] - Wi * outXi[kpN2]
+            T1i = Wr * outXi[kpN2] + Wi * outXr[kpN2]
             Wr = s3!![fk]
             Wi = c3!![fk]
-            T3r = Wr * Xr[kp3N4] - Wi * Xi[kp3N4]
-            T3i = Wr * Xi[kp3N4] + Wi * Xr[kp3N4]
+            T3r = Wr * outXr[kp3N4] - Wi * outXi[kp3N4]
+            T3i = Wr * outXi[kp3N4] + Wi * outXr[kp3N4]
 
             // R = T1 + T3
             // S = i*(T1 - T3)
@@ -359,15 +359,15 @@ internal open class CDFTsr {
             Sr = T3i - T1i
             Si = T1r - T3r
 
-            Xr[kpN2] = Xr[kp] - Rr
-            Xi[kpN2] = Xi[kp] - Ri
-            Xr[kp3N4] = Xr[kpN4] + Sr
-            Xi[kp3N4] = Xi[kpN4] + Si
+            outXr[kpN2] = outXr[kp] - Rr
+            outXi[kpN2] = outXi[kp] - Ri
+            outXr[kp3N4] = outXr[kpN4] + Sr
+            outXi[kp3N4] = outXi[kpN4] + Si
 
-            Xr[kp] += Rr
-            Xi[kp] += Ri
-            Xr[kpN4] -= Sr
-            Xi[kpN4] -= Si
+            outXr[kp] += Rr
+            outXi[kp] += Ri
+            outXr[kpN4] -= Sr
+            outXi[kpN4] -= Si
         }
 
     }

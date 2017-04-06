@@ -61,7 +61,7 @@ internal class CDFTsr8
         N = 8
         this.xoffset = n0
         this.xstride = xstride
-        this.Xoffset = m0
+        this.outXoffset = m0
         n1 = n0 + xstride
         n2 = n1 + xstride
         n3 = n2 + xstride
@@ -94,8 +94,8 @@ internal class CDFTsr8
     internal override fun link(xr: FloatArray, xi: FloatArray, Xr: FloatArray, Xi: FloatArray) {
         this.xr = xr
         this.xi = xi
-        this.Xr = Xr
-        this.Xi = Xi
+        this.outXr = Xr
+        this.outXi = Xi
     }
 
 
@@ -115,10 +115,10 @@ internal class CDFTsr8
 
         // Length 2 DFT
 
-        Xr[m0] = xr[n0] + xr[n4]
-        Xi[m0] = xi[n0] + xi[n4]
-        Xr[m1] = xr[n0] - xr[n4]
-        Xi[m1] = xi[n0] - xi[n4]
+        outXr[m0] = xr[n0] + xr[n4]
+        outXi[m0] = xi[n0] + xi[n4]
+        outXr[m1] = xr[n0] - xr[n4]
+        outXi[m1] = xi[n0] - xi[n4]
 
         // length 4 dft
 
@@ -129,29 +129,29 @@ internal class CDFTsr8
         Sr = xi[n6] - xi[n2]
         Si = xr[n2] - xr[n6]
 
-        Xr[m2] = Xr[m0] - Rr
-        Xi[m2] = Xi[m0] - Ri
-        Xr[m3] = Xr[m1] + Sr
-        Xi[m3] = Xi[m1] + Si
+        outXr[m2] = outXr[m0] - Rr
+        outXi[m2] = outXi[m0] - Ri
+        outXr[m3] = outXr[m1] + Sr
+        outXi[m3] = outXi[m1] + Si
 
-        Xr[m0] += Rr
-        Xi[m0] += Ri
-        Xr[m1] -= Sr
-        Xi[m1] -= Si
-
-        // Length 2 DFT
-
-        Xr[m4] = xr[n1] + xr[n5]
-        Xi[m4] = xi[n1] + xi[n5]
-        Xr[m5] = xr[n1] - xr[n5]
-        Xi[m5] = xi[n1] - xi[n5]
+        outXr[m0] += Rr
+        outXi[m0] += Ri
+        outXr[m1] -= Sr
+        outXi[m1] -= Si
 
         // Length 2 DFT
 
-        Xr[m6] = xr[n3] + xr[n7]
-        Xi[m6] = xi[n3] + xi[n7]
-        Xr[m7] = xr[n3] - xr[n7]
-        Xi[m7] = xi[n3] - xi[n7]
+        outXr[m4] = xr[n1] + xr[n5]
+        outXi[m4] = xi[n1] + xi[n5]
+        outXr[m5] = xr[n1] - xr[n5]
+        outXi[m5] = xi[n1] - xi[n5]
+
+        // Length 2 DFT
+
+        outXr[m6] = xr[n3] + xr[n7]
+        outXi[m6] = xi[n3] + xi[n7]
+        outXr[m7] = xr[n3] - xr[n7]
+        outXi[m7] = xi[n3] - xi[n7]
 
 
         // length 8 dft
@@ -159,20 +159,20 @@ internal class CDFTsr8
 
         // k = 0 butterfly
 
-        Rr = Xr[m4] + Xr[m6]
-        Ri = Xi[m4] + Xi[m6]
-        Sr = Xi[m6] - Xi[m4]
-        Si = Xr[m4] - Xr[m6]
+        Rr = outXr[m4] + outXr[m6]
+        Ri = outXi[m4] + outXi[m6]
+        Sr = outXi[m6] - outXi[m4]
+        Si = outXr[m4] - outXr[m6]
 
-        Xr[m4] = Xr[m0] - Rr
-        Xi[m4] = Xi[m0] - Ri
-        Xr[m6] = Xr[m2] + Sr
-        Xi[m6] = Xi[m2] + Si
+        outXr[m4] = outXr[m0] - Rr
+        outXi[m4] = outXi[m0] - Ri
+        outXr[m6] = outXr[m2] + Sr
+        outXi[m6] = outXi[m2] + Si
 
-        Xr[m0] += Rr
-        Xi[m0] += Ri
-        Xr[m2] -= Sr
-        Xi[m2] -= Si
+        outXr[m0] += Rr
+        outXi[m0] += Ri
+        outXr[m2] -= Sr
+        outXi[m2] -= Si
 
 
         // k = 1 butterfly
@@ -180,10 +180,10 @@ internal class CDFTsr8
         // T1 = Wk*O1
         // T3 = W3k*O3
 
-        T1r = SQRT2BY2 * (Xr[m5] + Xi[m5])
-        T1i = SQRT2BY2 * (Xi[m5] - Xr[m5])
-        T3r = SQRT2BY2 * (Xi[m7] - Xr[m7])
-        T3i = -SQRT2BY2 * (Xi[m7] + Xr[m7])
+        T1r = SQRT2BY2 * (outXr[m5] + outXi[m5])
+        T1i = SQRT2BY2 * (outXi[m5] - outXr[m5])
+        T3r = SQRT2BY2 * (outXi[m7] - outXr[m7])
+        T3i = -SQRT2BY2 * (outXi[m7] + outXr[m7])
 
         // R = T1 + T3
         // S = i*(T1 - T3)
@@ -193,15 +193,15 @@ internal class CDFTsr8
         Sr = T3i - T1i
         Si = T1r - T3r
 
-        Xr[m5] = Xr[m1] - Rr
-        Xi[m5] = Xi[m1] - Ri
-        Xr[m7] = Xr[m3] + Sr
-        Xi[m7] = Xi[m3] + Si
+        outXr[m5] = outXr[m1] - Rr
+        outXi[m5] = outXi[m1] - Ri
+        outXr[m7] = outXr[m3] + Sr
+        outXi[m7] = outXi[m3] + Si
 
-        Xr[m1] += Rr
-        Xi[m1] += Ri
-        Xr[m3] -= Sr
-        Xi[m3] -= Si
+        outXr[m1] += Rr
+        outXi[m1] += Ri
+        outXr[m3] -= Sr
+        outXi[m3] -= Si
 
     }
 

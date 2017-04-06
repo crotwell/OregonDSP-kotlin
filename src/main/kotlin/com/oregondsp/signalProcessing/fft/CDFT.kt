@@ -42,8 +42,8 @@ package com.oregondsp.signalProcessing.fft
  * int log2N &nbsp= 14;<BR></BR>
  * float[] xr = new float[N];<BR></BR>
  * float[] xi = new float[N];<BR></BR>
- * float[] Xr = new float[N];<BR></BR>
- * float[] Xi = new float[N];<BR></BR>
+ * float[] outXr = new float[N];<BR></BR>
+ * float[] outXi = new float[N];<BR></BR>
  * CDFT Xfm = new CDFT( log2N );<BR></BR>
  * <BR></BR>
  * // load data<BR></BR>
@@ -53,13 +53,13 @@ package com.oregondsp.signalProcessing.fft
  * }<BR></BR>
  * <BR></BR>
  * // evaluate transform of data<BR></BR>
- * Xfm.evaluate( xr, xi, Xr, Xi );<BR></BR>
+ * Xfm.evaluate( xr, xi, outXr, outXi );<BR></BR>
 </font> *
  *
 
  *
- * The real and imaginary parts of the transform are stored in Xr and Xi in natural order, with the zeroth
- * discrete frequency value in Xr(0) and Xi(0), and the N-1st value ( 2*pi*(N-1)/N ) in Xr(N-1) and Xi(N-1).
+ * The real and imaginary parts of the transform are stored in outXr and outXi in natural order, with the zeroth
+ * discrete frequency value in outXr(0) and outXi(0), and the N-1st value ( 2*pi*(N-1)/N ) in outXr(N-1) and outXi(N-1).
  *
 
  *
@@ -79,7 +79,7 @@ package com.oregondsp.signalProcessing.fft
  *
  *
  * <font face="courier">
- * CDFT Xfm = new CDFT( xr, xi, Xr, Xi, log2N );<BR></BR>
+ * CDFT Xfm = new CDFT( xr, xi, outXr, outXi, log2N );<BR></BR>
  * <BR></BR>
  * // load data<BR></BR>
  * for ( int i = 0;  i < N;  i++ ) {<BR></BR>
@@ -93,9 +93,9 @@ package com.oregondsp.signalProcessing.fft
  *
 
  *
- * For the inverse transform in this usage, the roles of (xr,xi) and (Xr,Xi) are reversed.  The pair
+ * For the inverse transform in this usage, the roles of (xr,xi) and (outXr,outXi) are reversed.  The pair
  * (xr,xi) contains the transform real and imaginary parts in natural order, and upon execution of
- * evaluateInverse(), the pair (Xr,Xi) contains the real and imaginary parts of the corresponding sequence
+ * evaluateInverse(), the pair (outXr,outXi) contains the real and imaginary parts of the corresponding sequence
  * (inverse transform).
  *
 

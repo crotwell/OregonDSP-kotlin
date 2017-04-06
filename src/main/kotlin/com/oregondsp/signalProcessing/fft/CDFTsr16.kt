@@ -80,7 +80,7 @@ internal class CDFTsr16
         N = 16
         xoffset = dataOffset
         xstride = dataStride
-        Xoffset = transformOffset
+        outXoffset = transformOffset
 
         n0 = xoffset
         n1 = n0 + xstride
@@ -99,7 +99,7 @@ internal class CDFTsr16
         n14 = n13 + xstride
         n15 = n14 + xstride
 
-        m0 = Xoffset
+        m0 = outXoffset
         m1 = m0 + 1
         m2 = m1 + 1
         m3 = m2 + 1
@@ -133,8 +133,8 @@ internal class CDFTsr16
     internal override fun link(xr: FloatArray, xi: FloatArray, Xr: FloatArray, Xi: FloatArray) {
         this.xr = xr
         this.xi = xi
-        this.Xr = Xr
-        this.Xi = Xi
+        this.outXr = Xr
+        this.outXi = Xi
     }
 
 
@@ -155,10 +155,10 @@ internal class CDFTsr16
 
         // Length 2 DFT
 
-        Xr[m0] = xr[n0] + xr[n8]
-        Xi[m0] = xi[n0] + xi[n8]
-        Xr[m1] = xr[n0] - xr[n8]
-        Xi[m1] = xi[n0] - xi[n8]
+        outXr[m0] = xr[n0] + xr[n8]
+        outXi[m0] = xi[n0] + xi[n8]
+        outXr[m1] = xr[n0] - xr[n8]
+        outXi[m1] = xi[n0] - xi[n8]
 
         // length 4 dft
 
@@ -170,30 +170,30 @@ internal class CDFTsr16
         Sr = xi[n12] - xi[n4]
         Si = xr[n4] - xr[n12]
 
-        Xr[m2] = Xr[m0] - Rr
-        Xi[m2] = Xi[m0] - Ri
-        Xr[m3] = Xr[m1] + Sr
-        Xi[m3] = Xi[m1] + Si
+        outXr[m2] = outXr[m0] - Rr
+        outXi[m2] = outXi[m0] - Ri
+        outXr[m3] = outXr[m1] + Sr
+        outXi[m3] = outXi[m1] + Si
 
-        Xr[m0] += Rr
-        Xi[m0] += Ri
-        Xr[m1] -= Sr
-        Xi[m1] -= Si
+        outXr[m0] += Rr
+        outXi[m0] += Ri
+        outXr[m1] -= Sr
+        outXi[m1] -= Si
 
-
-        // Length 2 DFT
-
-        Xr[m4] = xr[n2] + xr[n10]
-        Xi[m4] = xi[n2] + xi[n10]
-        Xr[m5] = xr[n2] - xr[n10]
-        Xi[m5] = xi[n2] - xi[n10]
 
         // Length 2 DFT
 
-        Xr[m6] = xr[n6] + xr[n14]
-        Xi[m6] = xi[n6] + xi[n14]
-        Xr[m7] = xr[n6] - xr[n14]
-        Xi[m7] = xi[n6] - xi[n14]
+        outXr[m4] = xr[n2] + xr[n10]
+        outXi[m4] = xi[n2] + xi[n10]
+        outXr[m5] = xr[n2] - xr[n10]
+        outXi[m5] = xi[n2] - xi[n10]
+
+        // Length 2 DFT
+
+        outXr[m6] = xr[n6] + xr[n14]
+        outXi[m6] = xi[n6] + xi[n14]
+        outXr[m7] = xr[n6] - xr[n14]
+        outXi[m7] = xi[n6] - xi[n14]
 
 
         // length 8 dft
@@ -201,20 +201,20 @@ internal class CDFTsr16
 
         // k = 0 butterfly
 
-        Rr = Xr[m4] + Xr[m6]
-        Ri = Xi[m4] + Xi[m6]
-        Sr = Xi[m6] - Xi[m4]
-        Si = Xr[m4] - Xr[m6]
+        Rr = outXr[m4] + outXr[m6]
+        Ri = outXi[m4] + outXi[m6]
+        Sr = outXi[m6] - outXi[m4]
+        Si = outXr[m4] - outXr[m6]
 
-        Xr[m4] = Xr[m0] - Rr
-        Xi[m4] = Xi[m0] - Ri
-        Xr[m6] = Xr[m2] + Sr
-        Xi[m6] = Xi[m2] + Si
+        outXr[m4] = outXr[m0] - Rr
+        outXi[m4] = outXi[m0] - Ri
+        outXr[m6] = outXr[m2] + Sr
+        outXi[m6] = outXi[m2] + Si
 
-        Xr[m0] += Rr
-        Xi[m0] += Ri
-        Xr[m2] -= Sr
-        Xi[m2] -= Si
+        outXr[m0] += Rr
+        outXi[m0] += Ri
+        outXr[m2] -= Sr
+        outXi[m2] -= Si
 
 
         // all other butterflies
@@ -223,10 +223,10 @@ internal class CDFTsr16
         // T1 = Wk*O1
         // T3 = W3k*O3
 
-        T1r = SQRT2BY2 * (Xr[m5] + Xi[m5])
-        T1i = SQRT2BY2 * (Xi[m5] - Xr[m5])
-        T3r = SQRT2BY2 * (Xi[m7] - Xr[m7])
-        T3i = -SQRT2BY2 * (Xi[m7] + Xr[m7])
+        T1r = SQRT2BY2 * (outXr[m5] + outXi[m5])
+        T1i = SQRT2BY2 * (outXi[m5] - outXr[m5])
+        T3r = SQRT2BY2 * (outXi[m7] - outXr[m7])
+        T3i = -SQRT2BY2 * (outXi[m7] + outXr[m7])
 
         // R = T1 + T3
         // S = i*(T1 - T3)
@@ -236,23 +236,23 @@ internal class CDFTsr16
         Sr = T3i - T1i
         Si = T1r - T3r
 
-        Xr[m5] = Xr[m1] - Rr
-        Xi[m5] = Xi[m1] - Ri
-        Xr[m7] = Xr[m3] + Sr
-        Xi[m7] = Xi[m3] + Si
+        outXr[m5] = outXr[m1] - Rr
+        outXi[m5] = outXi[m1] - Ri
+        outXr[m7] = outXr[m3] + Sr
+        outXi[m7] = outXi[m3] + Si
 
-        Xr[m1] += Rr
-        Xi[m1] += Ri
-        Xr[m3] -= Sr
-        Xi[m3] -= Si
+        outXr[m1] += Rr
+        outXi[m1] += Ri
+        outXr[m3] -= Sr
+        outXi[m3] -= Si
 
 
         // Length 2 DFT
 
-        Xr[m8] = xr[n1] + xr[n9]
-        Xi[m8] = xi[n1] + xi[n9]
-        Xr[m9] = xr[n1] - xr[n9]
-        Xi[m9] = xi[n1] - xi[n9]
+        outXr[m8] = xr[n1] + xr[n9]
+        outXi[m8] = xi[n1] + xi[n9]
+        outXr[m9] = xr[n1] - xr[n9]
+        outXi[m9] = xi[n1] - xi[n9]
 
         // length 4 dft
 
@@ -264,23 +264,23 @@ internal class CDFTsr16
         Sr = xi[n13] - xi[n5]
         Si = xr[n5] - xr[n13]
 
-        Xr[m10] = Xr[m8] - Rr
-        Xi[m10] = Xi[m8] - Ri
-        Xr[m11] = Xr[m9] + Sr
-        Xi[m11] = Xi[m9] + Si
+        outXr[m10] = outXr[m8] - Rr
+        outXi[m10] = outXi[m8] - Ri
+        outXr[m11] = outXr[m9] + Sr
+        outXi[m11] = outXi[m9] + Si
 
-        Xr[m8] += Rr
-        Xi[m8] += Ri
-        Xr[m9] -= Sr
-        Xi[m9] -= Si
+        outXr[m8] += Rr
+        outXi[m8] += Ri
+        outXr[m9] -= Sr
+        outXi[m9] -= Si
 
 
         // Length 2 DFT
 
-        Xr[m12] = xr[n3] + xr[n11]
-        Xi[m12] = xi[n3] + xi[n11]
-        Xr[m13] = xr[n3] - xr[n11]
-        Xi[m13] = xi[n3] - xi[n11]
+        outXr[m12] = xr[n3] + xr[n11]
+        outXi[m12] = xi[n3] + xi[n11]
+        outXr[m13] = xr[n3] - xr[n11]
+        outXi[m13] = xi[n3] - xi[n11]
 
 
         // length 4 dft
@@ -293,15 +293,15 @@ internal class CDFTsr16
         Sr = xi[n15] - xi[n7]
         Si = xr[n7] - xr[n15]
 
-        Xr[m14] = Xr[m12] - Rr
-        Xi[m14] = Xi[m12] - Ri
-        Xr[m15] = Xr[m13] + Sr
-        Xi[m15] = Xi[m13] + Si
+        outXr[m14] = outXr[m12] - Rr
+        outXi[m14] = outXi[m12] - Ri
+        outXr[m15] = outXr[m13] + Sr
+        outXi[m15] = outXi[m13] + Si
 
-        Xr[m12] += Rr
-        Xi[m12] += Ri
-        Xr[m13] -= Sr
-        Xi[m13] -= Si
+        outXr[m12] += Rr
+        outXi[m12] += Ri
+        outXr[m13] -= Sr
+        outXi[m13] -= Si
 
 
         // length 16 dft
@@ -309,20 +309,20 @@ internal class CDFTsr16
 
         // k = 0 butterfly
 
-        Rr = Xr[m8] + Xr[m12]
-        Ri = Xi[m8] + Xi[m12]
-        Sr = Xi[m12] - Xi[m8]
-        Si = Xr[m8] - Xr[m12]
+        Rr = outXr[m8] + outXr[m12]
+        Ri = outXi[m8] + outXi[m12]
+        Sr = outXi[m12] - outXi[m8]
+        Si = outXr[m8] - outXr[m12]
 
-        Xr[m8] = Xr[m0] - Rr
-        Xi[m8] = Xi[m0] - Ri
-        Xr[m12] = Xr[m4] + Sr
-        Xi[m12] = Xi[m4] + Si
+        outXr[m8] = outXr[m0] - Rr
+        outXi[m8] = outXi[m0] - Ri
+        outXr[m12] = outXr[m4] + Sr
+        outXi[m12] = outXi[m4] + Si
 
-        Xr[m0] += Rr
-        Xi[m0] += Ri
-        Xr[m4] -= Sr
-        Xi[m4] -= Si
+        outXr[m0] += Rr
+        outXi[m0] += Ri
+        outXr[m4] -= Sr
+        outXi[m4] -= Si
 
 
         // all other butterflies
@@ -331,10 +331,10 @@ internal class CDFTsr16
         // T1 = Wk*O1
         // T3 = W3k*O3
 
-        T1r = C_1_16 * Xr[m9] + C_3_16 * Xi[m9]
-        T1i = C_1_16 * Xi[m9] - C_3_16 * Xr[m9]
-        T3r = C_3_16 * Xr[m13] + C_1_16 * Xi[m13]
-        T3i = C_3_16 * Xi[m13] - C_1_16 * Xr[m13]
+        T1r = C_1_16 * outXr[m9] + C_3_16 * outXi[m9]
+        T1i = C_1_16 * outXi[m9] - C_3_16 * outXr[m9]
+        T3r = C_3_16 * outXr[m13] + C_1_16 * outXi[m13]
+        T3i = C_3_16 * outXi[m13] - C_1_16 * outXr[m13]
 
         // R = T1 + T3
         // S = i*(T1 - T3)
@@ -344,24 +344,24 @@ internal class CDFTsr16
         Sr = T3i - T1i
         Si = T1r - T3r
 
-        Xr[m9] = Xr[m1] - Rr
-        Xi[m9] = Xi[m1] - Ri
-        Xr[m13] = Xr[m5] + Sr
-        Xi[m13] = Xi[m5] + Si
+        outXr[m9] = outXr[m1] - Rr
+        outXi[m9] = outXi[m1] - Ri
+        outXr[m13] = outXr[m5] + Sr
+        outXi[m13] = outXi[m5] + Si
 
-        Xr[m1] += Rr
-        Xi[m1] += Ri
-        Xr[m5] -= Sr
-        Xi[m5] -= Si
+        outXr[m1] += Rr
+        outXi[m1] += Ri
+        outXr[m5] -= Sr
+        outXi[m5] -= Si
 
         // k = 2
         // T1 = Wk*O1
         // T3 = W3k*O3
 
-        T1r = SQRT2BY2 * (Xr[m10] + Xi[m10])
-        T1i = SQRT2BY2 * (Xi[m10] - Xr[m10])
-        T3r = SQRT2BY2 * (Xi[m14] - Xr[m14])
-        T3i = -SQRT2BY2 * (Xi[m14] + Xr[m14])
+        T1r = SQRT2BY2 * (outXr[m10] + outXi[m10])
+        T1i = SQRT2BY2 * (outXi[m10] - outXr[m10])
+        T3r = SQRT2BY2 * (outXi[m14] - outXr[m14])
+        T3i = -SQRT2BY2 * (outXi[m14] + outXr[m14])
 
         // R = T1 + T3
         // S = i*(T1 - T3)
@@ -371,24 +371,24 @@ internal class CDFTsr16
         Sr = T3i - T1i
         Si = T1r - T3r
 
-        Xr[m10] = Xr[m2] - Rr
-        Xi[m10] = Xi[m2] - Ri
-        Xr[m14] = Xr[m6] + Sr
-        Xi[m14] = Xi[m6] + Si
+        outXr[m10] = outXr[m2] - Rr
+        outXi[m10] = outXi[m2] - Ri
+        outXr[m14] = outXr[m6] + Sr
+        outXi[m14] = outXi[m6] + Si
 
-        Xr[m2] += Rr
-        Xi[m2] += Ri
-        Xr[m6] -= Sr
-        Xi[m6] -= Si
+        outXr[m2] += Rr
+        outXi[m2] += Ri
+        outXr[m6] -= Sr
+        outXi[m6] -= Si
 
         // k = 3
         // T1 = Wk*O1
         // T3 = W3k*O3
 
-        T1r = C_3_16 * Xr[m11] + C_1_16 * Xi[m11]
-        T1i = C_3_16 * Xi[m11] - C_1_16 * Xr[m11]
-        T3r = -C_1_16 * Xr[m15] - C_3_16 * Xi[m15]
-        T3i = -C_1_16 * Xi[m15] + C_3_16 * Xr[m15]
+        T1r = C_3_16 * outXr[m11] + C_1_16 * outXi[m11]
+        T1i = C_3_16 * outXi[m11] - C_1_16 * outXr[m11]
+        T3r = -C_1_16 * outXr[m15] - C_3_16 * outXi[m15]
+        T3i = -C_1_16 * outXi[m15] + C_3_16 * outXr[m15]
 
         // R = T1 + T3
         // S = i*(T1 - T3)
@@ -398,15 +398,15 @@ internal class CDFTsr16
         Sr = T3i - T1i
         Si = T1r - T3r
 
-        Xr[m11] = Xr[m3] - Rr
-        Xi[m11] = Xi[m3] - Ri
-        Xr[m15] = Xr[m7] + Sr
-        Xi[m15] = Xi[m7] + Si
+        outXr[m11] = outXr[m3] - Rr
+        outXi[m11] = outXi[m3] - Ri
+        outXr[m15] = outXr[m7] + Sr
+        outXi[m15] = outXi[m7] + Si
 
-        Xr[m3] += Rr
-        Xi[m3] += Ri
-        Xr[m7] -= Sr
-        Xi[m7] -= Si
+        outXr[m3] += Rr
+        outXi[m3] += Ri
+        outXr[m7] -= Sr
+        outXi[m7] -= Si
 
     }
 

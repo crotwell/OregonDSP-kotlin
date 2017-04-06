@@ -74,11 +74,11 @@ package com.oregondsp.signalProcessing.fft
  *
  * <font face="courier">
  * __0_____1_____2_____3_____..._______N/2-1______N/2_______N/2+1______N/2+2____...____N-1 <BR></BR>
- * Xr(0)_Xr(1)_Xr(2)_Xr(3)___..._____Xr(N/2-1)__Xr(N/2)___Xi(N/2-1)__Xi(N/2-2)__...___Xi(1)
+ * outXr(0)_Xr(1)_Xr(2)_Xr(3)___..._____Xr(N/2-1)__Xr(N/2)___Xi(N/2-1)__Xi(N/2-2)__...___Xi(1)
 </font> *
  *
  *
- *  where Xr is the real part of the transform and Xi is the imaginary part.
+ *  where outXr is the real part of the transform and outXi is the imaginary part.
 
  *
  * As long as the transform size does not change, the RDFT object does not need to be reinstantiated.
@@ -236,7 +236,7 @@ class RDFT(log2N: Int) {
 
         // Assumed input storage:
         //   0     1     2     3     ...       N/2-1      N/2       N/2+1      N/2+2    ...    N-1
-        // Xr(0) Xr(1) Xr(2) Xr(3)   ...     Xr(N/2-1)  Xr(N/2)   Xi(N/2-1)  Xi(N/2-2)        Xi(1)
+        // outXr(0) outXr(1) outXr(2) outXr(3)   ...     outXr(N/2-1)  outXr(N/2)   outXi(N/2-1)  outXi(N/2-2)        outXi(1)
 
 
         // Uses symmetries to perform the real length-N inverse DFT with a special length-N set of butterflies
