@@ -33,10 +33,10 @@ import com.oregondsp.signalProcessing.filter.iir.Complex
 class Rational {
 
     /** Numerator polynomial.  */
-    private lateinit var N: Polynomial
+    private val N: Polynomial
 
     /** Denominator polynomial.  */
-    private lateinit var D: Polynomial
+    private val D: Polynomial
 
 
     /**
@@ -93,7 +93,7 @@ class Rational {
      * @return  int[] - first element is the order of the numerator and second element is the order of the denominator.
      */
     fun order(): IntArray {
-        val retval = intArrayOf(N!!.order(), D!!.order())
+        val retval = intArrayOf(N.order(), D.order())
         return retval
     }
 
@@ -128,10 +128,10 @@ class Rational {
      */
     fun canonicalForm(): Double {
 
-        val scaleN = N!!.a[N!!.order]
-        for (i in N!!.a.indices) N!!.a[i] /= scaleN
-        val scaleD = D!!.a[D!!.order]
-        for (i in D!!.a.indices) D!!.a[i] /= scaleD
+        val scaleN = N.a[N.order]
+        for (i in N.a.indices) N.a[i] /= scaleN
+        val scaleD = D.a[D.order]
+        for (i in D.a.indices) D.a[i] /= scaleD
 
         return scaleN / scaleD
     }
@@ -144,7 +144,7 @@ class Rational {
      * @param A    double specifying the scale factor.
      */
     fun timesEquals(A: Double) {
-        N!!.timesEquals(A)
+        N.timesEquals(A)
     }
 
 
@@ -154,7 +154,7 @@ class Rational {
      * @param P    Polynomial object specifying the multiplicative polynomial factor.
      */
     fun timesEquals(P: Polynomial) {
-        N!!.timesEquals(P)
+        N.timesEquals(P)
     }
 
 
@@ -164,8 +164,8 @@ class Rational {
      * @param R    Rational object specifying the multiplicative rational factor.
      */
     fun timesEquals(R: Rational) {
-        N!!.timesEquals(R.N)
-        D!!.timesEquals(R.D)
+        N.timesEquals(R.N)
+        D.timesEquals(R.D)
     }
 
 
@@ -178,8 +178,8 @@ class Rational {
      */
     fun evaluate(x: Double): Double {
         var retval = 0.0
-        val num = N!!.evaluate(x)
-        val denom = D!!.evaluate(x)
+        val num = N.evaluate(x)
+        val denom = D.evaluate(x)
         if (denom != 0.0) retval = num / denom
 
         return retval
@@ -195,8 +195,8 @@ class Rational {
      */
     fun evaluate(c: Complex): Complex {
         var retval = Complex(0.0, 0.0)
-        val num = N!!.evaluate(c)
-        val denom = D!!.evaluate(c)
+        val num = N.evaluate(c)
+        val denom = D.evaluate(c)
         if (denom.abs() != 0.0) retval = num.over(denom)
 
         return retval
@@ -218,27 +218,27 @@ class Rational {
 
         //    Numerator
 
-        var P = Polynomial(N!!.a[N!!.order])
+        var P = Polynomial(N.a[N.order])
         var T = Polynomial(1.0)
-        for (i in N!!.order - 1 downTo 0) {
+        for (i in N.order - 1 downTo 0) {
             T = T.times(S.D)
-            P = P.times(S.N).plus(T.times(N!!.a[i]))
+            P = P.times(S.N).plus(T.times(N.a[i]))
         }
 
         //    Denominator
 
-        var Q = Polynomial(D!!.a[D!!.order])
+        var Q = Polynomial(D.a[D.order])
         T = Polynomial(1.0)
-        for (i in D!!.order - 1 downTo 0) {
+        for (i in D.order - 1 downTo 0) {
             T = T.times(S.D)
-            Q = Q.times(S.N).plus(T.times(D!!.a[i]))
+            Q = Q.times(S.N).plus(T.times(D.a[i]))
         }
 
-        if (D!!.order > N!!.order) {
-            for (i in 0..D!!.order - N!!.order - 1)
+        if (D.order > N.order) {
+            for (i in 0..D.order - N.order - 1)
                 P = P.times(S.D)
-        } else if (N!!.order > D!!.order) {
-            for (i in 0..N!!.order - D!!.order - 1)
+        } else if (N.order > D.order) {
+            for (i in 0..N.order - D.order - 1)
                 Q = Q.times(S.D)
         }
 
@@ -263,7 +263,7 @@ class Rational {
 
         // using L'Hopital's rule - assumes single pole
 
-        return N!!.evaluate(pole) / D!!.derivative().evaluate(pole)
+        return N.evaluate(pole) / D.derivative().evaluate(pole)
     }
 
 
@@ -281,7 +281,7 @@ class Rational {
 
         // using L'Hopital's rule - assumes single pole
 
-        return N!!.evaluate(pole).over(D!!.derivative().evaluate(pole))
+        return N.evaluate(pole).over(D.derivative().evaluate(pole))
     }
 
 
@@ -293,7 +293,7 @@ class Rational {
      * @return           double specifying the group delay in seconds.
      */
     fun groupDelay(omega: Double): Double {
-        return N!!.groupDelay(omega) - D!!.groupDelay(omega)
+        return N.groupDelay(omega) - D.groupDelay(omega)
     }
 
 
@@ -307,7 +307,7 @@ class Rational {
      * @return         double specifying the group delay in samples.
      */
     fun discreteTimeGroupDelay(Omega: Double): Double {
-        return N!!.discreteTimeGroupDelay(Omega) - D!!.discreteTimeGroupDelay(Omega)
+        return N.discreteTimeGroupDelay(Omega) - D.discreteTimeGroupDelay(Omega)
     }
 
 
@@ -318,9 +318,9 @@ class Rational {
      */
     fun print(ps: PrintStream) {
         ps.println("Numerator: ")
-        N!!.print(ps)
+        N.print(ps)
         ps.println("Denominator: ")
-        D!!.print(ps)
+        D.print(ps)
     }
 
     companion object {
