@@ -75,7 +75,7 @@ open class Allpass {
     protected var state: DoubleArray
 
     /** A Rational object containing the rational response representation of the filter.  */
-    protected var T: Rational
+    protected lateinit var T: Rational
 
 
     /**

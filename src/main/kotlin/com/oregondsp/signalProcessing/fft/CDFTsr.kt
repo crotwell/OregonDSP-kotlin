@@ -30,12 +30,12 @@ package com.oregondsp.signalProcessing.fft
 internal open class CDFTsr {
 
     /** float[] pair specifying complex input sequence.  */
-    protected var xr: FloatArray
-    protected var xi: FloatArray
+    protected lateinit var xr: FloatArray
+    protected lateinit var xi: FloatArray
 
     /** float[] pair specifying complex output transform.  */
-    protected var outXr: FloatArray
-    protected var outXi: FloatArray
+    protected lateinit var outXr: FloatArray
+    protected lateinit var outXi: FloatArray
 
     /** int specifying offset into the top-level length-N sequence arrays.  */
     protected var xoffset: Int = 0
@@ -53,10 +53,10 @@ internal open class CDFTsr {
     protected var N: Int = 0
 
     /** N/8.  */
-    protected var N8: Int = 0
+    protected var Ndiv8: Int = 0
 
     /** N/4.  */
-    protected var N4: Int = 0
+    protected var Ndiv4: Int = 0
 
     /** CDFTsr instances created recursively from this level.  */
     private var dft1: CDFTsr? = null
@@ -99,8 +99,8 @@ internal open class CDFTsr {
 
         this.m = m
         N = 1 shl m
-        N8 = N / 8
-        N4 = N / 4
+        Ndiv8 = N / 8
+        Ndiv4 = N / 4
         xoffset = 0
         xstride = 1
         outXoffset = 0
@@ -162,13 +162,13 @@ internal open class CDFTsr {
 
         this.m = m
         N = 1 shl m
-        N8 = N / 8
-        N4 = N / 4
+        Ndiv8 = N / 8
+        Ndiv4 = N / 4
         this.xoffset = dataOffset
         this.xstride = dataStride
         this.outXoffset = transformOffset
 
-        f = c!!.size / N8
+        f = c!!.size / Ndiv8
         reflect = 2 * c!!.size
 
         if (m > 6) {
@@ -233,9 +233,9 @@ internal open class CDFTsr {
         // k = 0 butterfly
 
         var kp = outXoffset
-        var kpN4 = kp + N4
-        var kpN2 = kpN4 + N4
-        var kp3N4 = kpN2 + N4
+        var kpN4 = kp + Ndiv4
+        var kpN2 = kpN4 + Ndiv4
+        var kp3N4 = kpN2 + Ndiv4
 
         Rr = outXr[kpN2] + outXr[kp3N4]
         Ri = outXi[kpN2] + outXi[kp3N4]
@@ -252,17 +252,17 @@ internal open class CDFTsr {
         outXr[kpN4] -= Sr
         outXi[kpN4] -= Si
 
-        // k = 1 through N8-1 butterflies
+        // k = 1 through Ndiv8-1 butterflies
 
         var fk: Int
 
-        for (k in 1..N8 - 1) {
+        for (k in 1..Ndiv8 - 1) {
 
             fk = f * k
             kp = k + outXoffset
-            kpN4 = kp + N4
-            kpN2 = kpN4 + N4
-            kp3N4 = kpN2 + N4
+            kpN4 = kp + Ndiv4
+            kpN2 = kpN4 + Ndiv4
+            kp3N4 = kpN2 + Ndiv4
 
             // T1 = Wk*O1
             // T3 = W3k*O3
@@ -297,10 +297,10 @@ internal open class CDFTsr {
 
         // k = N/8 butterfly
 
-        kp = N8 + outXoffset
-        kpN4 = kp + N4
-        kpN2 = kpN4 + N4
-        kp3N4 = kpN2 + N4
+        kp = Ndiv8 + outXoffset
+        kpN4 = kp + Ndiv4
+        kpN2 = kpN4 + Ndiv4
+        kp3N4 = kpN2 + Ndiv4
 
         // T1 = Wk*O1
         // T3 = W3k*O3
@@ -331,13 +331,13 @@ internal open class CDFTsr {
 
         // k = N/8+1 through N/4-1 butterflies
 
-        for (k in N8 + 1..N4 - 1) {
+        for (k in Ndiv8 + 1..Ndiv4 - 1) {
 
             fk = reflect - f * k
             kp = k + outXoffset
-            kpN4 = kp + N4
-            kpN2 = kpN4 + N4
-            kp3N4 = kpN2 + N4
+            kpN4 = kp + Ndiv4
+            kpN2 = kpN4 + Ndiv4
+            kp3N4 = kpN2 + Ndiv4
 
             // T1 = Wk*O1
             // T3 = W3k*O3

@@ -33,10 +33,10 @@ import com.oregondsp.signalProcessing.filter.iir.Complex
 class Rational {
 
     /** Numerator polynomial.  */
-    private var N: Polynomial? = null
+    private lateinit var N: Polynomial
 
     /** Denominator polynomial.  */
-    private var D: Polynomial? = null
+    private lateinit var D: Polynomial
 
 
     /**

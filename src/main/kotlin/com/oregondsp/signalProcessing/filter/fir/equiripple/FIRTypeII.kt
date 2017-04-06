@@ -41,7 +41,7 @@ import com.oregondsp.signalProcessing.Sequence
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
-internal abstract class FIRTypeII
+abstract class FIRTypeII
 // even length filters with even symmetry
 
 /**

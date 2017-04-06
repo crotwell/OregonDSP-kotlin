@@ -27,28 +27,28 @@ import java.text.DecimalFormat
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
-internal class DesignGrid {
+class DesignGrid {
 
     /** double[] containing the grid samples.  */
-    var grid: DoubleArray? = null                 // sample points where designs are evaluated
+    lateinit var grid: DoubleArray                 // sample points where designs are evaluated
 
     /** int specifying the grid size.  */
     var gridSize: Int = 0
 
     /** double array containing the transformed grid points.  */
-    var X: DoubleArray? = null
+    lateinit var X: DoubleArray
 
     /** double[] containing the desired (weighted) response of the filter on the grid.  */
-    var H: DoubleArray? = null                    // desired response of filter on grid
+    lateinit var H: DoubleArray                    // desired response of filter on grid
 
     /** double[] containing the weighting function on grid.  */
-    var W: DoubleArray? = null                    // weight function on grid
+    lateinit var W: DoubleArray                    // weight function on grid
 
     /** int[] specifying indices of grid points that are band edges.  */
-    var bandEdgeIndices: IntArray? = null
+    lateinit var bandEdgeIndices: IntArray
 
     /** int[] specifying indices of grid points that are current extrema in the Remez exchange.  */
-    var extremaIndices: IntArray? = null
+    lateinit var extremaIndices: IntArray
 
     /** boolean value specifying whether the grid contains 0 frequency as a sample.  */
     var containsZero: Boolean = false

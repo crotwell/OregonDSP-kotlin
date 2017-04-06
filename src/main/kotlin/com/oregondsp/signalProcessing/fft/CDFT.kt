@@ -108,26 +108,19 @@ package com.oregondsp.signalProcessing.fft
  */
 class CDFT {
 
-    private var yr: FloatArray? = null
-    private var yi: FloatArray? = null
+    private lateinit var yr: FloatArray
+    private lateinit var yi: FloatArray
     private var arraysUnlinked: Boolean = false
 
-    private var c: FloatArray? = null
-    private var c3: FloatArray? = null
-    private var s: FloatArray? = null
-    private var s3: FloatArray? = null
+    private lateinit var c: FloatArray
+    private lateinit var c3: FloatArray
+    private lateinit var s: FloatArray
+    private lateinit var s3: FloatArray
 
-    internal var N: Int = 0
-    internal var log2N: Int = 0
+    internal val N: Int
+    internal val log2N: Int
 
-    private var dft: CDFTsr? = null
-
-
-    /**
-     * Default constructor.
-     */
-    constructor() {
-    }
+    private val dft: CDFTsr
 
 
     /**
@@ -150,8 +143,8 @@ class CDFT {
             dft = CDFTsr16(0, 1, 0)
         else if (log2N >= 5) {
             dft = CDFTsr(log2N, c, c3, s, s3)
-        }
-
+        } else
+            throw IllegalArgumentException("unknown log2N size, must be >=3 but was: "+log2N);
     }
 
 
@@ -168,9 +161,9 @@ class CDFT {
     fun evaluate(xr: FloatArray, xi: FloatArray, Xr: FloatArray, Xi: FloatArray) {
         this.yr = Xr
         this.yi = Xi
-        dft!!.link(xr, xi, Xr, Xi)
+        dft.link(xr, xi, Xr, Xi)
         arraysUnlinked = false
-        dft!!.evaluate()
+        dft.evaluate()
     }
 
 
@@ -187,7 +180,7 @@ class CDFT {
     fun evaluateInverse(Xr: FloatArray, Xi: FloatArray, xr: FloatArray, xi: FloatArray) {
         this.yr = xr
         this.yi = xi
-        dft!!.link(Xr, Xi, xr, xi)
+        dft.link(Xr, Xi, xr, xi)
         arraysUnlinked = false
         evaluateInverse()
     }
@@ -209,26 +202,12 @@ class CDFT {
      * *
      * @param log2N       base-2 logarithm of the length of the transform
      */
-    constructor(xr: FloatArray, xi: FloatArray, yr: FloatArray, yi: FloatArray, log2N: Int) {
-
-        if (log2N < 3) throw IllegalArgumentException("DFT size must be >= 8")
+    constructor(xr: FloatArray, xi: FloatArray, yr: FloatArray, yi: FloatArray, log2N: Int) :this(log2N) {
 
         this.yr = yr
         this.yi = yi
 
-        this.log2N = log2N
-        N = 1 shl log2N
-
-        createTable()
-
-        if (log2N == 3)
-            dft = CDFTsr8(0, 1, 0)
-        else if (log2N == 4)
-            dft = CDFTsr16(0, 1, 0)
-        else if (log2N >= 5)
-            dft = CDFTsr(log2N, c, c3, s, s3)
-
-        dft!!.link(xr, xi, yr, yi)
+        dft.link(xr, xi, yr, yi)
         arraysUnlinked = false
 
     }
@@ -241,7 +220,7 @@ class CDFT {
     fun evaluate() {
         if (arraysUnlinked)
             throw IllegalStateException("Sequence and transform arrays are not linked")
-        dft!!.evaluate()
+        dft.evaluate()
     }
 
 
@@ -253,7 +232,7 @@ class CDFT {
         if (arraysUnlinked)
             throw IllegalStateException("Sequence and transform arrays are not linked")
 
-        dft!!.evaluate()
+        dft.evaluate()
 
         val scale = 1.0f / N.toFloat()
         val N2 = N / 2
@@ -269,11 +248,11 @@ class CDFT {
         var tmp: Float
 
         while (i < j) {
-            tmp = yr!![i]
-            yr[i] = yr!![j] * scale
+            tmp = yr[i]
+            yr[i] = yr[j] * scale
             yr[j] = tmp * scale
-            tmp = yi!![i]
-            yi[i] = yi!![j] * scale
+            tmp = yi[i]
+            yi[i] = yi[j] * scale
             yi[j] = tmp * scale
 
             i++

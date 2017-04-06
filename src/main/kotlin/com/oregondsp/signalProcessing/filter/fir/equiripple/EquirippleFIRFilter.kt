@@ -31,7 +31,7 @@ import com.oregondsp.signalProcessing.filter.fir.OverlapAdd
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
-internal abstract class EquirippleFIRFilter
+abstract class EquirippleFIRFilter
 /**
  * Instantiates a new equiripple FIR filter.
 
@@ -56,7 +56,13 @@ internal abstract class EquirippleFIRFilter
     protected var bands: Array<DoubleArray>             // specifies band edges
 
     /** float[] containing the FIR filter coefficients  */
-    protected var coefficients: FloatArray      // filter coefficients
+    var _coefficients: FloatArray?  = null      // filter coefficients
+
+    fun getCoefficients(): FloatArray {
+        return _coefficients?.copyOf() ?: throw RuntimeException("Should not happen, access to coefficients before initialized.")
+    }
+
+
 
     /** An OverlapAdd instance that can be used to filter data with the filter.  */
     protected var implementation: OverlapAdd? = null
@@ -207,18 +213,10 @@ internal abstract class EquirippleFIRFilter
         val G = createGrid()
         populateGrid(G)
         EquirippleDesigner.remez(G)
-        coefficients = interpretCoefficients(EquirippleDesigner.calculateCoefficients(G, Nc))
+        _coefficients = interpretCoefficients(EquirippleDesigner.calculateCoefficients(G, Nc))
     }
 
 
-    /**
-     * Method to access the FIR filter coefficients for this design.
-
-     * @return the coefficients
-     */
-    fun getCoefficients(): FloatArray {
-        return coefficients.clone()
-    }
 
 
     /**
@@ -244,6 +242,7 @@ internal abstract class EquirippleFIRFilter
 
         var nfft = 16
         var log2nfft = 4
+        val coefficients = getCoefficients()
         val n = x.size + coefficients.size - 1
         while (nfft < n) {
             nfft *= 2

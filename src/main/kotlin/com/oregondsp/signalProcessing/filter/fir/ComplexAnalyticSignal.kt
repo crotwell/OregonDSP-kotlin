@@ -41,19 +41,19 @@ class ComplexAnalyticSignal
 (realSignal: FloatArray) {
 
     /** The real part of the signal.  */
-    internal var realPart: FloatArray
+    internal var _realPart: FloatArray
 
     /** The imaginary part of the signal.  */
-    internal var imagPart: FloatArray
+    internal var _imagPart: FloatArray
 
 
     init {
-        realPart = realSignal.clone()
+        _realPart = realSignal.clone()
         val transformer = CenteredHilbertTransform(50, 0.03, 0.97)
-        val tmp = transformer.filter(realPart)
+        val tmp = transformer.filter(_realPart)
         Sequence.zeroShift(tmp, -50)
-        imagPart = FloatArray(realPart.size)
-        System.arraycopy(tmp, 0, imagPart, 0, realPart.size)
+        _imagPart = FloatArray(_realPart.size)
+        System.arraycopy(tmp, 0, _imagPart, 0, _realPart.size)
     }
 
 
@@ -64,9 +64,9 @@ class ComplexAnalyticSignal
      */
     val envelope: FloatArray
         get() {
-            val retval = FloatArray(realPart.size)
-            for (i in realPart.indices) {
-                retval[i] = Math.sqrt((realPart[i] * realPart[i] + imagPart[i] * imagPart[i]).toDouble()).toFloat()
+            val retval = FloatArray(_realPart.size)
+            for (i in _realPart.indices) {
+                retval[i] = Math.sqrt((_realPart[i] * _realPart[i] + _imagPart[i] * _imagPart[i]).toDouble()).toFloat()
             }
 
             return retval
@@ -79,7 +79,7 @@ class ComplexAnalyticSignal
      * @return     float[] containing the real part of the signal.
      */
     internal fun getRealPart(): FloatArray {
-        return realPart.clone()
+        return _realPart.clone()
     }
 
 
@@ -89,7 +89,7 @@ class ComplexAnalyticSignal
      * @return     float[] containing the imaginary part of the signal.
      */
     internal fun getImagPart(): FloatArray {
-        return imagPart.clone()
+        return _imagPart.clone()
     }
 
 }

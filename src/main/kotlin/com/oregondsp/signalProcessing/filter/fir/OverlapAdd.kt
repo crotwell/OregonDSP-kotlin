@@ -65,7 +65,7 @@ import com.oregondsp.signalProcessing.fft.RDFT
  */
 class OverlapAdd {
 
-    private var shiftRegister: FloatArray? = null
+    private var shiftRegister: FloatArray
     private var fft: RDFT? = null
     private var nfft: Int = 0
     private var kernel: FloatArray? = null

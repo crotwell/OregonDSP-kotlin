@@ -37,8 +37,15 @@ open class AnalogPrototype {
     protected var sections: ArrayList<Rational>
 
 
+    private var _T: Rational? = null
     /** Overall transfer function of the filter, represented as a rational object  */
-    protected var T: Rational? = null
+    protected val T: Rational
+        get() {
+           if (_T == null) {
+               _T = computeTransferFunction()
+           }
+            return _T ?: throw RuntimeException("SHould not happen, _T is null")
+        }
 
     /**
      * Default constructor for a new analog prototype.
@@ -48,7 +55,6 @@ open class AnalogPrototype {
      */
     init {
         sections = ArrayList<Rational>()
-        T = null
     }
 
 
@@ -59,6 +65,7 @@ open class AnalogPrototype {
      */
     fun addSection(R: Rational) {
         sections.add(R)
+        _T = null
     }
 
 
@@ -214,42 +221,45 @@ open class AnalogPrototype {
      */
     private fun lptobpFactors(P: Polynomial, BW: Double, prod: Double): Array<Polynomial> {
 
-        val retval = arrayOfNulls<Polynomial>(2)
+        //val retval = arrayOfNulls<Polynomial>(2)
 
         val p = P.coefficients()
         val c = p[0] / p[2]
         val b = p[1] / p[2]
         val discriminant = b * b - 4 * c
+        var t0: Polynomial
+        var t1: Polynomial
 
         if (discriminant >= 0.0) {
             var root = (-b + Math.sqrt(discriminant)) / 2.0
             var f1 = root * BW / 2.0
             var f2 = f1 * f1 - prod
             var C = Complex(f1).plus(Complex.sqrt(Complex(f2)))
-            val t0 = doubleArrayOf(C.conjugate().times(C).real(), -2.0 * C.real(), 1.0)
-            retval[0] = Polynomial(t0)
+            t0 = Polynomial(doubleArrayOf(C.conjugate().times(C).real(), -2.0 * C.real(), 1.0))
+            //retval[0] = Polynomial(t0)
 
             root = (-b - Math.sqrt(discriminant)) / 2.0
             f1 = root * BW / 2.0
             f2 = f1 * f1 - prod
             C = Complex(f1).plus(Complex.sqrt(Complex(f2)))
-            val t1 = doubleArrayOf(C.conjugate().times(C).real(), -2.0 * C.real(), 1.0)
-            retval[1] = Polynomial(t1)
+            t1 = Polynomial(doubleArrayOf(C.conjugate().times(C).real(), -2.0 * C.real(), 1.0))
+            //retval[1] = Polynomial(t1)
+
         } else {
             val root = Complex(-b / 2.0, Math.sqrt(-discriminant) / 2.0)
 
             val f1 = root.times(BW / 2.0)
             val f2 = f1.times(f1).minus(prod)
             var C = f1.plus(Complex.sqrt(f2))
-            val t0 = doubleArrayOf(C.conjugate().times(C).real(), -2.0 * C.real(), 1.0)
-            retval[0] = Polynomial(t0)
+            t0 = Polynomial(doubleArrayOf(C.conjugate().times(C).real(), -2.0 * C.real(), 1.0))
+            //retval[0] = Polynomial(t0)
 
             C = f1.minus(Complex.sqrt(f2))
-            val t1 = doubleArrayOf(C.conjugate().times(C).real(), -2.0 * C.real(), 1.0)
-            retval[1] = Polynomial(t1)
+            t1 = Polynomial(doubleArrayOf(C.conjugate().times(C).real(), -2.0 * C.real(), 1.0))
+            //retval[1] = Polynomial(t1)
         }
 
-        return retval
+        return arrayOf(Polynomial(t0), Polynomial(t1))
     }
 
 
@@ -258,13 +268,13 @@ open class AnalogPrototype {
 
      * @return     Rational object containing the resulting transfer function representation.
      */
-    protected fun computeTransferFunction() {
+    protected fun computeTransferFunction(): Rational {
 
-        T = Rational(1.0)
+        var T = Rational(1.0)
 
         for (i in sections.indices)
-            T!!.timesEquals(sections[i])
-
+            T.timesEquals(sections[i])
+        return T
     }
 
 
@@ -275,7 +285,6 @@ open class AnalogPrototype {
      */
     val transferFunction: Rational
         get() {
-            if (T == null) computeTransferFunction()
             return Rational(T)
         }
 
@@ -289,9 +298,7 @@ open class AnalogPrototype {
      */
     fun evaluate(omega: Double): Complex {
 
-        if (T == null) computeTransferFunction()
-
-        return T!!.evaluate(Complex(0.0, omega))
+        return T.evaluate(Complex(0.0, omega))
     }
 
 
@@ -304,9 +311,7 @@ open class AnalogPrototype {
      */
     fun groupDelay(omega: Double): Double {
 
-        if (T == null) computeTransferFunction()
-
-        return T!!.groupDelay(omega)
+        return T.groupDelay(omega)
     }
 
 

@@ -41,7 +41,7 @@ import com.oregondsp.signalProcessing.Sequence
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
-internal abstract class FIRTypeIII
+abstract class FIRTypeIII
 /**
  * Instantiates a new FIR type III filter.
 
