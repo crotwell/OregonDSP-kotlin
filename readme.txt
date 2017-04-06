@@ -1,3 +1,9 @@
+
+This is a fork of OregonDSP to translate to Kotlin and then transpile to javascript for use in the browser.
+
+Original Readme:
+----------------
+
 		OregonDSP:  A Basic Collection of FIR and
 		IIR Digital Filters 
 		Author:  David B. Harris 
