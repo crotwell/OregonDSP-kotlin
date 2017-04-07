@@ -126,7 +126,6 @@ abstract class EquirippleFIRFilter
         var extremum = 0
         var bandEdgeCount = 0
         var perturbation = 0
-        val R = Random()
         for (ib in 0..numBands - 1) {
             val B = bands[ib][1] - bands[ib][0]
             val n = 1 + (nextrema[ib] - 1) * DesignGrid.GRIDDENSITY
@@ -139,7 +138,7 @@ abstract class EquirippleFIRFilter
 
                 if (i % DesignGrid.GRIDDENSITY == 0) {
                     if (i != 0 && i != n - 1)
-                        perturbation = R.nextInt(3) - 1
+                        perturbation = Math.floor(Math.random()*3) - 1
                     else
                         perturbation = 0
                     G.extremaIndices[extremum++] = gridpt + perturbation
