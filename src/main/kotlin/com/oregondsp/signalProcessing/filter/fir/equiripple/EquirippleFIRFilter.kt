@@ -252,13 +252,17 @@ abstract class EquirippleFIRFilter
         val transform = FloatArray(nfft)
         var kernel = FloatArray(nfft)
 
-        System.arraycopy(x, 0, tmp, 0, x.size)
+        for (i in x.indices) {
+            tmp[i] = x[i]
+        }
         fft.evaluate(tmp, transform)
 
         //Arrays.fill(tmp, 0.0f)
         for (i in tmp.indices)
             tmp[i] = 0.0F
-        System.arraycopy(coefficients, 0, tmp, 0, coefficients.size)
+        for (i in coefficients.indices) {
+            tmp[i] = coefficients[i]
+        }
         fft.evaluate(tmp, kernel)
 
         RDFT.dftProduct(kernel, transform, 1.0f)
@@ -267,7 +271,9 @@ abstract class EquirippleFIRFilter
         // trim off trailing zeros
 
         kernel = FloatArray(n)
-        System.arraycopy(tmp, 0, kernel, 0, n)
+        for (i in 0..n) {
+            kernel[i] = tmp[i]
+        }
 
         return kernel
     }

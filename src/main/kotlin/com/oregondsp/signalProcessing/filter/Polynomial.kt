@@ -59,8 +59,7 @@ class Polynomial {
      */
     constructor(a: DoubleArray) {
         order = a.size - 1
-        this.a = DoubleArray(a.size)
-        System.arraycopy(a, 0, this.a, 0, a.size)
+        this.a = a.copyOf()
     }
 
 
@@ -71,8 +70,7 @@ class Polynomial {
      */
     constructor(B: Polynomial) {
         order = B.order
-        a = DoubleArray(order + 1)
-        System.arraycopy(B.a, 0, a, 0, a.size)
+        this.a = B.a.copyOf()
     }
 
 
@@ -117,7 +115,9 @@ class Polynomial {
 
         if (n > 0) {
             val b = DoubleArray(order + 1 - n)
-            System.arraycopy(a, 0, b, 0, a.size - n)
+            for (j in b.indices) {
+                b[j] = a[j]
+            }
             a = b
             order -= n
         }
@@ -141,9 +141,7 @@ class Polynomial {
      * @return      double[] containing a copy of the coefficients.
      */
     fun coefficients(): DoubleArray {
-        val retval = DoubleArray(order + 1)
-        System.arraycopy(a, 0, retval, 0, order + 1)
-        return retval
+        return a.copyOf()
     }
 
 
@@ -158,7 +156,7 @@ class Polynomial {
      */
     operator fun plus(c: Double): Polynomial {
         val retval = Polynomial(order)
-        System.arraycopy(a, 0, retval.a, 0, a.size)
+        retval.a = a.copyOf()
         retval.a[0] += c
         return retval
     }
@@ -502,7 +500,9 @@ class Polynomial {
                 c[j] = (b[j] - k[i - 1] * b[i - j]) / scale
             }
 
-            System.arraycopy(c, 0, b, 0, i)
+            for (j in 0..i - 1) {
+                b[j] = c[j]
+            }
         }
 
         return k

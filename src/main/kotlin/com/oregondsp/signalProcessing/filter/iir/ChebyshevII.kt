@@ -45,7 +45,7 @@ class ChebyshevII
  * @param delta      double specifying the sampling interval of the data to which this filter will be applied.
  */
 (order: Int, epsilon: Double, type: PassbandType, f1: Double, f2: Double, delta: Double) : IIRFilter(AnalogChebyshevII(order, epsilon), type, f1, f2, delta) {
-    
+
 
 
 }

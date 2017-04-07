@@ -54,7 +54,9 @@ class ComplexAnalyticSignal
         val tmp = transformer.filter(_realPart)
         Sequence.zeroShift(tmp, -50)
         _imagPart = FloatArray(_realPart.size)
-        System.arraycopy(tmp, 0, _imagPart, 0, _realPart.size)
+        for (i in _realPart.indices) {
+            _imagPart[i] = tmp[i]
+        }
     }
 
 

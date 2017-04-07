@@ -227,7 +227,9 @@ open class Allpass {
                 i++
             }
 
-            System.arraycopy(b, 0, a, 0, p + 2)
+            for (k in 0..p+2) {
+                a[k] = b[k]
+            }
         }
 
         //Arrays.fill(b, 0.0)

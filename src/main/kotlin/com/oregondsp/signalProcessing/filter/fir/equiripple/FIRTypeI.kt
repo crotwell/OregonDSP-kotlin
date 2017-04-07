@@ -74,7 +74,9 @@ abstract class FIRTypeI
 
         val retval = FloatArray(Nc)
         Sequence.circularShift(coefficients, N - 1)
-        System.arraycopy(coefficients, 0, retval, 0, Nc)
+        for (i in 0..Nc) {
+            retval[i] = coefficients[i]
+        }
 
         return retval
     }

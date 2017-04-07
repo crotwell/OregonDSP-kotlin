@@ -102,7 +102,9 @@ class OverlapAdd {
         segment = FloatArray(nfft)
         transform = FloatArray(nfft)
 
-        System.arraycopy(H, 0, segment!!, 0, H.size)
+        for (i in H.indices) {
+            segment!![i] = H[i]
+        }
         fft!!.evaluate(segment!!, kernel!!)
     }
 
@@ -128,7 +130,9 @@ class OverlapAdd {
         segment = FloatArray(nfft)
         transform = FloatArray(nfft)
 
-        System.arraycopy(H, 0, segment!!, 0, H.size)
+        for (i in H.indices) {
+            segment!![i] = H[i]
+        }
         fft!!.evaluate(segment!!, kernel!!)
     }
 
@@ -154,7 +158,9 @@ class OverlapAdd {
         //Arrays.fill(segment!!, 0.0f)
         for (i in segment!!.indices)
             segment!![i] = 0.0F
-        System.arraycopy(src, sptr, segment!!, 0, blockSize)
+        for (i in 0..blockSize) {
+            segment!![i] = src[i+sptr]
+        }
 
         // circular convolution by dft
 
@@ -169,8 +175,9 @@ class OverlapAdd {
         }
 
         // save incremental result
-
-        System.arraycopy(shiftRegister!!, 0, dst, dptr, blockSize)
+        for (i in 0..blockSize) {
+            dst[i+dptr] = shiftRegister[i]
+        }
 
         // shift state information
 
@@ -186,8 +193,9 @@ class OverlapAdd {
     fun flush(dst: FloatArray, dptr: Int) {
 
         // save incremental result
-
-        System.arraycopy(shiftRegister!!, 0, dst, dptr, blockSize)
+        for (i in 0..blockSize) {
+            dst[i+dptr] = shiftRegister[i]
+        }
 
         // shift state information
 
