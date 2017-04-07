@@ -11,7 +11,6 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.1"
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:1.1.1"
 }
 
