@@ -89,7 +89,7 @@ class Rational {
     /**
      * Returns the orders of the numerator and denominator polynomials.
 
-     * @return  int[] - first element is the order of the numerator and second element is the order of the denominator.
+     * @return  int[] - first element is the _order of the numerator and second element is the _order of the denominator.
      */
     fun order(): IntArray {
         val retval = intArrayOf(N.order(), D.order())
@@ -127,9 +127,9 @@ class Rational {
      */
     fun canonicalForm(): Double {
 
-        val scaleN = N.a[N.order]
+        val scaleN = N.a[N._order]
         for (i in N.a.indices) N.a[i] /= scaleN
-        val scaleD = D.a[D.order]
+        val scaleD = D.a[D._order]
         for (i in D.a.indices) D.a[i] /= scaleD
 
         return scaleN / scaleD
@@ -217,27 +217,27 @@ class Rational {
 
         //    Numerator
 
-        var P = Polynomial(N.a[N.order])
+        var P = Polynomial(N.a[N._order])
         var T = Polynomial(1.0)
-        for (i in N.order - 1 downTo 0) {
+        for (i in N._order - 1 downTo 0) {
             T = T.times(S.D)
             P = P.times(S.N).plus(T.times(N.a[i]))
         }
 
         //    Denominator
 
-        var Q = Polynomial(D.a[D.order])
+        var Q = Polynomial(D.a[D._order])
         T = Polynomial(1.0)
-        for (i in D.order - 1 downTo 0) {
+        for (i in D._order - 1 downTo 0) {
             T = T.times(S.D)
             Q = Q.times(S.N).plus(T.times(D.a[i]))
         }
 
-        if (D.order > N.order) {
-            for (i in 0..D.order - N.order - 1)
+        if (D._order > N._order) {
+            for (i in 0..D._order - N._order - 1)
                 P = P.times(S.D)
-        } else if (N.order > D.order) {
-            for (i in 0..N.order - D.order - 1)
+        } else if (N._order > D._order) {
+            for (i in 0..N._order - D._order - 1)
                 Q = Q.times(S.D)
         }
 

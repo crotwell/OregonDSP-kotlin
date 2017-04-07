@@ -32,7 +32,7 @@ import com.oregondsp.signalProcessing.filter.Rational
  * altering their magnitude responses.
 
  *
- * An allpass filter has the form:  z<sup>-N</sup> A<sub>N</sub>(z<sup>-1</sup>) / A<sub>N</sub>(z), where N is the order of the
+ * An allpass filter has the form:  z<sup>-N</sup> A<sub>N</sub>(z<sup>-1</sup>) / A<sub>N</sub>(z), where N is the _order of the
  * filter and A<sub>N</sub>(z) is a polynomial.  The numerator polynomial is a "reflection" of the
  * denominator polynomial.  If
 
@@ -64,7 +64,7 @@ open class Allpass {
     /** double[] containing the reflection coefficients specifying this allpass filter.  */
     protected var k: DoubleArray
 
-    /** int containing the order of the filter.  */
+    /** int containing the _order of the filter.  */
     protected var order: Int = 0
 
     /** double[] containing the state of the filter.  Used to assure continuity in the filtering operation
@@ -76,9 +76,9 @@ open class Allpass {
 
 
     /**
-     * Instantiates a new allpass filter of a given order with zero reflection coefficients.
+     * Instantiates a new allpass filter of a given _order with zero reflection coefficients.
 
-     * @param order     int containing the order of the filter.
+     * @param order     int containing the _order of the filter.
      */
     constructor(order: Int) {
         this.order = order
@@ -260,7 +260,7 @@ open class Allpass {
 
         val DF = DecimalFormat("0.000000")
 
-        ps.println("Allpass order:  " + order)
+        ps.println("Allpass _order:  " + order)
         for (i in 0..order - 1) {
             if (i < order) {
                 if (k[i] < 0.0)

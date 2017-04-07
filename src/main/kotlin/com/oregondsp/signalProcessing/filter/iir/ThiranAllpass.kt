@@ -36,7 +36,7 @@ class ThiranAllpass
 /**
  * constructs a Thiran allpass filter.
 
- * @param N     the order of the allpass filter, typically 3 or 4
+ * @param N     the _order of the allpass filter, typically 3 or 4
  * *
  * @param D     the delay, in samples, best between N-1 and N
  */

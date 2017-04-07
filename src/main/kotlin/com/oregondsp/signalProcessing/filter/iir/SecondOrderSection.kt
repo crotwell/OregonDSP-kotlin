@@ -21,7 +21,7 @@ package com.oregondsp.signalProcessing.filter.iir
 import kotlin.js.Math
 
 /**
- * Class to implement a second order section - basic unit of an Infinite Impulse Response digital filter.
+ * Class to implement a second _order section - basic unit of an Infinite Impulse Response digital filter.
 
  *
  * Implements the finite difference equation:
@@ -33,7 +33,7 @@ import kotlin.js.Math
  */
 class SecondOrderSection
 /**
- * Instantiates a new second order section, with values for the numerator and denominator coefficients.
+ * Instantiates a new second _order section, with values for the numerator and denominator coefficients.
 
  * @param b0         Numerator coefficient b[0].
  * *

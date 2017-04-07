@@ -43,13 +43,13 @@ import kotlin.js.Math
  */
 class Polynomial {
 
-    /** double array containing the coefficients of the polynomial.  The low order coefficient is
-     * in a[0] and the high order coefficient is in a[order].
+    /** double array containing the coefficients of the polynomial.  The low _order coefficient is
+     * in a[0] and the high _order coefficient is in a[_order].
      */
     var a: DoubleArray
 
-    /** integer containing the order (degree:  N) of the polynomial.  */
-    var order: Int = 0
+    /** integer containing the _order (degree:  N) of the polynomial.  */
+    var _order: Int = 0
 
 
     /**
@@ -58,7 +58,7 @@ class Polynomial {
      * @param a    double[] containing the polynomial coefficients.
      */
     constructor(a: DoubleArray) {
-        order = a.size - 1
+        _order = a.size - 1
         this.a = a.copyOf()
     }
 
@@ -69,7 +69,7 @@ class Polynomial {
      * @param B       Polynomial to be copied into the new Instance.
      */
     constructor(B: Polynomial) {
-        order = B.order
+        _order = B._order
         this.a = B.a.copyOf()
     }
 
@@ -77,10 +77,10 @@ class Polynomial {
     /**
      * Instantiates a new zero polynomial.
 
-     * @param order     int containing the order (degree) of the polynomial.
+     * @param order     int containing the _order (degree) of the polynomial.
      */
     constructor(order: Int) {
-        this.order = order
+        this._order = order
         this.a = DoubleArray(order + 1)
         //Arrays.fill(a, 0.0)
     }
@@ -92,7 +92,7 @@ class Polynomial {
      * @param c        double containing the constant.
      */
     constructor(c: Double) {
-        order = 0
+        _order = 0
         a = DoubleArray(1)
         a[0] = c
     }
@@ -106,7 +106,7 @@ class Polynomial {
      */
     fun trim() {
 
-        var i = order
+        var i = _order
         var n = 0
         while (a[i] == 0.0) {
             n++
@@ -114,24 +114,24 @@ class Polynomial {
         }
 
         if (n > 0) {
-            val b = DoubleArray(order + 1 - n)
+            val b = DoubleArray(_order + 1 - n)
             for (j in b.indices) {
                 b[j] = a[j]
             }
             a = b
-            order -= n
+            _order -= n
         }
 
     }
 
 
     /**
-     * Returns the order (degree) of the polynomal.
+     * Returns the _order (degree) of the polynomal.
 
      * @return      int containing the degree of the polynomial.
      */
     fun order(): Int {
-        return order
+        return _order
     }
 
 
@@ -155,7 +155,7 @@ class Polynomial {
      * @return         The new polynomial containing the sum of this polynomial and the constant.
      */
     operator fun plus(c: Double): Polynomial {
-        val retval = Polynomial(order)
+        val retval = Polynomial(_order)
         retval.a = a.copyOf()
         retval.a[0] += c
         return retval
@@ -182,9 +182,9 @@ class Polynomial {
      * @return        Polynomial object containing the new sum.
      */
     operator fun plus(B: Polynomial): Polynomial {
-        val retval = Polynomial(Math.max(order, B.order))
-        for (i in 0..order) retval.a[i] = a[i]
-        for (i in 0..B.order) retval.a[i] += B.a[i]
+        val retval = Polynomial(Math.max(_order, B._order))
+        for (i in 0.._order) retval.a[i] = a[i]
+        for (i in 0..B._order) retval.a[i] += B.a[i]
         return retval
     }
 
@@ -195,11 +195,11 @@ class Polynomial {
      * @param B       Polynomial object containing the polynomial to be added to this polynomial.
      */
     fun plusEquals(B: Polynomial) {
-        val A = DoubleArray(Math.max(order, B.order))
-        for (i in 0..order) A[i] = a[i]
-        for (i in 0..B.order) A[i] += B.a[i]
+        val A = DoubleArray(Math.max(_order, B._order))
+        for (i in 0.._order) A[i] = a[i]
+        for (i in 0..B._order) A[i] += B.a[i]
         a = A
-        order = A.size - 1
+        _order = A.size - 1
     }
 
 
@@ -237,9 +237,9 @@ class Polynomial {
      * @return             Polynomial containing the difference.
      */
     operator fun minus(B: Polynomial): Polynomial {
-        val retval = Polynomial(Math.max(order, B.order))
-        for (i in 0..order) retval.a[i] = a[i]
-        for (i in 0..B.order) retval.a[i] -= B.a[i]
+        val retval = Polynomial(Math.max(_order, B._order))
+        for (i in 0.._order) retval.a[i] = a[i]
+        for (i in 0..B._order) retval.a[i] -= B.a[i]
         return retval
     }
 
@@ -250,11 +250,11 @@ class Polynomial {
      * @param B        Polynomial to be subtracted from this polynomial.
      */
     fun minusEquals(B: Polynomial) {
-        val A = DoubleArray(Math.max(order, B.order))
-        for (i in 0..order) A[i] = a[i]
-        for (i in 0..B.order) A[i] -= B.a[i]
+        val A = DoubleArray(Math.max(_order, B._order))
+        for (i in 0.._order) A[i] = a[i]
+        for (i in 0..B._order) A[i] -= B.a[i]
         a = A
-        order = A.size - 1
+        _order = A.size - 1
     }
 
 
@@ -268,8 +268,8 @@ class Polynomial {
      * @return         The resulting product polynomial.
      */
     operator fun times(c: Double): Polynomial {
-        val retval = Polynomial(order)
-        for (i in 0..order) retval.a[i] = c * a[i]
+        val retval = Polynomial(_order)
+        for (i in 0.._order) retval.a[i] = c * a[i]
         return retval
     }
 
@@ -280,7 +280,7 @@ class Polynomial {
      * @param c        The constant multiplicative factor.
      */
     fun timesEquals(c: Double) {
-        for (i in 0..order) a[i] *= c
+        for (i in 0.._order) a[i] *= c
     }
 
 
@@ -294,11 +294,11 @@ class Polynomial {
     operator fun times(B: Polynomial): Polynomial {
 
         val b = B.a
-        val prod = DoubleArray(order + B.order + 1)
+        val prod = DoubleArray(_order + B._order + 1)
         //Arrays.fill(prod, 0.0)
 
-        for (i in 0..B.order) {
-            for (j in 0..order) {
+        for (i in 0..B._order) {
+            for (j in 0.._order) {
                 prod[i + j] += b[i] * a[j]
             }
         }
@@ -315,17 +315,17 @@ class Polynomial {
     fun timesEquals(B: Polynomial) {
 
         val b = B.a
-        val prod = DoubleArray(order + B.order + 1)
+        val prod = DoubleArray(_order + B._order + 1)
         //Arrays.fill(prod, 0.0)
 
-        for (i in 0..B.order) {
-            for (j in 0..order) {
+        for (i in 0..B._order) {
+            for (j in 0.._order) {
                 prod[i + j] += b[i] * a[j]
             }
         }
 
         a = prod
-        order += B.order
+        _order += B._order
     }
 
 
@@ -339,8 +339,8 @@ class Polynomial {
      * @return         New Polynomial object containing the result of division.
      */
     fun over(c: Double): Polynomial {
-        val tmp = DoubleArray(order + 1)
-        for (i in 0..order + 1 - 1)
+        val tmp = DoubleArray(_order + 1)
+        for (i in 0.._order + 1 - 1)
             tmp[i] = a[i] / c
 
         return Polynomial(tmp)
@@ -353,7 +353,7 @@ class Polynomial {
      * @param c          The double divisor.
      */
     fun overEquals(c: Double) {
-        for (i in 0..order + 1 - 1)
+        for (i in 0.._order + 1 - 1)
             a[i] /= c
     }
 
@@ -378,8 +378,8 @@ class Polynomial {
      * @return          New Polynomial object containing the derivative of this polynomial.
      */
     fun derivative(): Polynomial {
-        val tmp = DoubleArray(order)
-        for (i in 0..order - 1) {
+        val tmp = DoubleArray(_order)
+        for (i in 0.._order - 1) {
             tmp[i] = (i + 1) * a[i + 1]
         }
 
@@ -396,9 +396,9 @@ class Polynomial {
      */
     fun evaluate(x: Double): Double {
 
-        var retval = a[order]
+        var retval = a[_order]
 
-        for (i in order - 1 downTo 0) {
+        for (i in _order - 1 downTo 0) {
             retval = x * retval + a[i]
         }
 
@@ -415,9 +415,9 @@ class Polynomial {
      */
     fun evaluate(c: Complex): Complex {
 
-        var retval = Complex(a[order])
+        var retval = Complex(a[_order])
 
-        for (i in order - 1 downTo 0) {
+        for (i in _order - 1 downTo 0) {
             retval = retval.times(c).plus(a[i])
         }
 
@@ -434,7 +434,7 @@ class Polynomial {
      */
     fun groupDelay(omega: Double): Double {
 
-        if (order == 0)
+        if (_order == 0)
             return 0.0
         else {
             val c = Complex(0.0, omega)
@@ -458,8 +458,8 @@ class Polynomial {
 
         val c = Complex.exp(Complex(0.0, -Omega))
 
-        var N = Complex(a[order] * order)
-        for (i in order - 1 downTo 0) {
+        var N = Complex(a[_order] * _order)
+        for (i in _order - 1 downTo 0) {
             N = N.times(c).plus(a[i] * i)
         }
 
@@ -476,25 +476,25 @@ class Polynomial {
      */
     fun reflectionCoefficients(): DoubleArray {
 
-        val k = DoubleArray(order)
+        val k = DoubleArray(_order)
 
         // assure that polynomial is monic
 
-        val b = DoubleArray(order + 1)
+        val b = DoubleArray(_order + 1)
         b[0] = 1.0
-        for (i in 0..order - 1) b[i + 1] = a[i + 1] / a[0]
+        for (i in 0.._order - 1) b[i + 1] = a[i + 1] / a[0]
 
         // recursion to calculate reflection coefficients
 
 
-        for (i in order downTo 1) {
+        for (i in _order downTo 1) {
 
             k[i - 1] = b[i]
 
             val scale = 1.0 - k[i - 1] * k[i - 1]
 
             //Arrays.fill(c, 0.0)
-            val c = DoubleArray(order)
+            val c = DoubleArray(_order)
 
             for (j in 0..i - 1) {
                 c[j] = (b[j] - k[i - 1] * b[i - j]) / scale
@@ -515,7 +515,7 @@ class Polynomial {
      * @param ps            PrintStream object to which this polynomial's coefficients are printed.
      */
     fun print(ps: PrintStream) {
-        for (i in 0..order) {
+        for (i in 0.._order) {
             if (i >= 0 && i < 10)
                 ps.println(i.toString() + "    " + a[i])
             else if (i >= 10 && i <= 100)

@@ -32,7 +32,7 @@ import kotlin.js.Math
  */
 open class AnalogPrototype {
 
-    /** Data structure for second-order sections comprising the filter implementation  */
+    /** Data structure for second-_order sections comprising the filter implementation  */
     protected var sections: ArrayList<Rational>
 
 
@@ -49,7 +49,7 @@ open class AnalogPrototype {
     /**
      * Default constructor for a new analog prototype.
 
-     * Instantiates an analog prototype with no second order sections.  This constructor
+     * Instantiates an analog prototype with no second _order sections.  This constructor
      * is called by the super() methods in subclasses.
      */
     init {
@@ -58,9 +58,9 @@ open class AnalogPrototype {
 
 
     /**
-     * Method to add a second order section to the analog prototype representation.
+     * Method to add a second _order section to the analog prototype representation.
 
-     * @param R     Rational object containing a second order section representation.
+     * @param R     Rational object containing a second _order section representation.
      */
     fun addSection(R: Rational) {
         sections.add(R)
@@ -69,9 +69,9 @@ open class AnalogPrototype {
 
 
     /**
-     * Returns the number of second order sections in the analog prototype representation.
+     * Returns the number of second _order sections in the analog prototype representation.
 
-     * @return    int containing the number of second order sections.
+     * @return    int containing the number of second _order sections.
      */
     fun nSections(): Int {
         return sections.size
@@ -79,9 +79,9 @@ open class AnalogPrototype {
 
 
     /**
-     * Accessor for second order sections in the prototype representation.
+     * Accessor for second _order sections in the prototype representation.
 
-     * @param index     int specifying the desired second order section.
+     * @param index     int specifying the desired second _order section.
      * *
      * @return          Rational object containing the representation of the desired section.
      */
@@ -208,7 +208,7 @@ open class AnalogPrototype {
 
 
     /**
-     * Method to compute polynomial factors for bandpass transformed quadratic polynomials in a second-order section.
+     * Method to compute polynomial factors for bandpass transformed quadratic polynomials in a second-_order section.
 
      * @param P       Polynomial object to be transformed.
      * *
@@ -216,7 +216,7 @@ open class AnalogPrototype {
      * *
      * @param prod    Product parameter of the transform.
      * *
-     * @return        Array of Polynomial factors (there will be two for each quadratic in a second order section).
+     * @return        Array of Polynomial factors (there will be two for each quadratic in a second _order section).
      */
     private fun lptobpFactors(P: Polynomial, BW: Double, prod: Double): Array<Polynomial> {
 
@@ -263,7 +263,7 @@ open class AnalogPrototype {
 
 
     /**
-     * Computes the transfer function representation of the filter as a product of second-order section transfer fuctions.
+     * Computes the transfer function representation of the filter as a product of second-_order section transfer fuctions.
 
      * @return     Rational object containing the resulting transfer function representation.
      */
@@ -315,7 +315,7 @@ open class AnalogPrototype {
 
 
     /**
-     * Prints the coefficients of the second-order section factors of this analog prototype filter.
+     * Prints the coefficients of the second-_order section factors of this analog prototype filter.
 
      * @param ps     PrintStream to which the representation is printed.
      */

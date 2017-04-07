@@ -25,12 +25,12 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
  * This class uses the Remez exchange algorithm to design a Hilbert transformer of length 2N+1.
  * The Nth sample is zero (counting from 0), and the impulse response is an anti-symmetric sequence
  * about this point.  The filter is linear phase, with group delay a constant equal to N.  The
- * design parameters are the order (N) specifying the number (N+1) of approximating functions in the
+ * design parameters are the _order (N) specifying the number (N+1) of approximating functions in the
  * Remez algorithm, and two parameters specifying the band edge frequencies.  The design problem
  * is performed on a discrete-time frequency axis normalized to range between 0 and 1 (the folding
  * frequency).  Omega1, the lower band edge of the passband must be greater than 0 and less than
  * Omega2, the upper band edge.  Omega2 must be strictly less than 1.  A tradeoff exists between the
- * filter order N and band edge frequencies.  As Omega1 approaches 0 or Omega2 approaches 1, the order
+ * filter _order N and band edge frequencies.  As Omega1 approaches 0 or Omega2 approaches 1, the _order
  * must be increased to obtain an acceptable design.
  *
  * For details on the design algorithm and characteristics of the filter response, see

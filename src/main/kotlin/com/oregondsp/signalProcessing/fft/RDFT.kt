@@ -67,7 +67,7 @@ import kotlin.js.Math
  *
  *
  *
- * The input sequence, x[n], is in natural order, and the output transform is in the packed form used
+ * The input sequence, x[n], is in natural _order, and the output transform is in the packed form used
  * by Sorensen et al. (1987) for conjugate symmetric transforms:
  *
  *
@@ -100,7 +100,7 @@ import kotlin.js.Math
 
  *
  *
- * The input transform, X, is in conjugate symmetric packed form and the output sequence, x, is in natural order.
+ * The input transform, X, is in conjugate symmetric packed form and the output sequence, x, is in natural _order.
  *
  *
  *

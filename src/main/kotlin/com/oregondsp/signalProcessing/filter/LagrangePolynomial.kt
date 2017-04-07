@@ -69,7 +69,7 @@ class LagrangePolynomial
 
 
     /**
-     * Accessor - returns the order of the polynomial.
+     * Accessor - returns the _order of the polynomial.
 
      * @return the int
      */

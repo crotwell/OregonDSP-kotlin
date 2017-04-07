@@ -24,7 +24,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
  *
  * This class uses the Remez exchange algorithm to design a bandpass filter of length 2N+1.
  * The impulse response is a symmetric sequence about point N (counting from 0). The filter is linear
- * phase, with group delay a constant equal to N.  The design parameters are the order (N) specifying
+ * phase, with group delay a constant equal to N.  The design parameters are the _order (N) specifying
  * the number (N+1) of approximating functions in the Remez algorithm and seven parameters controlling
  * the cutoffs and design weights of the passband and 2 stopbands.  The design problem is performed on
  * a discrete-time frequency axis normalized to range between 0 and 1 (the folding frequency).  The
@@ -32,7 +32,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
  * The upper stop band is the interval [OmegaS2, 1].  Note that 0 < OmegaS1 < OmegaP1 < OmegaP2 <
  * OmegaS2 < 1.  All bands must have non-zero width, and the open intervals (transition bands)
  * (OmegaS1, OmegaP1) and (OmegaP2, OmegaS2) also must have non-zero width. The narrower any of these
- * bands, the larger the order N must be to obtain a reasonable frequency response.  Weights are
+ * bands, the larger the _order N must be to obtain a reasonable frequency response.  Weights are
  * specified for each band to control the relative sizes of the maximum errors among bands.
  * For details on the design algorithm and characteristics of the filter response, see
 
@@ -49,7 +49,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
  * VOL. 63, NO. 4, pp. 595-610.
 
  *
- * and for order selection, consult:
+ * and for _order selection, consult:
 
  *
  * Approximate Design Relationships for Low-Pass FIR Digital Filters, Lawrence R. Rabiner (1973),
@@ -61,7 +61,7 @@ class EquirippleBandpass
 /**
  * Instantiates a new equiripple bandpass FIR filter.
 
- * @param N         int specifying the design order of the filter.
+ * @param N         int specifying the design _order of the filter.
  * *
  * @param OmegaS1   double specifying the upper cutoff of the low stopband.
  * *

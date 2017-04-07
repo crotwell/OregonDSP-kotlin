@@ -28,12 +28,12 @@ import kotlin.js.Math
  * This class uses the Remez exchange algorithm to design a differentiator of length 2N+1.
  * The Nth sample (counting from 0) is zero, and the impulse response is an anti-symmetric
  * sequence about this point.  The filter is linear phase, with group delay a constant equal
- * to N.  The design parameters are the order (N) specifying the number (N+1) of approximating
+ * to N.  The design parameters are the _order (N) specifying the number (N+1) of approximating
  * functions in the Remez algorithm, the intended sampling interval of the data and the passband
  * edge frequency OmegaP.  The design problem is performed on a discrete-time frequency axis
  * normalized to range between 0 and 1 (the folding frequency).  OmegaP, the upper band edge of
  * the passband must be strictly less than 1, and should be in the range 0.8 - 0.95, depending
- * on the specified order.  The larger the order, the closer OmegaP can be to 1.0 and yield an
+ * on the specified _order.  The larger the _order, the closer OmegaP can be to 1.0 and yield an
  * acceptable approximation.  For details on the design algorithm and characteristics of the filter
  * response, see
 

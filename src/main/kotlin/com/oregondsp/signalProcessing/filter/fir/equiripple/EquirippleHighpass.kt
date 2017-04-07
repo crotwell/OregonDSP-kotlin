@@ -25,14 +25,14 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
  *
  * This class uses the Remez exchange algorithm to design a highpass filter of length 2N+1.
  * The impulse response is a symmetric sequence about point N (counting from 0). The filter is linear
- * phase, with group delay a constant equal to N.  The design parameters are the order (N) specifying
+ * phase, with group delay a constant equal to N.  The design parameters are the _order (N) specifying
  * the number (N+1) of approximating functions in the Remez algorithm and four parameters controlling
  * the cutoffs and design weights of the stopband and passband.  The design problem is performed on
  * a discrete-time frequency axis normalized to range between 0 and 1 (the folding frequency).  The
  * stop band is the interval [0, OmegaS] and the passband is the interval [OmegaP, 1].  Note that
  * OmegaP < OmegaS and the two bands must have non-zero width.  There also is a transition band,
  * the open interval (OmegaS, OmegaP), that must have non-zero width.  The narrower any of these bands,
- * the larger the order N must be to obtain a reasonable frequency response.  Weights are specified
+ * the larger the _order N must be to obtain a reasonable frequency response.  Weights are specified
  * for each band to control the relative size of the maximum error between bands.
  * For details on the design algorithm and characteristics of the filter response, see
 
@@ -50,7 +50,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
  * VOL. 63, NO. 4, pp. 595-610.
 
  *
- * and for order selection, consult:
+ * and for _order selection, consult:
 
  *
  * Approximate Design Relationships for Low-Pass FIR Digital Filters, Lawrence R. Rabiner (1973),

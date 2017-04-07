@@ -38,7 +38,7 @@ class AnalogChebyshevII
 /**
  * Instantiates a new analog Chebyshev type II filter.
 
- * @param order     The order of the filter (number of poles.
+ * @param order     The _order of the filter (number of poles.
  * *
  * @param epsilon   double parameter controlling the stopband attenuation of the filter.
  */

@@ -32,7 +32,7 @@ import kotlin.js.Math
  * to minimize index calculations during the overall DFT evaluation.  This approach may produce large run-time
  * images for very large DFTs (> 32768).  Special hand-coded implementations of length 8 and 16 DFTs eliminate
  * many unnecessary calculations.  The code uses precomputed sine and cosine tables and does not implement
- * in-place calculations in order to eliminate the bit reversal step.  Consequently, this implementation
+ * in-place calculations in _order to eliminate the bit reversal step.  Consequently, this implementation
  * trades memory for speed.
 
  *
@@ -60,7 +60,7 @@ import kotlin.js.Math
  *
 
  *
- * The real and imaginary parts of the transform are stored in outXr and outXi in natural order, with the zeroth
+ * The real and imaginary parts of the transform are stored in outXr and outXi in natural _order, with the zeroth
  * discrete frequency value in outXr(0) and outXi(0), and the N-1st value ( 2*pi*(N-1)/N ) in outXr(N-1) and outXi(N-1).
  *
 
@@ -96,7 +96,7 @@ import kotlin.js.Math
 
  *
  * For the inverse transform in this usage, the roles of (xr,xi) and (outXr,outXi) are reversed.  The pair
- * (xr,xi) contains the transform real and imaginary parts in natural order, and upon execution of
+ * (xr,xi) contains the transform real and imaginary parts in natural _order, and upon execution of
  * evaluateInverse(), the pair (outXr,outXi) contains the real and imaginary parts of the corresponding sequence
  * (inverse transform).
  *

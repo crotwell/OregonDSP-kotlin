@@ -25,7 +25,7 @@ import kotlin.js.Math
 /**
  * Class to implement an Infinite Impulse Response digital filter.
 
- * Implements the filter as a cascade of second-order sections.  The filter is obtained using a
+ * Implements the filter as a cascade of second-_order sections.  The filter is obtained using a
  * bilinear transformation of a prototype analog filter.  This implementation saves internal states
  * from one invocation of the filter methods to the next allowing continuous processing of real time
  * data streams or very large files in consecutive, contiguous blocks.
@@ -48,7 +48,7 @@ open class IIRFilter
  */
 (baseFilter: AnalogPrototype, type: PassbandType, f1: Double, f2: Double, delta: Double) {
 
-    /** An ArrayList of second order sections.  */
+    /** An ArrayList of second _order sections.  */
     protected var sections: ArrayList<SecondOrderSection>
 
     /** Rational object containing the transfer function of the filter.  */
@@ -106,7 +106,7 @@ open class IIRFilter
 
 
     /**
-     * Initializes the states of the filter, i.e. of each of the second-order sections.
+     * Initializes the states of the filter, i.e. of each of the second-_order sections.
      */
     fun initialize() {
         for (i in sections.indices) {

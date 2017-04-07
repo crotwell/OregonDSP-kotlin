@@ -35,7 +35,7 @@ abstract class EquirippleFIRFilter
 
  * @param numBands    int specifying the number of pass and stop bands.
  * *
- * @param N           int specifying the design order of the filter.
+ * @param N           int specifying the design _order of the filter.
  * *
  * @param Nc          int specifying the number of FIR filter coefficients
  */

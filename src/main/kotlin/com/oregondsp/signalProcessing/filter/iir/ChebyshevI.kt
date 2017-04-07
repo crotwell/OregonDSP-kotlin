@@ -29,7 +29,7 @@ class ChebyshevI
 /**
  * Instantiates a new Chebyshev type I filter.
 
- * @param order      int specifying the order (number of poles) of the filter.
+ * @param order      int specifying the _order (number of poles) of the filter.
  * *
  * @param epsilon    double design parameter specifying the passband ripple and stopband attenuation.
  * *

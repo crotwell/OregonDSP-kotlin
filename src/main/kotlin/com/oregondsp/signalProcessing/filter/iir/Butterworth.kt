@@ -30,7 +30,7 @@ class Butterworth
 /**
  * Instantiates a new Butterworth digital filter.
 
- * @param order      int specifying the order (number of poles) of the filter.
+ * @param order      int specifying the _order (number of poles) of the filter.
  * *
  * @param type       PassbandType specifying whether the filter is a lowpass, bandpass or highpass filter.
  * *
