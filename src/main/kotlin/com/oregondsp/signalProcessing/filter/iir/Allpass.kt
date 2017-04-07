@@ -18,9 +18,6 @@
 
 package com.oregondsp.signalProcessing.filter.iir
 
-import java.io.PrintStream
-import java.text.DecimalFormat
-import java.util.Arrays
 
 import com.oregondsp.signalProcessing.filter.Polynomial
 import com.oregondsp.signalProcessing.filter.Rational

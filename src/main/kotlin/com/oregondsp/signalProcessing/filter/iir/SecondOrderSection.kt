@@ -18,8 +18,6 @@
 
 package com.oregondsp.signalProcessing.filter.iir
 
-import java.io.PrintStream
-import java.text.DecimalFormat
 import kotlin.js.Math
 
 /**

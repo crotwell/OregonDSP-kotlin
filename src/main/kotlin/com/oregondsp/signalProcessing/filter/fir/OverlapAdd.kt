@@ -20,7 +20,6 @@
 package com.oregondsp.signalProcessing.filter.fir
 
 
-import java.util.Arrays
 
 import com.oregondsp.signalProcessing.Sequence
 import com.oregondsp.signalProcessing.fft.RDFT

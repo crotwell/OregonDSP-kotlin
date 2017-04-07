@@ -18,9 +18,6 @@
 
 package com.oregondsp.signalProcessing.filter.iir
 
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.PrintStream
 
 import com.oregondsp.signalProcessing.filter.Polynomial
 import com.oregondsp.signalProcessing.filter.Rational

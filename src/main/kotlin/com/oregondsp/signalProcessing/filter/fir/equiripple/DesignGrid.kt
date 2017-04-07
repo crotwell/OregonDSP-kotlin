@@ -18,9 +18,6 @@
 
 package com.oregondsp.signalProcessing.filter.fir.equiripple
 
-import java.io.PrintStream
-import java.text.DecimalFormat
-
 
 /**
  * Contains the finite frequency-sampling grid used by the Remez exchange algorithm.

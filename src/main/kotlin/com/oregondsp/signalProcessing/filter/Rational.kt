@@ -18,7 +18,6 @@
 
 package com.oregondsp.signalProcessing.filter
 
-import java.io.PrintStream
 
 import com.oregondsp.signalProcessing.filter.iir.Complex
 

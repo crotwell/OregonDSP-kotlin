@@ -19,8 +19,6 @@
 
 package com.oregondsp.signalProcessing.filter.iir
 
-import java.io.PrintStream
-import java.util.ArrayList
 
 import com.oregondsp.signalProcessing.filter.Polynomial
 import com.oregondsp.signalProcessing.filter.Rational

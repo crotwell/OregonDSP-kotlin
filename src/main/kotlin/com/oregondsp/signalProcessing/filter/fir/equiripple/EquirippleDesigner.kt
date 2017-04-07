@@ -18,8 +18,6 @@
 
 package com.oregondsp.signalProcessing.filter.fir.equiripple
 
-import java.util.ArrayList
-
 
 import com.oregondsp.signalProcessing.fft.RDFT
 import com.oregondsp.signalProcessing.filter.LagrangePolynomial
