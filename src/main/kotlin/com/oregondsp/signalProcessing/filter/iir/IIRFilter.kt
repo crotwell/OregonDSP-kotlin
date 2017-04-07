@@ -200,14 +200,15 @@ open class IIRFilter
 
      * @param ps      PrintStream object to which this filters coefficients and states are printed.
      */
-    fun print(ps: PrintStream) {
+    override fun toString():String {
 
-        ps.println("IIR Filter:")
+        var out = "IIR Filter:\n"
         for (i in sections.indices) {
-            ps.println("\n  Section " + i + "\n")
-            sections[i].print(ps)
-            ps.println()
+            out += "\n  Section " + i + "\n"
+            out += sections[i]
+            out += '\n'
         }
+        return out
     }
 
 

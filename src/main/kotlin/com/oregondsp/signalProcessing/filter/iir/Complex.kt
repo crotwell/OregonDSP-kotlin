@@ -337,8 +337,7 @@ class Complex {
      * Generates a String representation for this Complex number object.
      */
     override fun toString(): String {
-        val formatter = DecimalFormat("0.00000E00")
-        return formatter.format(real) + "  +  i * " + formatter.format(imag)
+        return ""+real + "  +  i * " + imag+"\n"
     }
 
     companion object {

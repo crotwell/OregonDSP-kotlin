@@ -319,15 +319,15 @@ open class AnalogPrototype {
 
      * @param ps     PrintStream to which the representation is printed.
      */
-    fun print(ps: PrintStream) {
+    override fun toString():String {
 
-        ps.println("AnalogPrototype: \n")
+        var out = "AnalogPrototype: \n"
 
         for (i in sections.indices) {
-            ps.println("  section $i:")
-            sections[i].print(ps)
+            out += "  section $i:"+'\n'
+            out += sections[i]
         }
-
+        return out
     }
 
 

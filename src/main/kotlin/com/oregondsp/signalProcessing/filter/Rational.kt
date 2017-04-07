@@ -315,11 +315,9 @@ class Rational {
 
      * @param ps      Printstream to which the rational function coefficients are printed.
      */
-    fun print(ps: PrintStream) {
-        ps.println("Numerator: ")
-        N.print(ps)
-        ps.println("Denominator: ")
-        D.print(ps)
+    override fun toString(): String {
+        return "Numerator: ${N}\n"+
+                "Denominator: ${D}\n"
     }
 
 

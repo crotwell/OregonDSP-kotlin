@@ -514,13 +514,15 @@ class Polynomial {
 
      * @param ps            PrintStream object to which this polynomial's coefficients are printed.
      */
-    fun print(ps: PrintStream) {
+    override fun toString(): String {
+        var s = ""
         for (i in 0.._order) {
             if (i >= 0 && i < 10)
-                ps.println(i.toString() + "    " + a[i])
+                s += i.toString() + "    " + a[i]+'\n'
             else if (i >= 10 && i <= 100)
-                ps.println(i.toString() + "   " + a[i])
+                s += i.toString() + "   " + a[i]+'\n'
         }
+        return s
     }
 
 }

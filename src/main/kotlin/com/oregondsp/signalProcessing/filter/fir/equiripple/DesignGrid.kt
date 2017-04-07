@@ -59,30 +59,28 @@ class DesignGrid {
 
      * @param ps    PrintStream instance to which the grid is printed.
      */
-    fun print(ps: PrintStream) {
-
-        val F = DecimalFormat("0.000000")
-        val I = DecimalFormat("000")
+    override fun toString():String {
+        var out = ""
         var extremum = 0
         var bandEdgeCount = 0
         for (i in 0..gridSize - 1) {
-            val Omega = grid!![i]
-            var line = I.format(i.toLong()) + "  " + F.format(Omega) + "  " +
-                    F.format(X!![i]) + "  " +
-                    F.format(H!![i]) + "  " +
-                    F.format(W!![i])
-            if (bandEdgeIndices!![bandEdgeCount] == i) {
+            val Omega = grid[i]
+            var line = ""+ i.toLong() + "  " + Omega + "  " +
+                    X[i] + "  " +
+                    H[i] + "  " +
+                    W[i]
+            if (bandEdgeIndices[bandEdgeCount] == i) {
                 line = line + "  band edge"
                 bandEdgeCount++
             }
-            if (Omega == grid!![extremaIndices!![extremum]]) {
+            if (Omega == grid[extremaIndices[extremum]]) {
                 line = line + "  extremum"
                 extremum++
             }
 
-            ps.println(line)
+            out += line+'\n'
         }
-
+        return out
     }
 
     companion object {

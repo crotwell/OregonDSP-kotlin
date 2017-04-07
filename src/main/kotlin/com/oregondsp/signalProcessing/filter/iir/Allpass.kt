@@ -256,21 +256,20 @@ open class Allpass {
 
      * @param ps      PrintStream to which the allpass filter description is printed.
      */
-    fun print(ps: PrintStream) {
+    override fun toString():String {
 
-        val DF = DecimalFormat("0.000000")
 
-        ps.println("Allpass _order:  " + order)
+        var out = "Allpass _order:  " + order+'\n'
         for (i in 0..order - 1) {
             if (i < order) {
                 if (k[i] < 0.0)
-                    ps.println("  " + DF.format(k[i]) + "  " + state[i])
+                    out += "  " + k[i] + "  " + state[i]+'\n'
                 else
-                    ps.println("   " + DF.format(k[i]) + "  " + state[i])
+                    out += "   " + k[i] + "  " + state[i]+'\n'
             } else
-                ps.println("             " + state[i])
+                out += "             " + state[i]+'\n'
         }
-
+        return out
     }
 
 }

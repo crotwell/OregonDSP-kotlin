@@ -117,20 +117,18 @@ class SecondOrderSection
 
      * @param ps       PrintStream to which the filter coefficients and states are printed.
      */
-    fun print(ps: PrintStream) {
-
-        val formatter = DecimalFormat("##0.00000")
-
-        ps.println("  coefficients: \n")
-        ps.println("    b0: " + formatter.format(b0))
-        ps.println("    b1: " + formatter.format(b1))
-        ps.println("    b2: " + formatter.format(b2))
-        ps.println()
-        ps.println("    a1: " + formatter.format(a1))
-        ps.println("    a2: " + formatter.format(a2))
-        ps.println("\n  states:  \n")
-        ps.println("    s1: " + formatter.format(s1))
-        ps.println("    s2: " + formatter.format(s2))
+    override fun toString():String {
+        var out = "  coefficients: \n"
+        out += "    b0: " + b0+'\n'
+        out += "    b1: " + b1+'\n'
+        out += "    b2: " + b2+'\n'
+        out += '\n'
+        out += "    a1: " + a1+'\n'
+        out += "    a2: " + a2+'\n'
+        out += "\n  states:  \n"
+        out += "    s1: " + s1+'\n'
+        out += "    s2: " + s2+'\n'
+        return out
     }
 
 }
