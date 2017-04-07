@@ -18,7 +18,6 @@
 
 package com.oregondsp.signalProcessing
 
-import java.util.Arrays
 import kotlin.js.Math
 
 
@@ -54,7 +53,8 @@ class Sequence {
      */
     constructor(x: FloatArray) {
         this.array = FloatArray(x.size)
-        System.arraycopy(x, 0, this.array, 0, x.size)
+        //System.arraycopy(x, 0, this.array, 0, x.size)
+        this.array = x.copyOf();
     }
 
 
@@ -201,7 +201,9 @@ class Sequence {
             val slength = src.size
             val dlength = dst.size
 
-            Arrays.fill(dst, 0.0f)
+            //Arrays.fill(dst, 0.0f)
+            for (i in 0..dlength)
+                dst[i] = 0.0F
 
             for (i in 0..slength - 1)
                 dst[i % dlength] += src[i]
@@ -262,8 +264,8 @@ class Sequence {
                 s += N
 
             // right shift
-
-            val tmp = FloatArray(Math.abs(s))
+            if (s<0) s *= -1
+            val tmp = FloatArray(s)
 
             if (s > 0) {
                 for (i in 0..s - 1)
@@ -301,7 +303,9 @@ class Sequence {
         fun zeroShift(y: FloatArray, shift: Int) {
 
             if (Math.abs(shift) >= y.size)
-                Arrays.fill(y, 0.0f)
+                //Arrays.fill(y, 0.0f)
+                for (i in 0..y.size)
+                    y[i] = 0.0F
             else if (shift > 0) {
                 for (i in y.size - 1 downTo shift)
                     y[i] = y[i - shift]
@@ -346,7 +350,9 @@ class Sequence {
          */
         fun stretch(y: FloatArray, rate: Int, ystretched: FloatArray) {
             val n = Math.min(y.size, ystretched.size / rate)
-            Arrays.fill(ystretched, 0f)
+            //Arrays.fill(ystretched, 0f)
+            for (i in 0..ystretched.size)
+                ystretched[i] = 0.0F
             for (i in 0..n - 1) ystretched[i * rate] = y[i]
         }
 
@@ -374,10 +380,17 @@ class Sequence {
          */
         fun pad(y: FloatArray, ypadded: FloatArray) {
             if (y.size < ypadded.size) {
-                Arrays.fill(ypadded, 0.0f)
-                System.arraycopy(y, 0, ypadded, 0, y.size)
+                //Arrays.fill(ypadded, 0.0f)
+                //System.arraycopy(y, 0, ypadded, 0, y.size)
+                for (i in 0..y.size)
+                    ypadded[i] = y[i]
+                for (i in y.size..ypadded.size)
+                    ypadded[i] = 0.0F
+
             } else {
-                System.arraycopy(y, 0, ypadded, 0, ypadded.size)
+                //System.arraycopy(y, 0, ypadded, 0, ypadded.size)
+                for (i in 0..ypadded.size)
+                    ypadded[i] = y[i]
             }
         }
     }

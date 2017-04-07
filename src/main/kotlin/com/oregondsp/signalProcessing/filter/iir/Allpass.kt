@@ -124,7 +124,9 @@ open class Allpass {
      * Initializes the states of the filter to zero.
      */
     fun initialize() {
-        Arrays.fill(state, 0.0)
+        //Arrays.fill(state, 0.0)
+        for (i in state.indices)
+            state[i] = 0.0
     }
 
 
@@ -218,8 +220,9 @@ open class Allpass {
         a[0] = 1.0
         for (p in 0..order - 1) {
 
-            Arrays.fill(b, 0.0)
-
+            //Arrays.fill(b, 0.0)
+            for (j in b.indices)
+                b[j] = 0.0
             var i = 0
             while (i <= p) {
                 b[i] += a[i]
@@ -230,7 +233,9 @@ open class Allpass {
             System.arraycopy(b, 0, a, 0, p + 2)
         }
 
-        Arrays.fill(b, 0.0)
+        //Arrays.fill(b, 0.0)
+        for (j in b.indices)
+            b[j] = 0.0
         for (i in 0..order) b[i] = a[order - i]
 
         T = Rational(Polynomial(b), Polynomial(a))

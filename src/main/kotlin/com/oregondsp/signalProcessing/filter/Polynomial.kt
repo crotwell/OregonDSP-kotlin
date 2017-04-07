@@ -87,7 +87,7 @@ class Polynomial {
     constructor(order: Int) {
         this.order = order
         this.a = DoubleArray(order + 1)
-        Arrays.fill(a, 0.0)
+        //Arrays.fill(a, 0.0)
     }
 
 
@@ -300,7 +300,7 @@ class Polynomial {
 
         val b = B.a
         val prod = DoubleArray(order + B.order + 1)
-        Arrays.fill(prod, 0.0)
+        //Arrays.fill(prod, 0.0)
 
         for (i in 0..B.order) {
             for (j in 0..order) {
@@ -321,7 +321,7 @@ class Polynomial {
 
         val b = B.a
         val prod = DoubleArray(order + B.order + 1)
-        Arrays.fill(prod, 0.0)
+        //Arrays.fill(prod, 0.0)
 
         for (i in 0..B.order) {
             for (j in 0..order) {
@@ -491,7 +491,6 @@ class Polynomial {
 
         // recursion to calculate reflection coefficients
 
-        val c = DoubleArray(order)
 
         for (i in order downTo 1) {
 
@@ -499,7 +498,9 @@ class Polynomial {
 
             val scale = 1.0 - k[i - 1] * k[i - 1]
 
-            Arrays.fill(c, 0.0)
+            //Arrays.fill(c, 0.0)
+            val c = DoubleArray(order)
+
             for (j in 0..i - 1) {
                 c[j] = (b[j] - k[i - 1] * b[i - j]) / scale
             }

@@ -258,7 +258,9 @@ abstract class EquirippleFIRFilter
         System.arraycopy(x, 0, tmp, 0, x.size)
         fft.evaluate(tmp, transform)
 
-        Arrays.fill(tmp, 0.0f)
+        //Arrays.fill(tmp, 0.0f)
+        for (i in tmp.indices)
+            tmp[i] = 0.0F
         System.arraycopy(coefficients, 0, tmp, 0, coefficients.size)
         fft.evaluate(tmp, kernel)
 

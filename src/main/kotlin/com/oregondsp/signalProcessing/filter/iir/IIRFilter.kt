@@ -147,7 +147,9 @@ open class IIRFilter
      * @param y    float[] containing samples of the resulting filtered sequence.
      */
     fun filter(x: FloatArray, y: FloatArray) {
-        Arrays.fill(y, 0.0f)
+        //Arrays.fill(y, 0.0f)
+        for (i in y.indices)
+            y[i] = 0.0F
         sections[0].filter(x, y)
 
         for (i in 1..sections.size - 1) {

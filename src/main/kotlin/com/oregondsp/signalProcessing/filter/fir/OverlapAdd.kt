@@ -152,7 +152,9 @@ class OverlapAdd {
 
         // copy data
 
-        Arrays.fill(segment!!, 0.0f)
+        //Arrays.fill(segment!!, 0.0f)
+        for (i in segment!!.indices)
+            segment!![i] = 0.0F
         System.arraycopy(src, sptr, segment!!, 0, blockSize)
 
         // circular convolution by dft
