@@ -160,36 +160,6 @@ class LagrangePolynomial
         }
 
 
-        /**
-         * The main method.
-
-         * @param args the arguments
-         */
-        @JvmStatic fun main(args: Array<String>) {
-
-            val p = DoubleArray(3)
-            p[0] = 6.0
-            p[1] = -11.0
-            p[2] = 6.0
-            val P = Polynomial(p)
-
-            val x = DoubleArray(3)
-            x[0] = 1.0
-            x[1] = 2.0
-            x[2] = 3.0
-
-            val f = DoubleArray(3)
-            f[0] = 1.0
-            f[1] = 8.0
-            f[2] = 27.0
-            val L = LagrangePolynomial(x, f)
-
-            for (i in 0..20) {
-                val z = 1.0 + i * 0.1
-                println(P.evaluate(z).toString() + "  " + L.evaluate(z))
-            }
-
-        }
     }
 
 }

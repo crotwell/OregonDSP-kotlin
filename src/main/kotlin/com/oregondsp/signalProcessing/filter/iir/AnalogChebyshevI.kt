@@ -78,34 +78,4 @@ class AnalogChebyshevI
 
     }
 
-    companion object {
-
-
-        @JvmStatic fun main(args: Array<String>) {
-
-            val A = AnalogChebyshevI(4, 0.50885)
-            val B = A.lptolp(0.2 * Math.PI)
-
-            val tmp = FloatArray(201)
-            for (i in 0..200) {
-                val C = B.evaluate(i * 0.02)
-                tmp[i] = Complex.abs(C).toFloat()
-            }
-
-            val ps: PrintStream
-            try {
-                ps = PrintStream(FileOutputStream("C:\\DATA\\Test\\AnalogResponse.m"))
-                ps.print("R = [ ")
-                for (i in 0..199) {
-                    ps.println(tmp[i].toString() + "; ...")
-                }
-                ps.println(tmp[200].toString() + "];")
-                ps.close()
-            } catch (e: FileNotFoundException) {
-                e.printStackTrace()
-            }
-
-        }
-    }
-
 }

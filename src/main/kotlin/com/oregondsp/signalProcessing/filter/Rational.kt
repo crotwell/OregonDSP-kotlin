@@ -322,25 +322,5 @@ class Rational {
         D.print(ps)
     }
 
-    companion object {
-
-
-        @JvmStatic fun main(args: Array<String>) {
-            val a = DoubleArray(4)
-            a[0] = 1.0
-            a[1] = 2.0
-            a[2] = 2.0
-            a[3] = 1.0
-            val b = DoubleArray(1)
-            b[0] = 1.0
-            val R = Rational(b, a)
-
-            for (i in 0..99) {
-                val omega = i / 25.0
-                println(omega.toString() + "  " + R.evaluate(Complex(0.0, omega)).abs() + "   " + R.groupDelay(omega))
-            }
-        }
-    }
-
 
 }
