@@ -138,16 +138,16 @@ open class Allpass {
      * @return       float containing the corresponding single output sample of the filter.
      */
     fun filter(x: Float): Float {
-        var x = x
+        var myX = x
 
         var stage = order
         while (stage >= 0) {
 
             if (stage > 0) {
-                x -= (k[stage - 1] * state[stage - 1]).toFloat()
-                state[stage] = k[stage - 1] * x + state[stage - 1]
+                myX -= (k[stage - 1] * state[stage - 1]).toFloat()
+                state[stage] = k[stage - 1] * myX + state[stage - 1]
             } else {
-                state[stage] = x.toDouble()
+                state[stage] = myX.toDouble()
             }
 
             stage--
