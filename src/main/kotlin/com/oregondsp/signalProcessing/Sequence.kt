@@ -302,7 +302,8 @@ class Sequence {
          */
         fun zeroShift(y: FloatArray, shift: Int) {
 
-            if (Math.abs(shift) >= y.size)
+            //if (Math.abs(shift) >= y.size)
+            if (-1*shift >= y.size || shift >= y.size)
                 //Arrays.fill(y, 0.0f)
                 for (i in 0..y.size)
                     y[i] = 0.0F
