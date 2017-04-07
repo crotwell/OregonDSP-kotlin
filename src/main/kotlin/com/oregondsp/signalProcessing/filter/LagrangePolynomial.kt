@@ -56,8 +56,8 @@ class LagrangePolynomial
     init {
 
         if (x.size != y.size) throw IllegalArgumentException("Lengths of x and y arrays do not match")
-        this.x = x.clone()
-        this.y = y.clone()
+        this.x = x.copyOf()
+        this.y = y.copyOf()
 
         order = x.size - 1
 

@@ -112,7 +112,7 @@ open class Allpass {
      * @param k    double[] containing the reflection coefficients.
      */
     constructor(k: DoubleArray) {
-        this.k = k.clone()
+        this.k = k.copyOf()
         order = this.k.size
         state = DoubleArray(order + 1)
 

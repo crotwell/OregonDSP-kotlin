@@ -75,7 +75,7 @@ class EquirippleHalfBand
      * @return    float[] containing the filter coefficients.
      */
     fun getCoefficients(): FloatArray {
-        return coefficients.clone()
+        return coefficients.copyOf()
     }
 
 }

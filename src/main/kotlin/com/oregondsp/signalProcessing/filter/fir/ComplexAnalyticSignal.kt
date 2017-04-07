@@ -49,7 +49,7 @@ class ComplexAnalyticSignal
 
 
     init {
-        _realPart = realSignal.clone()
+        _realPart = realSignal.copyOf()
         val transformer = CenteredHilbertTransform(50, 0.03, 0.97)
         val tmp = transformer.filter(_realPart)
         Sequence.zeroShift(tmp, -50)
@@ -80,7 +80,7 @@ class ComplexAnalyticSignal
      * @return     float[] containing the real part of the signal.
      */
     internal fun getRealPart(): FloatArray {
-        return _realPart.clone()
+        return _realPart.copyOf()
     }
 
 
@@ -90,7 +90,7 @@ class ComplexAnalyticSignal
      * @return     float[] containing the imaginary part of the signal.
      */
     internal fun getImagPart(): FloatArray {
-        return _imagPart.clone()
+        return _imagPart.copyOf()
     }
 
 }

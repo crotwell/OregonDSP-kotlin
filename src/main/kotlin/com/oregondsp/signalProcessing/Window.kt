@@ -40,7 +40,7 @@ open class Window {
      * @param w     float[] containin the vector of window coefficients.
      */
     constructor(w: FloatArray) {
-        this.w = w.clone()
+        this.w = w.copyOf()
     }
 
 
@@ -81,7 +81,7 @@ open class Window {
      * @return     float[] containing window coefficients.
      */
     val array: FloatArray
-        get() = w.clone()
+        get() = w.copyOf()
 
 
     /**
