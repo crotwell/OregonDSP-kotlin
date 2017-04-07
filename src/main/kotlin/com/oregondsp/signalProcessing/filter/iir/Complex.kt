@@ -523,7 +523,7 @@ class Complex {
          */
         fun divide(a: Double, c: Complex): Complex {
             val scale = c.real * c.real + c.imag * c.imag
-            return Complex(c.real / scale, -c.imag / scale)
+            return Complex(a*c.real / scale, a*(-c.imag) / scale)
         }
 
 
