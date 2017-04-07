@@ -19,6 +19,8 @@
 
 package com.oregondsp.signalProcessing.fft
 
+import kotlin.js.Math
+
 
 /**
  * Package-private class implementing an arbitrary power-of-two length complex DFT with the split radix algorithm.

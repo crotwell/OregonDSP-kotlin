@@ -20,6 +20,7 @@ package com.oregondsp.signalProcessing.filter.iir
 
 
 import com.oregondsp.signalProcessing.filter.Polynomial
+import kotlin.js.Math
 
 
 /**

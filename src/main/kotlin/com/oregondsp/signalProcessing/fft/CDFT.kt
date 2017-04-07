@@ -19,6 +19,8 @@
 
 package com.oregondsp.signalProcessing.fft
 
+import kotlin.js.Math
+
 
 /**
  * Class to calculate the complex discrete Fourier transform of a complex sequence and its inverse using the split-radix algorithm.

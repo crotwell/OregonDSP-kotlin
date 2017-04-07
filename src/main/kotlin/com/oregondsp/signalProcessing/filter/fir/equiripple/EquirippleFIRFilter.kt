@@ -24,6 +24,7 @@ import java.util.Random
 
 import com.oregondsp.signalProcessing.fft.RDFT
 import com.oregondsp.signalProcessing.filter.fir.OverlapAdd
+import kotlin.js.Math
 
 
 /**

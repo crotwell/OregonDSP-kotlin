@@ -25,6 +25,7 @@ import java.io.PrintStream
 
 import com.oregondsp.signalProcessing.filter.Polynomial
 import com.oregondsp.signalProcessing.filter.Rational
+import kotlin.js.Math
 
 
 /**

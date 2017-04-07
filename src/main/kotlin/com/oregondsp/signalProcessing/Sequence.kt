@@ -19,6 +19,7 @@
 package com.oregondsp.signalProcessing
 
 import java.util.Arrays
+import kotlin.js.Math
 
 
 /**

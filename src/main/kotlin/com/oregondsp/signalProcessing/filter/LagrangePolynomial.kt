@@ -18,6 +18,8 @@
 
 package com.oregondsp.signalProcessing.filter
 
+import kotlin.js.Math
+
 
 /**
  * Implements Lagrange Polynomials.

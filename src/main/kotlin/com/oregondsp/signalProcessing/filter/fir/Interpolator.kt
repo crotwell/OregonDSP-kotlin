@@ -20,6 +20,7 @@ package com.oregondsp.signalProcessing.filter.fir
 
 import com.oregondsp.signalProcessing.HammingWindow
 import com.oregondsp.signalProcessing.Sequence
+import kotlin.js.Math
 
 
 /**

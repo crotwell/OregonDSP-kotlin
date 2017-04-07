@@ -23,6 +23,7 @@ import java.util.ArrayList
 import java.util.Arrays
 
 import com.oregondsp.signalProcessing.filter.Rational
+import kotlin.js.Math
 
 
 /**

@@ -18,6 +18,8 @@
 
 package com.oregondsp.signalProcessing
 
+import kotlin.js.Math
+
 
 /**
  * Designs and implements Hamming windows (see Oppenheim and Schafer, 1975).

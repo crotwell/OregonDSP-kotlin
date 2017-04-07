@@ -20,6 +20,7 @@ package com.oregondsp.signalProcessing.filter.iir
 
 import java.io.PrintStream
 import java.text.DecimalFormat
+import kotlin.js.Math
 
 /**
  * Class to implement a second order section - basic unit of an Infinite Impulse Response digital filter.

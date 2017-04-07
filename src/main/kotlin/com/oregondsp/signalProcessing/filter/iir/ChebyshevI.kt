@@ -21,6 +21,7 @@ package com.oregondsp.signalProcessing.filter.iir
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.PrintStream
+import kotlin.js.Math
 
 /**
  * Class implementing Chebyshev Type I filters, characterized by ripples in the passband.

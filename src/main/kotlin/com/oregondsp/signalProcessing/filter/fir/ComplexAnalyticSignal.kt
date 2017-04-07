@@ -20,6 +20,7 @@ package com.oregondsp.signalProcessing.filter.fir
 
 import com.oregondsp.signalProcessing.Sequence
 import com.oregondsp.signalProcessing.filter.fir.equiripple.CenteredHilbertTransform
+import kotlin.js.Math
 
 
 /**

@@ -23,6 +23,7 @@ import java.util.ArrayList
 
 import com.oregondsp.signalProcessing.fft.RDFT
 import com.oregondsp.signalProcessing.filter.LagrangePolynomial
+import kotlin.js.Math
 
 
 /**

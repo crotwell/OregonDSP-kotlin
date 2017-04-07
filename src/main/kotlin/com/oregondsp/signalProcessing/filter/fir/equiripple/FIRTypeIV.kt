@@ -18,6 +18,7 @@
 package com.oregondsp.signalProcessing.filter.fir.equiripple
 
 import com.oregondsp.signalProcessing.Sequence
+import kotlin.js.Math
 
 
 /**

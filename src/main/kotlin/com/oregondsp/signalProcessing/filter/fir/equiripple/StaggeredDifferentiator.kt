@@ -18,6 +18,8 @@
 
 package com.oregondsp.signalProcessing.filter.fir.equiripple
 
+import kotlin.js.Math
+
 
 /**
  * Implements an even-length differentiator - the point of symmetry falls between samples.
