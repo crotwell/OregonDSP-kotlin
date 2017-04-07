@@ -125,7 +125,7 @@ abstract class EquirippleFIRFilter
         var gridpt = 0
         var extremum = 0
         var bandEdgeCount = 0
-        var perturbation = 0
+        var perturbation: Int
         for (ib in 0..numBands - 1) {
             val B = bands[ib][1] - bands[ib][0]
             val n = 1 + (nextrema[ib] - 1) * DesignGrid.GRIDDENSITY
@@ -158,7 +158,7 @@ abstract class EquirippleFIRFilter
         G.W = DoubleArray(G.gridSize)
         for (i in 0..G.gridSize - 1) {
             G.grid[i] = gridArray[i]
-            G.X[i] = Math.cos(G.grid!![i] * Math.PI)
+            G.X[i] = Math.cos(G.grid[i] * Math.PI)
         }
 
         return G

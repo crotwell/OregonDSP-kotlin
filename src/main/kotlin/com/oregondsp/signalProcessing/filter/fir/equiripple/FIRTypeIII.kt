@@ -60,8 +60,8 @@ abstract class FIRTypeIII
     internal override fun populateGrid(G: DesignGrid) {
 
         for (i in 0..G.gridSize - 1) {
-            G.H[i] = desiredResponse(G.grid!![i]) / Math.sin(G.grid!![i] * Math.PI)
-            G.W[i] = weight(G.grid!![i]) * Math.sin(G.grid!![i] * Math.PI)
+            G.H[i] = desiredResponse(G.grid[i]) / Math.sin(G.grid[i] * Math.PI)
+            G.W[i] = weight(G.grid[i]) * Math.sin(G.grid[i] * Math.PI)
         }
 
         G.containsZero = false

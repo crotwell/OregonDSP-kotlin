@@ -61,7 +61,7 @@ internal object EquirippleDesigner {
      */
     fun remez(G: DesignGrid) {
 
-        val nextrema = G.extremaIndices!!.size
+        val nextrema = G.extremaIndices.size
 
         val newExtrema = ArrayList<Int>()
         val E = DoubleArray(G.gridSize)
@@ -81,8 +81,8 @@ internal object EquirippleDesigner {
             //  Compute current approximant (GA) and error function (E) on grid
 
             for (i in 0..G.gridSize - 1) {
-                GA[i] = LP.evaluate(G.X!![i])
-                E[i] = GA[i] - G.H!![i]
+                GA[i] = LP.evaluate(G.X[i])
+                E[i] = GA[i] - G.H[i]
             }
 
             // Search for new extrema starting from old extrema
@@ -93,7 +93,7 @@ internal object EquirippleDesigner {
 
             for (currentExtremum in 0..nextrema - 1) {
 
-                val currentGridPt = G.extremaIndices!![currentExtremum]
+                val currentGridPt = G.extremaIndices[currentExtremum]
                 val s = sgn(E[currentGridPt])
 
                 // search forward
@@ -136,7 +136,7 @@ internal object EquirippleDesigner {
                 if (newExtrema.contains(0)) {
 
                     if (!newExtrema.contains(gridPi)) {
-                        if (sgn(E[gridPi]) != sgn(E[G.extremaIndices!![nextrema - 1]])) {
+                        if (sgn(E[gridPi]) != sgn(E[G.extremaIndices[nextrema - 1]])) {
                             if (Math.abs(E[gridPi]) > Math.abs(E[0])) {
                                 newExtrema.removeAt(0)
                                 newExtrema.add(gridPi)
@@ -148,7 +148,7 @@ internal object EquirippleDesigner {
 
                     if (newExtrema.contains(gridPi)) {
 
-                        if (sgn(E[0]) != sgn(E[G.extremaIndices!![0]])) {
+                        if (sgn(E[0]) != sgn(E[G.extremaIndices[0]])) {
                             if (Math.abs(E[0]) > Math.abs(E[gridPi])) {
                                 newExtrema.removeAt(newExtrema.size - 1)
                                 newExtrema.add(0, 0)
@@ -184,10 +184,10 @@ internal object EquirippleDesigner {
      */
     fun computeDelta(G: DesignGrid): Double {
 
-        val nextrema = G.extremaIndices!!.size
+        val nextrema = G.extremaIndices.size
         val extrema = DoubleArray(nextrema)
         for (i in 0..nextrema - 1) {
-            extrema[i] = G.X!![G.extremaIndices!![i]]
+            extrema[i] = G.X[G.extremaIndices[i]]
         }
         val gamma = LagrangePolynomial.BarycentricWeights(extrema)
 
@@ -195,9 +195,9 @@ internal object EquirippleDesigner {
         var denom = 0.0
         var s = 1.0
         for (i in 0..nextrema - 1) {
-            val j = G.extremaIndices!![i]
-            num += gamma[i] * G.H!![j]
-            denom += s * gamma[i] / G.W!![j]
+            val j = G.extremaIndices[i]
+            num += gamma[i] * G.H[j]
+            denom += s * gamma[i] / G.W[j]
             s = -s
         }
 
@@ -216,15 +216,15 @@ internal object EquirippleDesigner {
      */
     fun constructInterpolatingPolynomial(G: DesignGrid, delta: Double): LagrangePolynomial {
 
-        val extremaSubset = DoubleArray(G.extremaIndices!!.size - 1)
+        val extremaSubset = DoubleArray(G.extremaIndices.size - 1)
         val n = extremaSubset.size
         val x = DoubleArray(n)
         val f = DoubleArray(n)
         var s = 1.0
         for (i in 0..n - 1) {
-            val j = G.extremaIndices!![i]
-            x[i] = G.X!![j]
-            f[i] = G.H!![j] - s * delta / G.W!![j]
+            val j = G.extremaIndices[i]
+            x[i] = G.X[j]
+            f[i] = G.H[j] - s * delta / G.W[j]
             s = -s
         }
 
