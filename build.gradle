@@ -16,8 +16,39 @@ version = 1.0
 repositories {
     mavenCentral()
 }
+
+compileKotlin2Js {
+    kotlinOptions.outputFile = "${buildDir}/lib/oregondsp.js"
+    kotlinOptions.moduleKind = "commonjs"
+    kotlinOptions.sourceMap = true
+    kotlinOptions.metaInfo = true
+}
+
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
     testCompile "io.kotlintest:kotlintest:2.0.0"
 }
 
+build.doLast {
+    copy {
+        from "${buildDir}/lib/oregondsp.js"
+        from "${buildDir}/lib/oregondsp.js.map"
+        from "${buildDir}/lib/oregondsp.meta.js"
+        into "${projectDir}/lib"
+    }
+}
+
+build.doLast {
+    configurations.compile.each { File file ->
+        copy {
+            includeEmptyDirs = false
+
+            from zipTree(file.absolutePath)
+            into "${buildDir}/kotlinjs-stdlib"
+            include { fileTreeElement ->
+                def path = fileTreeElement.path
+                path.endsWith(".js") && (path.startsWith("META-INF/resources/") || !path.startsWith("META-INF/"))
+            }
+        }
+    }
+}
