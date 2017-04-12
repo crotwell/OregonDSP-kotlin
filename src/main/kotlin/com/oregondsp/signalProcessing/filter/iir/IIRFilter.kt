@@ -122,6 +122,7 @@ open class IIRFilter
      * *
      * @return        float value of the resulting filtered sequence.
      */
+    @JsName("filterNextSample")
     fun filter(x: Float): Float {
         var retval = sections[0].filter(x)
         for (i in 1..sections.size - 1)
@@ -142,6 +143,7 @@ open class IIRFilter
      * *
      * @param y    float[] containing samples of the resulting filtered sequence.
      */
+    @JsName("filter")
     fun filter(x: FloatArray, y: FloatArray) {
         //Arrays.fill(y, 0.0f)
         for (i in y.indices)
@@ -163,6 +165,7 @@ open class IIRFilter
      * @param x     float[] contains samples of the sequence to be filtered upon call and the filtered
      * *              samples following execution
      */
+    @JsName("filterInPlace")
     fun filter(x: FloatArray) {
         for (section in sections) {
             section.filter(x, x)

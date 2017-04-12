@@ -163,6 +163,7 @@ class RDFT(log2N: Int) {
      * *
      * @param X     float[] containing the transform of the sequence in conjugate symmetric packed form.
      */
+    @JsName("evaluate")
     fun evaluate(x: FloatArray, X: FloatArray) {
 
         // Uses symmetries to perform the real length-N DFT with a special length-N set of butterflies
@@ -234,6 +235,7 @@ class RDFT(log2N: Int) {
      * *
      * @param x     float[] containing the output real sequence in natural order.
      */
+    @JsName("evaluateInverse")
     fun evaluateInverse(X: FloatArray, x: FloatArray) {
 
         // Assumed input storage:
