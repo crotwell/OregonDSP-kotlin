@@ -1,5 +1,5 @@
 
-This is a fork of OregonDSP to translate to Kotlin and then transpile to javascript for use in the browser. Yes this is kind of crazy, but it seems to work. The original Readme from the original java OregonDSP package is below.
+This is a fork of [OregonDSP](https://seiscode.iris.washington.edu/projects/oregondsp) to translate to Kotlin and then transpile to javascript for use in the browser. Yes this is kind of crazy, but it seems to work. The original Readme from the original java OregonDSP package is below.
 
 See [https://github.com/crotwell/seisplotjs-filter](seisplotjs-filter) for an example of how to use this.
 
