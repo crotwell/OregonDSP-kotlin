@@ -374,6 +374,7 @@ class RDFT(log2N: Int) {
          * *
          * @param sign         +1 if a convolution type product, -1 if a correlation type product
          */
+        @JsName("dftProduct")
         fun dftProduct(kernel: FloatArray, transform: FloatArray, sign: Float) {
 
             if (kernel.size != transform.size)

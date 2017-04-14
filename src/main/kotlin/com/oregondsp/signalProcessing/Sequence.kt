@@ -196,6 +196,7 @@ class Sequence {
          * *
          * @param dst     float[] containing the destination sequence.
          */
+        @JsName("aliasArray")
         fun alias(src: FloatArray, dst: FloatArray) {
 
             val slength = src.size
@@ -216,6 +217,7 @@ class Sequence {
 
          * @param  y   float[] containing the sequence to be reversed.
          */
+        @JsName("reverseArray")
         fun reverse(y: FloatArray) {
             var i = 0
             var j = y.size - 1
@@ -234,6 +236,7 @@ class Sequence {
 
          * @param y    float[] specifying the sequence to be demeaned.
          */
+        @JsName("rmeanArray")
         fun rmean(y: FloatArray) {
             var mean = 0.0f
             for (i in y.indices) mean += y[i]
@@ -251,6 +254,7 @@ class Sequence {
          * *                number specifies a left shift, a positive number, a right shift.
          * *                A zero shift leaves the sequence unchanged.
          */
+        @JsName("circularShiftArray")
         fun circularShift(y: FloatArray, shift: Int) {
 
             val N = y.size
@@ -300,6 +304,7 @@ class Sequence {
          * *                Zeros are fed in from the right in that case.  A positive shift is to the right.  Zeros
          * *                are fed in from the left in that case.  A zero shift leaves the sequence unchanged.
          */
+        @JsName("zeroShiftArray")
         fun zeroShift(y: FloatArray, shift: Int) {
 
             //if (Math.abs(shift) >= y.size)
@@ -331,6 +336,8 @@ class Sequence {
          * *
          * @param ydecimated   float[] containing the decimated sequence.
          */
+
+        @JsName("decimateArray")
         fun decimate(y: FloatArray, decrate: Int, ydecimated: FloatArray) {
             val n = Math.min(ydecimated.size, y.size / decrate)
             for (i in 0..n - 1) ydecimated[i] = y[i * decrate]
@@ -349,6 +356,8 @@ class Sequence {
          * *
          * @param ystretched   float[] containing the stretched sequence.
          */
+
+        @JsName("stretchArray")
         fun stretch(y: FloatArray, rate: Int, ystretched: FloatArray) {
             val n = Math.min(y.size, ystretched.size / rate)
             //Arrays.fill(ystretched, 0f)
@@ -365,6 +374,7 @@ class Sequence {
          * *
          * @param f       float containing the multiplicative constant.
          */
+        @JsName("timesEqualsArray")
         fun timesEquals(y: FloatArray, f: Float) {
             for (i in y.indices) y[i] *= f
         }
@@ -379,6 +389,7 @@ class Sequence {
          * *
          * @param ypadded     float[] containing padded sequence
          */
+        @JsName("padArray")
         fun pad(y: FloatArray, ypadded: FloatArray) {
             if (y.size < ypadded.size) {
                 //Arrays.fill(ypadded, 0.0f)

@@ -142,6 +142,7 @@ class Rational {
 
      * @param A    double specifying the scale factor.
      */
+    @JsName("timesEqualsReal")
     fun timesEquals(A: Double) {
         N.timesEquals(A)
     }
@@ -152,6 +153,7 @@ class Rational {
 
      * @param P    Polynomial object specifying the multiplicative polynomial factor.
      */
+    @JsName("timesEqualsPolynomial")
     fun timesEquals(P: Polynomial) {
         N.timesEquals(P)
     }
@@ -162,6 +164,7 @@ class Rational {
 
      * @param R    Rational object specifying the multiplicative rational factor.
      */
+    @JsName("timesEqualsRational")
     fun timesEquals(R: Rational) {
         N.timesEquals(R.N)
         D.timesEquals(R.D)
@@ -175,6 +178,7 @@ class Rational {
      * *
      * @return      double specifying the resulting value of the rational function.
      */
+    @JsName("evaluateReal")
     fun evaluate(x: Double): Double {
         var retval = 0.0
         val num = N.evaluate(x)
@@ -192,6 +196,7 @@ class Rational {
      * *
      * @return     Complex object specifying the resulting complex value of the rational function.
      */
+    @JsName("evaluateComplex")
     fun evaluate(c: Complex): Complex {
         var retval = Complex(0.0, 0.0)
         val num = N.evaluate(c)
@@ -258,6 +263,7 @@ class Rational {
      * *
      * @return         double specifying the residue.
      */
+    @JsName("residueForReal")
     fun residue(pole: Double): Double {
 
         // using L'Hopital's rule - assumes single pole
@@ -276,6 +282,7 @@ class Rational {
      * *
      * @return         Complex object specifying the residue.
      */
+    @JsName("residueForComplex")
     fun residue(pole: Complex): Complex {
 
         // using L'Hopital's rule - assumes single pole

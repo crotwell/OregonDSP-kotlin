@@ -154,6 +154,7 @@ class Polynomial {
      * *
      * @return         The new polynomial containing the sum of this polynomial and the constant.
      */
+    @JsName("plusReal")
     operator fun plus(c: Double): Polynomial {
         val retval = Polynomial(_order)
         retval.a = a.copyOf()
@@ -167,6 +168,7 @@ class Polynomial {
 
      * @param c       double constant to be added to this polynomial.
      */
+    @JsName("plusEqualsReal")
     fun plusEquals(c: Double) {
         a[0] += c
     }
@@ -181,6 +183,7 @@ class Polynomial {
      * *
      * @return        Polynomial object containing the new sum.
      */
+    @JsName("plusPolynomial")
     operator fun plus(B: Polynomial): Polynomial {
         val retval = Polynomial(Math.max(_order, B._order))
         for (i in 0.._order) retval.a[i] = a[i]
@@ -194,6 +197,7 @@ class Polynomial {
 
      * @param B       Polynomial object containing the polynomial to be added to this polynomial.
      */
+    @JsName("plusEqualsPolynomial")
     fun plusEquals(B: Polynomial) {
         val A = DoubleArray(Math.max(_order, B._order))
         for (i in 0.._order) A[i] = a[i]
@@ -212,6 +216,7 @@ class Polynomial {
      * *
      * @return         The new Polynomial object containing the difference polynomial.
      */
+    @JsName("minusReal")
     operator fun minus(c: Double): Polynomial {
         return plus(-c)
     }
@@ -222,6 +227,7 @@ class Polynomial {
 
      * @param c        double constant to be subtracted from this polynomial.
      */
+    @JsName("minusEqualsReal")
     fun minusEquals(c: Double) {
         plusEquals(-c)
     }
@@ -236,6 +242,7 @@ class Polynomial {
      * *
      * @return             Polynomial containing the difference.
      */
+    @JsName("minusPolynomial")
     operator fun minus(B: Polynomial): Polynomial {
         val retval = Polynomial(Math.max(_order, B._order))
         for (i in 0.._order) retval.a[i] = a[i]
@@ -249,6 +256,7 @@ class Polynomial {
 
      * @param B        Polynomial to be subtracted from this polynomial.
      */
+    @JsName("minusEqualsPolynomial")
     fun minusEquals(B: Polynomial) {
         val A = DoubleArray(Math.max(_order, B._order))
         for (i in 0.._order) A[i] = a[i]
@@ -267,6 +275,7 @@ class Polynomial {
      * *
      * @return         The resulting product polynomial.
      */
+    @JsName("timesReal")
     operator fun times(c: Double): Polynomial {
         val retval = Polynomial(_order)
         for (i in 0.._order) retval.a[i] = c * a[i]
@@ -279,6 +288,7 @@ class Polynomial {
 
      * @param c        The constant multiplicative factor.
      */
+    @JsName("timesEqualsReal")
     fun timesEquals(c: Double) {
         for (i in 0.._order) a[i] *= c
     }
@@ -291,6 +301,7 @@ class Polynomial {
      * *
      * @return         New Polynomial object containing the product.
      */
+    @JsName("timesPolynomial")
     operator fun times(B: Polynomial): Polynomial {
 
         val b = B.a
@@ -312,6 +323,7 @@ class Polynomial {
 
      * @param B        Polynomial object containing the multiplicative factor.
      */
+    @JsName("timesEqualsPolynomial")
     fun timesEquals(B: Polynomial) {
 
         val b = B.a
@@ -338,6 +350,7 @@ class Polynomial {
      * *
      * @return         New Polynomial object containing the result of division.
      */
+    @JsName("overReal")
     fun over(c: Double): Polynomial {
         val tmp = DoubleArray(_order + 1)
         for (i in 0.._order + 1 - 1)
@@ -352,6 +365,7 @@ class Polynomial {
 
      * @param c          The double divisor.
      */
+    @JsName("overEqualsReal")
     fun overEquals(c: Double) {
         for (i in 0.._order + 1 - 1)
             a[i] /= c
@@ -367,6 +381,7 @@ class Polynomial {
      * *
      * @return          New Rational object containing the result of division.
      */
+    @JsName("overEqualsPolynomial")
     fun over(B: Polynomial): Rational {
         return Rational(this, B)
     }
@@ -394,6 +409,7 @@ class Polynomial {
      * *
      * @return         double containing the value of the polynomial at this argument.
      */
+    @JsName("evaluateReal")
     fun evaluate(x: Double): Double {
 
         var retval = a[_order]
@@ -413,6 +429,7 @@ class Polynomial {
      * *
      * @return         Complex object containing the value of the polynomial at this argument.
      */
+    @JsName("evaluateComplex")
     fun evaluate(c: Complex): Complex {
 
         var retval = Complex(a[_order])

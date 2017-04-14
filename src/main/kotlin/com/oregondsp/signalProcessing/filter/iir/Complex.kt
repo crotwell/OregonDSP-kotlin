@@ -112,6 +112,7 @@ class Complex {
      * *
      * @return      New Complex object containing the product.
      */
+    @JsName("timesComplex")
     operator fun times(c: Complex): Complex {
         return multiply(this, c)
     }
@@ -126,6 +127,7 @@ class Complex {
      * *
      * @return      New Complex object containing the product.
      */
+    @JsName("timesReal")
     operator fun times(a: Double): Complex {
         return multiply(this, a)
     }
@@ -152,6 +154,7 @@ class Complex {
      * *
      * @return      New Complex object containing the sum.
      */
+    @JsName("plusComplex")
     operator fun plus(c: Complex): Complex {
         return add(this, c)
     }
@@ -166,6 +169,7 @@ class Complex {
      * *
      * @return      New Complex object containing the sum.
      */
+    @JsName("plusReal")
     operator fun plus(a: Double): Complex {
         return add(this, a)
     }
@@ -180,6 +184,7 @@ class Complex {
      * *
      * @return      New Complex object containing the difference.
      */
+    @JsName("minusComplex")
     operator fun minus(c: Complex): Complex {
         return subtract(this, c)
     }
@@ -194,6 +199,7 @@ class Complex {
      * *
      * @return     New Complex object containing the complex difference.
      */
+    @JsName("minusReal")
     operator fun minus(a: Double): Complex {
         return subtract(this, a)
     }
@@ -208,6 +214,7 @@ class Complex {
      * *
      * @return     New Complex object containing the result of division.
      */
+    @JsName("overReal")
     fun over(a: Double): Complex {
         return divide(this, a)
     }
@@ -222,6 +229,7 @@ class Complex {
      * *
      * @return      New Complex object containint the result of division.
      */
+    @JsName("overComplex")
     fun over(c: Complex): Complex {
         return divide(this, c)
     }
@@ -234,6 +242,7 @@ class Complex {
 
      * @param a   double containing the other summand.
      */
+    @JsName("plusEqualsReal")
     fun plusEquals(a: Double) {
         real += a
     }
@@ -246,6 +255,7 @@ class Complex {
 
      * @param c   Complex object containing the other summand.
      */
+    @JsName("plusEqualsComplex")
     fun plusEquals(c: Complex) {
         real += c.real
         imag += c.imag
@@ -259,6 +269,7 @@ class Complex {
 
      * @param a    double containing the real number to be subtracted from this Complex number.
      */
+    @JsName("minusEqualsReal")
     fun minusEquals(a: Double) {
         real -= a
     }
@@ -271,6 +282,7 @@ class Complex {
 
      * @param c    The other Complex number to be subtracted from this Complex number.
      */
+    @JsName("minusEqualsComplex")
     fun minusEquals(c: Complex) {
         real -= c.real
         imag -= c.imag
@@ -284,6 +296,7 @@ class Complex {
 
      * @param a     double containing the multiplicand.
      */
+    @JsName("timesEqualsReal")
     fun timesEquals(a: Double) {
         real *= a
         imag *= a
@@ -297,6 +310,7 @@ class Complex {
 
      * @param c     Complex object containing the other multiplicand.
      */
+    @JsName("timesEqualsComplex")
     fun timesEquals(c: Complex) {
         val tmp = real * c.real - imag * c.imag
         imag = real * c.imag + imag * c.real
@@ -311,6 +325,7 @@ class Complex {
 
      * @param a     double containing the real divisor.
      */
+    @JsName("divideEqualsReal")
     fun divideEquals(a: Double) {
         real /= a
         imag /= a
@@ -324,6 +339,7 @@ class Complex {
 
      * @param c     Complex object containing the divisor.
      */
+    @JsName("divideEqualsComplex")
     fun divideEquals(c: Complex) {
         val scale = c.real * c.real + c.imag * c.imag
         val tmp = c.real * real + c.imag * imag

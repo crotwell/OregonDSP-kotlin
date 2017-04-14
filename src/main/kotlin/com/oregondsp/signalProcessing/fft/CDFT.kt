@@ -160,6 +160,7 @@ class CDFT {
      * *
      * @param Xi          float array containing transform imaginary part
      */
+    @JsName("evaluateCDFT")
     fun evaluate(xr: FloatArray, xi: FloatArray, Xr: FloatArray, Xi: FloatArray) {
         this.yr = Xr
         this.yi = Xi
@@ -179,6 +180,7 @@ class CDFT {
      * *
      * @param xi          float array containing sequence imaginary part
      */
+    @JsName("evaluateInverseCDFT")
     fun evaluateInverse(Xr: FloatArray, Xi: FloatArray, xr: FloatArray, xi: FloatArray) {
         this.yr = xr
         this.yi = xi
