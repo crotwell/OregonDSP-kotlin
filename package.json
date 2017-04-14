@@ -21,6 +21,8 @@
     "fft",
     "timeseries",
     "filter",
+    "butterworth",
+    "chebyshev",
     "seismogram"
   ],
   "author": "Philip Crotwell <crotwell@seis.sc.edu>",
