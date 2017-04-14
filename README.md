@@ -5,6 +5,10 @@ See [https://github.com/crotwell/seisplotjs-filter](seisplotjs-filter) for an ex
 
 The original-java branch has the original java source from version 1.0 of OregonDSP. The kotlin-jvm branch has the initial translation of to kotlin, leaving in all java imports and references and shoudl be usable on the jvm. The master branch modifies the kotlin source to remove java references and to allow compilation to javascript.
 
+Note that the kotlin to javascript compiler munges function names to deal with overloading, so some functions may have names like `decimate_za3lpa$`. I have added `@JsName` annotations to fix some but not all of these.
+
+
+
 Original Readme:
 ----------------
 
