@@ -19,7 +19,7 @@
 
 package com.oregondsp.signalProcessing.filter.iir
 
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -372,7 +372,7 @@ class Complex {
          * @return           Resulting Complex number object.
          */
         fun ComplexFromPolar(r: Double, phi: Double): Complex {
-            return Complex(r * Math.cos(phi), r * Math.sin(phi))
+            return Complex(r * cos(phi), r * sin(phi))
         }
 
 
@@ -566,7 +566,7 @@ class Complex {
          * @return      New Complex object containing the square root of the argument.
          */
         fun sqrt(c: Complex): Complex {
-            return ComplexFromPolar(Math.sqrt(abs(c)), angle(c) / 2.0)
+            return ComplexFromPolar(sqrt(abs(c)), angle(c) / 2.0)
         }
 
 
@@ -578,7 +578,7 @@ class Complex {
          * @return      double containing the absolute value of the argument.
          */
         fun abs(c: Complex): Double {
-            return Math.sqrt(c.real * c.real + c.imag * c.imag)
+            return sqrt(c.real * c.real + c.imag * c.imag)
         }
 
 
@@ -590,7 +590,7 @@ class Complex {
          * @return       double containing the phase of the argument.
          */
         fun angle(c: Complex): Double {
-            return Math.atan2(c.imag, c.real)
+            return atan2(c.imag, c.real)
         }
 
 
@@ -602,8 +602,8 @@ class Complex {
          * @return       New Complex object containing the complex exponential of the argument.
          */
         fun exp(c: Complex): Complex {
-            val r = Math.exp(c.real)
-            return Complex(r * Math.cos(c.imag), r * Math.sin(c.imag))
+            val r = exp(c.real)
+            return Complex(r * cos(c.imag), r * sin(c.imag))
         }
 
 

@@ -18,7 +18,7 @@
 
 package com.oregondsp.signalProcessing.filter.fir.equiripple
 
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -79,7 +79,7 @@ class StaggeredDifferentiator
     internal override fun desiredResponse(Omega: Double): Double {
 
         var retval = 0.0
-        if (LTE(bands[0][0], Omega) && LTE(Omega, bands[0][1])) retval = -Math.PI * Omega / delta
+        if (LTE(bands[0][0], Omega) && LTE(Omega, bands[0][1])) retval = -PI * Omega / delta
 
         return retval
     }

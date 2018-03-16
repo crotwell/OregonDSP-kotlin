@@ -22,7 +22,7 @@ package com.oregondsp.signalProcessing.filter.iir
 
 import com.oregondsp.signalProcessing.filter.Polynomial
 import com.oregondsp.signalProcessing.filter.Rational
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -51,11 +51,11 @@ class AnalogButterworth
             addSection(Rational(Polynomial(1.0), Polynomial(td)))
         }
 
-        val dAngle = Math.PI / nPoles
+        val dAngle = PI / nPoles
 
         for (i in 0..nComplexPolePairs - 1) {
-            val angle = -Math.PI / 2 + dAngle / 2 * (1 + nRealPoles) + i * dAngle
-            val td = doubleArrayOf(1.0, -2 * Math.sin(angle), 1.0)
+            val angle = -PI / 2 + dAngle / 2 * (1 + nRealPoles) + i * dAngle
+            val td = doubleArrayOf(1.0, -2 * sin(angle), 1.0)
             addSection(Rational(Polynomial(1.0), Polynomial(td)))
         }
 

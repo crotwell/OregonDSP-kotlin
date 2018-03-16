@@ -21,7 +21,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
 
 import com.oregondsp.signalProcessing.fft.RDFT
 import com.oregondsp.signalProcessing.filter.LagrangePolynomial
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -137,7 +137,7 @@ internal object EquirippleDesigner {
 
                     if (!newExtrema.contains(gridPi)) {
                         if (sgn(E[gridPi]) != sgn(E[G.extremaIndices[nextrema - 1]])) {
-                            if (Math.abs(E[gridPi]) > Math.abs(E[0])) {
+                            if (abs(E[gridPi]) > abs(E[0])) {
                                 newExtrema.removeAt(0)
                                 newExtrema.add(gridPi)
                                 change++
@@ -149,7 +149,7 @@ internal object EquirippleDesigner {
                     if (newExtrema.contains(gridPi)) {
 
                         if (sgn(E[0]) != sgn(E[G.extremaIndices[0]])) {
-                            if (Math.abs(E[0]) > Math.abs(E[gridPi])) {
+                            if (abs(E[0]) > abs(E[gridPi])) {
                                 newExtrema.removeAt(newExtrema.size - 1)
                                 newExtrema.add(0, 0)
                                 change++
@@ -254,7 +254,7 @@ internal object EquirippleDesigner {
         val X = FloatArray(nfft)
         val x = FloatArray(nfft)
         for (i in 0..nfft / 2) {
-            X[i] = LP.evaluate(Math.cos(2.0 * Math.PI * i.toDouble() / nfft)).toFloat()
+            X[i] = LP.evaluate(cos(2.0 * PI * i.toDouble() / nfft)).toFloat()
         }
 
         val dft = RDFT(log2nfft)

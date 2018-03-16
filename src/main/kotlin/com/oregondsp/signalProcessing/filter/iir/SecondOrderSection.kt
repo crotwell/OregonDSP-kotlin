@@ -18,7 +18,7 @@
 
 package com.oregondsp.signalProcessing.filter.iir
 
-import kotlin.js.Math
+import kotlin.math.*
 
 /**
  * Class to implement a second _order section - basic unit of an Infinite Impulse Response digital filter.
@@ -101,7 +101,7 @@ class SecondOrderSection
 
         var s0: Double
 
-        val n = Math.min(x.size, y.size)
+        val n = min(x.size, y.size)
 
         for (i in 0..n - 1) {
             s0 = x[i].toDouble() - a1 * s1 - a2 * s2

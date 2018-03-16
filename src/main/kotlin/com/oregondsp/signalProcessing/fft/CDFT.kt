@@ -19,7 +19,7 @@
 
 package com.oregondsp.signalProcessing.fft
 
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -276,10 +276,10 @@ class CDFT {
         s3 = FloatArray(N8)
 
         for (i in 0..N8 - 1) {
-            c[i] = Math.cos(2.0 * Math.PI * i.toDouble() / N).toFloat()
-            c3[i] = Math.cos(2.0 * Math.PI * 3.0 * i.toDouble() / N).toFloat()
-            s[i] = -Math.sin(2.0 * Math.PI * i.toDouble() / N).toFloat()
-            s3[i] = -Math.sin(2.0 * Math.PI * 3.0 * i.toDouble() / N).toFloat()
+            c[i] = cos(2.0 * PI * i.toDouble() / N).toFloat()
+            c3[i] = cos(2.0 * PI * 3.0 * i.toDouble() / N).toFloat()
+            s[i] = -sin(2.0 * PI * i.toDouble() / N).toFloat()
+            s3[i] = -sin(2.0 * PI * 3.0 * i.toDouble() / N).toFloat()
         }
 
     }

@@ -19,7 +19,7 @@
 package com.oregondsp.signalProcessing.filter.iir
 
 import com.oregondsp.signalProcessing.filter.Rational
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -227,7 +227,7 @@ open class IIRFilter
      * @return         double containing the prewarped digital frequency correcting for the nonlinearity of the bilinear transform.
      */
     private fun warp(f: Double, delta: Double): Double {
-        return Math.tan(Math.PI * f * delta)
+        return tan(PI * f * delta)
     }
 
 

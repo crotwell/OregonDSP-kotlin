@@ -21,7 +21,7 @@ package com.oregondsp.signalProcessing.filter.iir
 
 import com.oregondsp.signalProcessing.filter.Polynomial
 import com.oregondsp.signalProcessing.filter.Rational
-import kotlin.js.Math
+import kotlin.math.*
 
 /**
  * Class to design analog Chebyshev type I prototype filters.
@@ -44,8 +44,8 @@ class AnalogChebyshevI
 
     init {
 
-        val alpha = (1.0 + Math.sqrt(1.0 + epsilon * epsilon)) / epsilon
-        val p = Math.pow(alpha, 1.0 / order)
+        val alpha = (1.0 + sqrt(1.0 + epsilon * epsilon)) / epsilon
+        val p = alpha.pow( 1.0 / order)
         val a = 0.5 * (p - 1 / p)
         val b = 0.5 * (p + 1 / p)
 
@@ -63,18 +63,18 @@ class AnalogChebyshevI
             addSection(Rational(Polynomial(1.0), Polynomial(td)))
         }
 
-        val dAngle = Math.PI / nPoles
+        val dAngle = PI / nPoles
 
         for (i in 0..nComplexPolePairs - 1) {
-            val angle = -Math.PI / 2 + dAngle / 2 * (1 + nRealPoles) + i * dAngle
-            val pole = Complex(a * Math.sin(angle), b * Math.cos(angle))
+            val angle = -PI / 2 + dAngle / 2 * (1 + nRealPoles) + i * dAngle
+            val pole = Complex(a * sin(angle), b * cos(angle))
             val td = doubleArrayOf(pole.real() * pole.real() + pole.imag() * pole.imag(), -2 * pole.real(), 1.0)
             addSection(Rational(Polynomial(1.0), Polynomial(td)))
         }
 
         // scale to 1 at s = 0
 
-        sections[0].timesEquals(1.0 / (Math.pow(2.0, (order - 1).toDouble()) * epsilon))
+        sections[0].timesEquals(1.0 / ((2.0).pow( (order - 1).toDouble()) * epsilon))
 
     }
 

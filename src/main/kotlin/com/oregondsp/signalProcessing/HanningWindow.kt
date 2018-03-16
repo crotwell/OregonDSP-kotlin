@@ -18,7 +18,7 @@
 
 package com.oregondsp.signalProcessing
 
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -37,7 +37,7 @@ class HanningWindow
     init {
 
         for (i in 0..N - 1) {
-            w[i] = (0.5 + 0.5 * Math.cos(-Math.PI + i.toDouble() * 2.0 * Math.PI / (N - 1))).toFloat()
+            w[i] = (0.5 + 0.5 * cos(-PI + i.toDouble() * 2.0 * PI / (N - 1))).toFloat()
         }
 
     }

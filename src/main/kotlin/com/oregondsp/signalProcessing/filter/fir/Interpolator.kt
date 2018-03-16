@@ -20,7 +20,7 @@ package com.oregondsp.signalProcessing.filter.fir
 
 import com.oregondsp.signalProcessing.HammingWindow
 import com.oregondsp.signalProcessing.Sequence
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -79,7 +79,7 @@ class Interpolator
         val N = 2 * half + 1
         val kernel = HammingWindow(N).array
         for (i in 1..half) {
-            kernel[half + i] *= (Math.sin(Math.PI * i / rate) / (Math.PI * i / rate)).toFloat()
+            kernel[half + i] *= (sin(PI * i / rate) / (PI * i / rate)).toFloat()
             kernel[half - i] = kernel[half + i]
         }
 

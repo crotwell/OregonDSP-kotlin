@@ -20,7 +20,7 @@ package com.oregondsp.signalProcessing.filter
 
 
 import com.oregondsp.signalProcessing.filter.iir.Complex
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -185,7 +185,7 @@ class Polynomial {
      */
     @JsName("plusPolynomial")
     operator fun plus(B: Polynomial): Polynomial {
-        val retval = Polynomial(Math.max(_order, B._order))
+        val retval = Polynomial(max(_order, B._order))
         for (i in 0.._order) retval.a[i] = a[i]
         for (i in 0..B._order) retval.a[i] += B.a[i]
         return retval
@@ -199,7 +199,7 @@ class Polynomial {
      */
     @JsName("plusEqualsPolynomial")
     fun plusEquals(B: Polynomial) {
-        val A = DoubleArray(Math.max(_order, B._order))
+        val A = DoubleArray(max(_order, B._order))
         for (i in 0.._order) A[i] = a[i]
         for (i in 0..B._order) A[i] += B.a[i]
         a = A
@@ -244,7 +244,7 @@ class Polynomial {
      */
     @JsName("minusPolynomial")
     operator fun minus(B: Polynomial): Polynomial {
-        val retval = Polynomial(Math.max(_order, B._order))
+        val retval = Polynomial(max(_order, B._order))
         for (i in 0.._order) retval.a[i] = a[i]
         for (i in 0..B._order) retval.a[i] -= B.a[i]
         return retval
@@ -258,7 +258,7 @@ class Polynomial {
      */
     @JsName("minusEqualsPolynomial")
     fun minusEquals(B: Polynomial) {
-        val A = DoubleArray(Math.max(_order, B._order))
+        val A = DoubleArray(max(_order, B._order))
         for (i in 0.._order) A[i] = a[i]
         for (i in 0..B._order) A[i] -= B.a[i]
         a = A

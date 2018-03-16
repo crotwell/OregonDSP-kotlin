@@ -18,7 +18,7 @@
 
 package com.oregondsp.signalProcessing
 
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -339,7 +339,7 @@ class Sequence {
 
         @JsName("decimateArray")
         fun decimate(y: FloatArray, decrate: Int, ydecimated: FloatArray) {
-            val n = Math.min(ydecimated.size, y.size / decrate)
+            val n = min(ydecimated.size, y.size / decrate)
             for (i in 0..n - 1) ydecimated[i] = y[i * decrate]
         }
 
@@ -359,7 +359,7 @@ class Sequence {
 
         @JsName("stretchArray")
         fun stretch(y: FloatArray, rate: Int, ystretched: FloatArray) {
-            val n = Math.min(y.size, ystretched.size / rate)
+            val n = min(y.size, ystretched.size / rate)
             //Arrays.fill(ystretched, 0f)
             for (i in 0..ystretched.size)
                 ystretched[i] = 0.0F

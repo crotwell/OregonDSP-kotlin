@@ -20,7 +20,7 @@ package com.oregondsp.signalProcessing.filter.iir
 
 
 import com.oregondsp.signalProcessing.filter.Polynomial
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -53,7 +53,7 @@ class ThiranAllpass
             for (n in 0..N) {
                 prod *= (D - N + n).toDouble() / (D - N + i.toDouble() + n.toDouble()).toDouble()
             }
-            a[i] = Math.pow(-1.0, i.toDouble()) * (factorial(N) / (factorial(N - i) * factorial(i))).toDouble() * prod
+            a[i] = (-1.0).pow(i.toDouble()) * (factorial(N) / (factorial(N - i) * factorial(i))).toDouble() * prod
         }
 
         val P = Polynomial(a)

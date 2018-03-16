@@ -18,7 +18,7 @@
 
 package com.oregondsp.signalProcessing.fft
 
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -147,8 +147,8 @@ class RDFT(log2N: Int) {
         c = FloatArray(N4)
 
         for (i in 0..N4 - 1) {
-            s[i] = Math.sin(2.0 * Math.PI / N * i).toFloat()
-            c[i] = Math.cos(2.0 * Math.PI / N * i).toFloat()
+            s[i] = sin(2.0 * PI / N * i).toFloat()
+            c[i] = cos(2.0 * PI / N * i).toFloat()
         }
 
 

@@ -18,7 +18,7 @@
 
 package com.oregondsp.signalProcessing.filter
 
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -127,7 +127,7 @@ class LagrangePolynomial
         val t1 = (b - 1) / 2.0
         val retval = DoubleArray(n)
         for (i in 0..n - 1)
-            retval[i] = t0 + t1 * Math.cos((2 * i + 1) / (2 * n) * Math.PI)
+            retval[i] = t0 + t1 * cos((2 * i + 1) / (2 * n) * PI)
 
         return retval
     }

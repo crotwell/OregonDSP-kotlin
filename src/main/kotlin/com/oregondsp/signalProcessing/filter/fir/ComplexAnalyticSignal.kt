@@ -20,7 +20,7 @@ package com.oregondsp.signalProcessing.filter.fir
 
 import com.oregondsp.signalProcessing.Sequence
 import com.oregondsp.signalProcessing.filter.fir.equiripple.CenteredHilbertTransform
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -69,7 +69,7 @@ class ComplexAnalyticSignal
         get() {
             val retval = FloatArray(_realPart.size)
             for (i in _realPart.indices) {
-                retval[i] = Math.sqrt((_realPart[i] * _realPart[i] + _imagPart[i] * _imagPart[i]).toDouble()).toFloat()
+                retval[i] = sqrt((_realPart[i] * _realPart[i] + _imagPart[i] * _imagPart[i]).toDouble()).toFloat()
             }
 
             return retval

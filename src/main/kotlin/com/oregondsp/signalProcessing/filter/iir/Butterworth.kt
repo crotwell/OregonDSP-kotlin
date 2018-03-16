@@ -18,7 +18,7 @@
 
 package com.oregondsp.signalProcessing.filter.iir
 
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**

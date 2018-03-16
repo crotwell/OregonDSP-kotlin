@@ -19,7 +19,7 @@
 
 package com.oregondsp.signalProcessing.fft
 
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -377,7 +377,7 @@ internal open class CDFTsr {
     companion object {
 
         /** Constant twiddle factor for N/2 butterfly.  */
-        private val SQRT2BY2 = (Math.sqrt(2.0) / 2.0).toFloat()
+        private val SQRT2BY2 = (sqrt(2.0) / 2.0).toFloat()
     }
 
 }

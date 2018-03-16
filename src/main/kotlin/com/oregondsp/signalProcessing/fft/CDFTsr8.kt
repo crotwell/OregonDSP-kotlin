@@ -18,7 +18,7 @@
 
 package com.oregondsp.signalProcessing.fft
 
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -210,7 +210,7 @@ internal class CDFTsr8
     companion object {
 
         /** Constant twiddle factor.  */
-        val SQRT2BY2 = (Math.sqrt(2.0) / 2.0).toFloat()
+        val SQRT2BY2 = (sqrt(2.0) / 2.0).toFloat()
     }
 
 }

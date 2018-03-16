@@ -21,7 +21,8 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
 
 import com.oregondsp.signalProcessing.fft.RDFT
 import com.oregondsp.signalProcessing.filter.fir.OverlapAdd
-import kotlin.js.Math
+import kotlin.math.*
+import kotlin.js.Math.random
 
 
 /**
@@ -94,7 +95,7 @@ abstract class EquirippleFIRFilter
         var nmax = 0
         for (ib in 0..numBands - 1) {
             val B = bands[ib][1] - bands[ib][0]
-            nextrema[ib] = Math.round(m * B / totalBandwidth).toInt() + 2
+            nextrema[ib] = round(m * B / totalBandwidth).toInt() + 2
             if (nextrema[ib] > nmax) {
                 nmax = nextrema[ib]
                 largestBand = ib
@@ -138,7 +139,7 @@ abstract class EquirippleFIRFilter
 
                 if (i % DesignGrid.GRIDDENSITY == 0) {
                     if (i != 0 && i != n - 1)
-                        perturbation = Math.floor(Math.random()*3) - 1
+                        perturbation = (floor(random()*3)).roundToInt() - 1
                     else
                         perturbation = 0
                     G.extremaIndices[extremum++] = gridpt + perturbation
@@ -158,7 +159,7 @@ abstract class EquirippleFIRFilter
         G.W = DoubleArray(G.gridSize)
         for (i in 0..G.gridSize - 1) {
             G.grid[i] = gridArray[i]
-            G.X[i] = Math.cos(G.grid[i] * Math.PI)
+            G.X[i] = cos(G.grid[i] * PI)
         }
 
         return G
@@ -292,7 +293,7 @@ abstract class EquirippleFIRFilter
 
         if (x < y) retval = true
 
-        if (Math.abs(x - y) < MACHINETOLERANCE) retval = true
+        if (abs(x - y) < MACHINETOLERANCE) retval = true
 
         return retval
     }

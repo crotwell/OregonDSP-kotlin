@@ -18,7 +18,7 @@
 
 package com.oregondsp.signalProcessing.filter.iir
 
-import kotlin.js.Math
+import kotlin.math.*
 
 /**
  * Class implementing Chebyshev Type I filters, characterized by ripples in the passband.

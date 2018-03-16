@@ -19,7 +19,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
 
 
 import com.oregondsp.signalProcessing.Sequence
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -60,8 +60,8 @@ abstract class FIRTypeIII
     internal override fun populateGrid(G: DesignGrid) {
 
         for (i in 0..G.gridSize - 1) {
-            G.H[i] = desiredResponse(G.grid[i]) / Math.sin(G.grid[i] * Math.PI)
-            G.W[i] = weight(G.grid[i]) * Math.sin(G.grid[i] * Math.PI)
+            G.H[i] = desiredResponse(G.grid[i]) / sin(G.grid[i] * PI)
+            G.W[i] = weight(G.grid[i]) * sin(G.grid[i] * PI)
         }
 
         G.containsZero = false

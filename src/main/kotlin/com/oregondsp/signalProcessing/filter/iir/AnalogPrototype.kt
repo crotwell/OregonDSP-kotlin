@@ -22,7 +22,7 @@ package com.oregondsp.signalProcessing.filter.iir
 
 import com.oregondsp.signalProcessing.filter.Polynomial
 import com.oregondsp.signalProcessing.filter.Rational
-import kotlin.js.Math
+import kotlin.math.*
 
 
 /**
@@ -230,14 +230,14 @@ open class AnalogPrototype {
         var t1: Polynomial
 
         if (discriminant >= 0.0) {
-            var root = (-b + Math.sqrt(discriminant)) / 2.0
+            var root = (-b + sqrt(discriminant)) / 2.0
             var f1 = root * BW / 2.0
             var f2 = f1 * f1 - prod
             var C = Complex(f1).plus(Complex.sqrt(Complex(f2)))
             t0 = Polynomial(doubleArrayOf(C.conjugate().times(C).real(), -2.0 * C.real(), 1.0))
             //retval[0] = Polynomial(t0)
 
-            root = (-b - Math.sqrt(discriminant)) / 2.0
+            root = (-b - sqrt(discriminant)) / 2.0
             f1 = root * BW / 2.0
             f2 = f1 * f1 - prod
             C = Complex(f1).plus(Complex.sqrt(Complex(f2)))
@@ -245,7 +245,7 @@ open class AnalogPrototype {
             //retval[1] = Polynomial(t1)
 
         } else {
-            val root = Complex(-b / 2.0, Math.sqrt(-discriminant) / 2.0)
+            val root = Complex(-b / 2.0, sqrt(-discriminant) / 2.0)
 
             val f1 = root.times(BW / 2.0)
             val f2 = f1.times(f1).minus(prod)
