@@ -3,7 +3,7 @@ This is a fork of [OregonDSP](https://seiscode.iris.washington.edu/projects/oreg
 
 Also available via NPM at [https://www.npmjs.com/package/oregondsp].
 
-See [https://github.com/crotwell/seisplotjs-filter](seisplotjs-filter) for an example of how to use this.
+See [seisplotjs-filter](https://github.com/crotwell/seisplotjs-filter) for an example of how to use this.
 
 The original-java branch has the original java source from version 1.0 of OregonDSP. The kotlin-jvm branch has the initial translation of to kotlin, leaving in all java imports and references and shoudl be usable on the jvm. The master branch modifies the kotlin source to remove java references and to allow compilation to javascript.
 
