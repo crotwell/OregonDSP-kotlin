@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "gradle build",
     "standalone": "browserify lib/oregondsp.js --standalone oregondsp -o oregondsp_10_standalone.js",
-    "prepublish": "npm run compile"
+    "prepare": "npm run compile"
   },
   "repository": {
     "type": "git",
