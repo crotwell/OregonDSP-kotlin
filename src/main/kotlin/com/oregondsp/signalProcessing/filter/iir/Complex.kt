@@ -43,6 +43,7 @@ class Complex {
      * *
      * @param imag           double specifying the imaginary part.
      */
+    @JsName("Complex_init")
     constructor(real: Double, imag: Double) {
         this.real = real
         this.imag = imag
@@ -54,6 +55,7 @@ class Complex {
 
      * @param real       double specifying the real part.
      */
+    @JsName("Complex_fromReal")
     constructor(real: Double) {
         this.real = real
         this.imag = 0.0
