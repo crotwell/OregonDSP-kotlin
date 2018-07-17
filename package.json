@@ -32,6 +32,6 @@
   },
   "homepage": "https://github.com/crotwell/oregondsp",
   "devDependencies": {
-    "kotlin": "^1.1.0"
+    "kotlin": "^1.2.0"
   }
 }
