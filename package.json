@@ -1,6 +1,6 @@
 {
   "name": "oregondsp",
-  "version": "1.1.0-alpha.1",
+  "version": "1.1.0",
   "description": "Port of OregonDSP library from java to javascript via kotlin.",
   "main": "./lib/oregondsp.js",
   "dependencies": {
