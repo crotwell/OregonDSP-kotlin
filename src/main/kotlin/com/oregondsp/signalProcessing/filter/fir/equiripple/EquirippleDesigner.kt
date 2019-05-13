@@ -74,8 +74,6 @@ internal object EquirippleDesigner {
 
             val delta = computeDelta(G)
 
-            println("delta: " + delta)
-
             val LP = constructInterpolatingPolynomial(G, delta)
 
             //  Compute current approximant (GA) and error function (E) on grid
