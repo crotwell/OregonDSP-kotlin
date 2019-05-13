@@ -236,6 +236,7 @@ abstract class EquirippleFIRFilter
      * *
      * @return        float[] containing the resulting filtered sequence.
      */
+    @JsName("filter")
     fun filter(x: FloatArray): FloatArray {
 
         var nfft = 16

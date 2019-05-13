@@ -373,6 +373,7 @@ class Complex {
          * *
          * @return           Resulting Complex number object.
          */
+         @JsName("ComplexFromPolar")
         fun ComplexFromPolar(r: Double, phi: Double): Complex {
             return Complex(r * cos(phi), r * sin(phi))
         }
