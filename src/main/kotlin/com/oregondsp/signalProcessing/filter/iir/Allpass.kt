@@ -137,6 +137,7 @@ open class Allpass {
      * *
      * @return       float containing the corresponding single output sample of the filter.
      */
+    @JsName("filterSingle")
     fun filter(x: Float): Float {
         var myX = x
 
@@ -169,6 +170,7 @@ open class Allpass {
      * @param x      float[] containing the sequence or segment of a sequence upon call.  Contains
      * *               the filtered array following the call.
      */
+    @JsName("filter")
     fun filter(x: FloatArray) {
 
         for (i in x.indices)
@@ -186,6 +188,7 @@ open class Allpass {
      * *
      * @return          Complex object containing the value of the filter transfer function at omega.
      */
+    @JsName("evaluate")
     fun evaluate(omega: Double): Complex {
         val ejOmega = Complex.exp(Complex(0.0, -omega))
         return T.evaluate(ejOmega)
@@ -199,6 +202,7 @@ open class Allpass {
      * *
      * @return          double containing the group delay in samples.
      */
+    @JsName("groupDelay")
     fun groupDelay(Omega: Double): Double {
         return T.discreteTimeGroupDelay(Omega)
     }

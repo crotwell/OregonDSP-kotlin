@@ -449,6 +449,7 @@ class Polynomial {
      * *
      * @return         double containing the resulting group delay in seconds.
      */
+    @JsName("groupDelay")
     fun groupDelay(omega: Double): Double {
 
         if (_order == 0)
@@ -471,6 +472,7 @@ class Polynomial {
      * *
      * @return              double containing the resulting group delay in samples.
      */
+    @JsName("discreteTimeGroupDelay")
     fun discreteTimeGroupDelay(Omega: Double): Double {
 
         val c = Complex.exp(Complex(0.0, -Omega))

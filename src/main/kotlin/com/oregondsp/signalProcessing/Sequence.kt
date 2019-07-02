@@ -73,6 +73,7 @@ class Sequence {
 
      * @param N    New length of the sequence, and alias modulus.
      */
+    @JsName("alias")
     fun alias(N: Int) {
         val newx = FloatArray(N)
         alias(array, newx)
@@ -87,6 +88,7 @@ class Sequence {
      * *
      * @return          Sequence value at index.
      */
+    @JsName("getForIndex")
     operator fun get(index: Int): Float {
         var retval = 0.0f
         if (index >= 0 && index < array.size) retval = array[index]
@@ -117,6 +119,7 @@ class Sequence {
      * *                  specifies a left shift and a positive number, a right shift.  A zero shift
      * *                  leaves the sequence unchanged.
      */
+    @JsName("circularShift")
     fun circularShift(shift: Int) {
         circularShift(array, shift)
     }
@@ -129,6 +132,7 @@ class Sequence {
      * *                Zeros are fed in from the right in that case.  A positive shift is to the right.  Zeros
      * *                are fed in from the left in that case.  A zero shift leaves the sequence unchanged.
      */
+    @JsName("zeroShift")
     fun zeroShift(shift: Int) {
         zeroShift(array, shift)
     }
@@ -139,6 +143,7 @@ class Sequence {
 
      * @param decrate   int specifying the decimation rate.
      */
+    @JsName("decimate")
     fun decimate(decrate: Int) {
         val tmp = FloatArray(array.size / decrate)
         decimate(array, decrate, tmp)
@@ -154,6 +159,7 @@ class Sequence {
 
      * @param rate     int containing the stretch rate (factor).
      */
+    @JsName("stretch")
     fun stretch(rate: Int) {
         val tmp = FloatArray(array.size * rate)
         stretch(array, rate, tmp)
@@ -166,6 +172,7 @@ class Sequence {
 
      * @param f   float specifying the multiplicative constant.
      */
+    @JsName("timesEquals")
     fun timesEquals(f: Float) {
         timesEquals(array, f)
     }
@@ -176,6 +183,7 @@ class Sequence {
 
      * @param n           int specifying desired length of padded sequence
      */
+    @JsName("pad")
     fun pad(n: Int) {
         if (n > array.size) {
             val tmp = FloatArray(n)
@@ -336,7 +344,6 @@ class Sequence {
          * *
          * @param ydecimated   float[] containing the decimated sequence.
          */
-
         @JsName("decimateArray")
         fun decimate(y: FloatArray, decrate: Int, ydecimated: FloatArray) {
             val n = min(ydecimated.size, y.size / decrate)
@@ -356,7 +363,6 @@ class Sequence {
          * *
          * @param ystretched   float[] containing the stretched sequence.
          */
-
         @JsName("stretchArray")
         fun stretch(y: FloatArray, rate: Int, ystretched: FloatArray) {
             val n = min(y.size, ystretched.size / rate)

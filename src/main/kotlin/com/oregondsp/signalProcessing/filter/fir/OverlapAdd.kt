@@ -148,6 +148,7 @@ class OverlapAdd {
      * *
      * @param dptr   Point within destination array where convolution result starts
      */
+    @JsName("filter")
     fun filter(src: FloatArray, sptr: Int, dst: FloatArray, dptr: Int) {
 
         if (src.size != blockSize)
@@ -190,6 +191,7 @@ class OverlapAdd {
      * *
      * @param dptr      int specifying point in dst where convolution results begin.
      */
+    @JsName("flush")
     fun flush(dst: FloatArray, dptr: Int) {
 
         // save incremental result

@@ -98,6 +98,7 @@ class Interpolator
      * *
      * @param interpolatedBlock     float[] containing the interpolated block
      */
+    @JsName("interpolate")
     fun interpolate(block: FloatArray, interpolatedBlock: FloatArray) {
         Sequence.stretch(block, rate, buffer)
         overlapAdd.filter(buffer, 0, interpolatedBlock, 0)

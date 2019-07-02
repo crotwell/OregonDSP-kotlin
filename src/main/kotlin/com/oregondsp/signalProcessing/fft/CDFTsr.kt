@@ -201,6 +201,7 @@ internal open class CDFTsr {
      * *
      * @param Xi  float[] containing the output sequence imaginary part.
      */
+    @JsName("link")
     internal open fun link(xr: FloatArray, xi: FloatArray, Xr: FloatArray, Xi: FloatArray) {
         this.xr = xr
         this.xi = xi

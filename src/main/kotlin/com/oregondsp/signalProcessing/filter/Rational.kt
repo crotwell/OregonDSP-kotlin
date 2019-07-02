@@ -216,6 +216,7 @@ class Rational {
      * *
      * @return      Rational object specifying the resulting mapped rational function.
      */
+    @JsName("mapRational")
     fun map(S: Rational): Rational {
 
         //  Modified Horner's scheme evaluation
@@ -298,6 +299,7 @@ class Rational {
      * *
      * @return           double specifying the group delay in seconds.
      */
+    @JsName("groupDelay")
     fun groupDelay(omega: Double): Double {
         return N.groupDelay(omega) - D.groupDelay(omega)
     }
@@ -312,6 +314,7 @@ class Rational {
      * *
      * @return         double specifying the group delay in samples.
      */
+    @JsName("discreteTimeGroupDelay")
     fun discreteTimeGroupDelay(Omega: Double): Double {
         return N.discreteTimeGroupDelay(Omega) - D.discreteTimeGroupDelay(Omega)
     }

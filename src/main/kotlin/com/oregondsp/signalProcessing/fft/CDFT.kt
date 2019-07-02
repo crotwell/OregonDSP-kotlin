@@ -299,6 +299,7 @@ class CDFT {
          * *
          * @param sign   +1 for convolution type product, -1 for correlation type product
          */
+        @JsName("dftProduct")
         fun dftProduct(Xr: FloatArray, Xi: FloatArray, Yr: FloatArray, Yi: FloatArray, sign: Float) {
 
             if (Xr.size != Yr.size || Xi.size != Yi.size || Xr.size != Xi.size)

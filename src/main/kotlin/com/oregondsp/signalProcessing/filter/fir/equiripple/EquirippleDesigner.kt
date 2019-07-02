@@ -59,6 +59,7 @@ internal object EquirippleDesigner {
      * @param G     DesignGrid object containing the finite frequency-sampling grid used by the Remez
      * *                exchange algorithm.
      */
+    @JsName("remez")
     fun remez(G: DesignGrid) {
 
         val nextrema = G.extremaIndices.size
@@ -180,6 +181,7 @@ internal object EquirippleDesigner {
      * *
      * @return       double containing the error on the current set of extrema.
      */
+    @JsName("computeDelta")
     fun computeDelta(G: DesignGrid): Double {
 
         val nextrema = G.extremaIndices.size
@@ -212,6 +214,7 @@ internal object EquirippleDesigner {
      * *
      * @return          Lagrange polynomial instance that interpolates the extrema.
      */
+    @JsName("constructInterpolatingPolynomial")
     fun constructInterpolatingPolynomial(G: DesignGrid, delta: Double): LagrangePolynomial {
 
         val extremaSubset = DoubleArray(G.extremaIndices.size - 1)
@@ -239,6 +242,7 @@ internal object EquirippleDesigner {
      * *
      * @return       float[] containing the coefficients of the FIR filter.
      */
+    @JsName("calculateCoefficients")
     fun calculateCoefficients(G: DesignGrid, Nc: Int): FloatArray {
 
         val LP = constructInterpolatingPolynomial(G, computeDelta(G))
@@ -269,6 +273,7 @@ internal object EquirippleDesigner {
      * *
      * @return     int ( = 1 if x > 0, = 0 if x = 0, = -1 if x < 0 )
      */
+    @JsName("sgn")
     fun sgn(x: Double): Int {
         if (x > 0.0)
             return 1

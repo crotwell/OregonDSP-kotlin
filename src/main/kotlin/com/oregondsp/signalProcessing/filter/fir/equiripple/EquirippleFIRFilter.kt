@@ -171,6 +171,7 @@ abstract class EquirippleFIRFilter
 
      * @param G      DesignGrid object used by the Remez exchange algorithm.
      */
+    @JsName("populateGrid")
     internal abstract fun populateGrid(G: DesignGrid)
 
 
@@ -181,6 +182,7 @@ abstract class EquirippleFIRFilter
      * *
      * @return           double containing the desired response at this frequency.
      */
+    @JsName("desiredResponse")
     internal abstract fun desiredResponse(Omega: Double): Double
 
 
@@ -191,6 +193,7 @@ abstract class EquirippleFIRFilter
      * *
      * @return           double containing the weight function at this frequency.
      */
+    @JsName("weight")
     internal abstract fun weight(Omega: Double): Double
 
 
@@ -201,6 +204,7 @@ abstract class EquirippleFIRFilter
      * *
      * @return                 float[] containing the corresponding FIR filter coefficients.
      */
+    @JsName("interpretCoefficients")
     internal abstract fun interpretCoefficients(coefficients: FloatArray): FloatArray
 
 
@@ -224,6 +228,7 @@ abstract class EquirippleFIRFilter
      * *
      * @return the implementation
      */
+    @JsName("getImplementation")
     fun getImplementation(blockSize: Int): OverlapAdd {
         return OverlapAdd(getCoefficients(), blockSize)
     }
@@ -289,6 +294,7 @@ abstract class EquirippleFIRFilter
      * *
      * @return true, if the numbers are close, false otherwise
      */
+    @JsName("LTE")
     protected fun LTE(x: Double, y: Double): Boolean {
         var retval = false
 

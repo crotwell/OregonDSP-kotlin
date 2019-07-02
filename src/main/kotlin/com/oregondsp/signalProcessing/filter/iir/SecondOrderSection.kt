@@ -78,6 +78,7 @@ class SecondOrderSection
      * *
      * @return      float result of the filter for one time step.
      */
+    @JsName("filterSingle")
     fun filter(x: Float): Float {
 
         val s0 = x.toDouble() - a1 * s1 - a2 * s2
@@ -97,6 +98,7 @@ class SecondOrderSection
      * *
      * @param y     float[] containing the filtered result.  May be the same array as x.
      */
+    @JsName("filter")
     fun filter(x: FloatArray, y: FloatArray) {
 
         var s0: Double

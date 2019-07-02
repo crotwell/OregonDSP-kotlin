@@ -81,6 +81,7 @@ class ComplexAnalyticSignal
 
      * @return     float[] containing the real part of the signal.
      */
+    @JsName("getRealPart")
     internal fun getRealPart(): FloatArray {
         return _realPart.copyOf()
     }
@@ -91,6 +92,7 @@ class ComplexAnalyticSignal
 
      * @return     float[] containing the imaginary part of the signal.
      */
+    @JsName("getImagPart")
     internal fun getImagPart(): FloatArray {
         return _imagPart.copyOf()
     }

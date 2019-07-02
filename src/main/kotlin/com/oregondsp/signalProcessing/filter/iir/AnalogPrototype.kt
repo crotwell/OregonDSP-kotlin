@@ -62,6 +62,7 @@ open class AnalogPrototype {
 
      * @param R     Rational object containing a second _order section representation.
      */
+    @JsName("addSection")
     fun addSection(R: Rational) {
         sections.add(R)
         _T = null
@@ -85,6 +86,7 @@ open class AnalogPrototype {
      * *
      * @return          Rational object containing the representation of the desired section.
      */
+    @JsName("getSection")
     fun getSection(index: Int): Rational {
         return Rational(sections[index])
     }
@@ -101,6 +103,7 @@ open class AnalogPrototype {
      * *
      * @return           AnalogPrototype object containing the transformed filter representation.
      */
+    @JsName("lptolp")
     fun lptolp(omega0: Double): AnalogPrototype {
 
         val tn = doubleArrayOf(0.0, 1.0)
@@ -126,6 +129,7 @@ open class AnalogPrototype {
      * *
      * @return           AnalogPrototype object containing the transformed filter representation.
      */
+    @JsName("lptohp")
     fun lptohp(omega0: Double): AnalogPrototype {
 
         val tn = doubleArrayOf(omega0)
@@ -153,6 +157,7 @@ open class AnalogPrototype {
      * *
      * @return           AnalogPrototype object containing the transformed filter representation.
      */
+    @JsName("lptobp")
     fun lptobp(omega1: Double, omega2: Double): AnalogPrototype {
 
         val BW = omega2 - omega1
@@ -218,6 +223,7 @@ open class AnalogPrototype {
      * *
      * @return        Array of Polynomial factors (there will be two for each quadratic in a second _order section).
      */
+    @JsName("lptobpFactors")
     private fun lptobpFactors(P: Polynomial, BW: Double, prod: Double): Array<Polynomial> {
 
         //val retval = arrayOfNulls<Polynomial>(2)
@@ -295,6 +301,7 @@ open class AnalogPrototype {
      * *
      * @return               Complex object containing the value of the transfer function at this frequency.
      */
+    @JsName("evaluate")
     fun evaluate(omega: Double): Complex {
 
         return T.evaluate(Complex(0.0, omega))
@@ -308,6 +315,7 @@ open class AnalogPrototype {
      * *
      * @return               double containing the group delay at this frequency.
      */
+    @JsName("groupDelay")
     fun groupDelay(omega: Double): Double {
 
         return T.groupDelay(omega)

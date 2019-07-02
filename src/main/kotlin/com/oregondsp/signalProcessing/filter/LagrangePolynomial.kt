@@ -87,6 +87,7 @@ class LagrangePolynomial
      * *
      * @return      double containing the value of the polynomial at xp.
      */
+    @JsName("evaluateAt")
     fun evaluate(xp: Double): Double {
 
         var num = 0.0
@@ -121,6 +122,7 @@ class LagrangePolynomial
      * *
      * @return     double[] containing the Chebyshev nodes.
      */
+    @JsName("ChebyshevNodes")
     fun ChebyshevNodes(a: Double, b: Double, n: Int): DoubleArray {
 
         val t0 = (a + b) / 2.0
@@ -142,6 +144,7 @@ class LagrangePolynomial
          * *
          * @return      double[] containing the resulting barycentric weights.
          */
+        @JsName("BarycentricWeights")
         fun BarycentricWeights(z: DoubleArray): DoubleArray {
 
             val n = z.size

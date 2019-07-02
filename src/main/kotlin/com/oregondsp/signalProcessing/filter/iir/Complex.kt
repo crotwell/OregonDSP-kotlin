@@ -388,6 +388,7 @@ class Complex {
          * *
          * @return          New Complex object containing the sum.
          */
+        @JsName("addRealComplex")
         fun add(a: Double, c: Complex): Complex {
             return Complex(a + c.real, c.imag)
         }
@@ -402,6 +403,7 @@ class Complex {
          * *
          * @return          New Complex object containing the sum.
          */
+        @JsName("addComplexReal")
         fun add(c: Complex, a: Double): Complex {
             return add(a, c)
         }
@@ -416,6 +418,7 @@ class Complex {
          * *
          * @return          New Complex object containing the difference.
          */
+        @JsName("subtractComplexReal")
         fun subtract(c: Complex, a: Double): Complex {
             return Complex(c.real - a, c.imag)
         }
@@ -430,6 +433,7 @@ class Complex {
          * *
          * @return          New Complex object containing the difference.
          */
+        @JsName("subtractRealComplex")
         fun subtract(a: Double, c: Complex): Complex {
             return Complex(a - c.real, c.imag)
         }
@@ -442,6 +446,7 @@ class Complex {
          * *
          * @return          New Complex object containing the negative of the operand.
          */
+        @JsName("unaryMinus")
         fun unaryMinus(c: Complex): Complex {
             return Complex(-c.real, -c.imag)
         }
@@ -456,6 +461,7 @@ class Complex {
          * *
          * @return            New Complex object containing the product.
          */
+        @JsName("multiplyRealComplex")
         fun multiply(a: Double, c: Complex): Complex {
             return Complex(a * c.real, a * c.imag)
         }
@@ -470,6 +476,7 @@ class Complex {
          * *
          * @return            New Complex object containing the product.
          */
+        @JsName("multiplyComplexReal")
         fun multiply(c: Complex, a: Double): Complex {
             return multiply(a, c)
         }
@@ -484,6 +491,7 @@ class Complex {
          * *
          * @return       New Complex object containing the sum.
          */
+        @JsName("addComplexComplex")
         fun add(c1: Complex, c2: Complex): Complex {
             return Complex(c1.real + c2.real, c1.imag + c2.imag)
         }
@@ -498,6 +506,7 @@ class Complex {
          * *
          * @return        New Complex object containing the difference.
          */
+        @JsName("subtractComplexComplex")
         fun subtract(c1: Complex, c2: Complex): Complex {
             return Complex(c1.real - c2.real, c1.imag - c2.imag)
         }
@@ -512,6 +521,7 @@ class Complex {
          * *
          * @return        New Complex object containing the product.
          */
+        @JsName("multiplyComplexComplex")
         fun multiply(c1: Complex, c2: Complex): Complex {
             return Complex(c1.real * c2.real - c1.imag * c2.imag, c1.real * c2.imag + c1.imag * c2.real)
         }
@@ -526,6 +536,7 @@ class Complex {
          * *
          * @return      New Complex object containing the result of division.
          */
+        @JsName("divideComplexReal")
         fun divide(c: Complex, a: Double): Complex {
             return Complex(c.real / a, c.imag / a)
         }
@@ -540,6 +551,7 @@ class Complex {
          * *
          * @return      New Complex object containing the result of division.
          */
+        @JsName("divideRealComplex")
         fun divide(a: Double, c: Complex): Complex {
             val scale = c.real * c.real + c.imag * c.imag
             return Complex(a*c.real / scale, a*(-c.imag) / scale)
@@ -555,6 +567,7 @@ class Complex {
          * *
          * @return         New Complex object containing the result of division.
          */
+        @JsName("divideComplexComplex")
         fun divide(c1: Complex, c2: Complex): Complex {   // c1/c2 = conjg(c2)*c1/( conjg(c2)*c2 )
             val scale = c2.real * c2.real + c2.imag * c2.imag
             return Complex((c1.real * c2.real + c1.imag * c2.imag) / scale, (c1.imag * c2.real - c1.real * c2.imag) / scale)
@@ -568,6 +581,7 @@ class Complex {
          * *
          * @return      New Complex object containing the square root of the argument.
          */
+        @JsName("sqrt")
         fun sqrt(c: Complex): Complex {
             return ComplexFromPolar(sqrt(abs(c)), angle(c) / 2.0)
         }
@@ -580,6 +594,7 @@ class Complex {
          * *
          * @return      double containing the absolute value of the argument.
          */
+        @JsName("abs")
         fun abs(c: Complex): Double {
             return sqrt(c.real * c.real + c.imag * c.imag)
         }
@@ -592,6 +607,7 @@ class Complex {
          * *
          * @return       double containing the phase of the argument.
          */
+        @JsName("angle")
         fun angle(c: Complex): Double {
             return atan2(c.imag, c.real)
         }
@@ -604,6 +620,7 @@ class Complex {
          * *
          * @return       New Complex object containing the complex exponential of the argument.
          */
+        @JsName("exp")
         fun exp(c: Complex): Complex {
             val r = exp(c.real)
             return Complex(r * cos(c.imag), r * sin(c.imag))
@@ -617,6 +634,7 @@ class Complex {
          * *
          * @return        New Complex object containing the conjugate of the argument.
          */
+        @JsName("conjugate")
         fun conjugate(c: Complex): Complex {
             return Complex(c.real, -c.imag)
         }

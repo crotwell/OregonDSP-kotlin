@@ -69,6 +69,7 @@ open class Window {
 
      * @param x    float[] containing the coefficients of the second window, which modifies the first (this) window.
      */
+    @JsName("timesEquals")
     fun timesEquals(x: FloatArray) {
         if (x.size != w.size) throw IllegalArgumentException("Argument length does not match window length")
         for (i in w.indices) w[i] *= x[i]
@@ -93,6 +94,7 @@ open class Window {
      * *
      * @param y          float[] containing the resulting windowed sequence.
      */
+    @JsName("windowArray")
     fun window(x: FloatArray, index: Int, y: FloatArray) {
 
         if (y.size != w.size) throw IllegalArgumentException("Destination array length does not match window length")

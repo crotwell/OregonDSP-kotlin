@@ -180,6 +180,7 @@ open class IIRFilter
      * *
      * @return           Complex object containing the value of the transfer function at frequency Omega.
      */
+    @JsName("evaluate")
     fun evaluate(Omega: Double): Complex {
         val ejOmega = Complex.exp(Complex(0.0, -Omega))
         return T.evaluate(ejOmega)
@@ -193,6 +194,7 @@ open class IIRFilter
      * *
      * @return            double containing the resulting group delay.
      */
+    @JsName("groupDelay")
     fun groupDelay(Omega: Double): Double {
         return T.discreteTimeGroupDelay(Omega)
     }
@@ -226,6 +228,7 @@ open class IIRFilter
      * *
      * @return         double containing the prewarped digital frequency correcting for the nonlinearity of the bilinear transform.
      */
+    @JsName("warp")
     private fun warp(f: Double, delta: Double): Double {
         return tan(PI * f * delta)
     }
