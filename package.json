@@ -1,11 +1,9 @@
 {
   "name": "oregondsp",
-  "version": "1.1.1-alpha.1",
+  "version": "1.2.0",
   "description": "Port of OregonDSP library from java to javascript via kotlin.",
   "main": "./lib/oregondsp.js",
-  "dependencies": {
-    "kotlin": "^1.2.0"
-  },
+  "dependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "gradle build",
@@ -32,6 +30,6 @@
   },
   "homepage": "https://github.com/crotwell/oregondsp",
   "devDependencies": {
-    "kotlin": "^1.2.0"
+    "kotlin": "^1.3.40"
   }
 }
