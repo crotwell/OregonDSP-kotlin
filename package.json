@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/crotwell/oregondsp.git"
+    "url": "https://github.com/crotwell/OregonDSP-kotlin.git"
   },
   "keywords": [
     "seismology",
@@ -26,9 +26,9 @@
   "author": "Philip Crotwell <crotwell@seis.sc.edu>",
   "license": "LGPL-3.0",
   "bugs": {
-    "url": "https://github.com/crotwell/oregondsp/issues"
+    "url": "https://github.com/crotwell/OregonDSP-kotlin/issues"
   },
-  "homepage": "https://github.com/crotwell/oregondsp",
+  "homepage": "https://github.com/crotwell/OregonDSP-kotlin",
   "devDependencies": {
     "kotlin": "^1.3.40"
   }
