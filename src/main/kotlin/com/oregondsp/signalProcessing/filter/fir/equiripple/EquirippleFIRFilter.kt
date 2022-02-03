@@ -22,7 +22,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
 import com.oregondsp.signalProcessing.fft.RDFT
 import com.oregondsp.signalProcessing.filter.fir.OverlapAdd
 import kotlin.math.*
-import kotlin.js.Math.random
+import kotlin.random.Random
 
 
 /**
@@ -139,7 +139,7 @@ abstract class EquirippleFIRFilter
 
                 if (i % DesignGrid.GRIDDENSITY == 0) {
                     if (i != 0 && i != n - 1)
-                        perturbation = (floor(random()*3)).roundToInt() - 1
+                        perturbation = (floor(Random.nextFloat()*3)).roundToInt() - 1
                     else
                         perturbation = 0
                     G.extremaIndices[extremum++] = gridpt + perturbation
