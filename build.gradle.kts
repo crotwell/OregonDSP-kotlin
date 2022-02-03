@@ -1,34 +1,28 @@
 
+// note kotlin js currently depends on node 14, which doesn't exist for
+// arm based mac, so build on 4x4 until kotlin switches to node 16
 
-buildscript {
-    ext.kotlin_version = '1.2.51'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+plugins {
+     kotlin("js") version "1.6.10"
+}
+
+group = "com.oregondsp"
+version = "1.3-SNAPSHOT"
+
+kotlin {
+    js {
+        browser {
+        }
+        binaries.executable()
     }
 }
-apply plugin: 'kotlin2js'
 
-group = 'com.oregondsp'
-version = '1.1-SNAPSHOT'
 repositories {
-    mavenCentral()
-}
+        mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
+    }
 
-compileKotlin2Js {
-    kotlinOptions.outputFile = "${buildDir}/lib/oregondsp.js"
-    kotlinOptions.moduleKind = "commonjs"
-    kotlinOptions.sourceMap = true
-    kotlinOptions.metaInfo = true
-}
-
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-    testCompile "io.kotlintest:kotlintest-runner-junit5:3.1.7"
-}
-
+/*
 build.doLast {
     copy {
         from "${buildDir}/lib/oregondsp.js"
@@ -52,3 +46,4 @@ build.doLast {
         }
     }
 }
+*/
