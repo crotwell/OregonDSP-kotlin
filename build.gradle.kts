@@ -6,32 +6,52 @@ plugins {
      kotlin("js") version "1.6.10"
 }
 
-group = "com.oregondsp"
+group = "oregondsp"
 version = "1.3-SNAPSHOT"
 
 kotlin {
-    js {
-        browser {
-        }
-        binaries.executable()
+    js(IR) {
+      moduleName = "oregondsp"
+      compilations["main"].packageJson {
+        customField("description", "Port of OregonDSP library from java to javascript via kotlin.")
+        customField("repository", mapOf("type" to "git",
+                                        "url" to "https://github.com/crotwell/OregonDSP-kotlin.git"))
+        customField("author", "Philip Crotwell <crotwell@seis.sc.edu>")
+        customField("license", "LGPL-3.0")
+
+        customField("keywords", listOf(
+          "seismology",
+          "fft",
+          "timeseries",
+          "filter",
+          "butterworth",
+          "chebyshev",
+          "seismogram"
+        ))
+        customField("bugs", mapOf(
+          "url" to "https://github.com/crotwell/OregonDSP-kotlin/issues"
+        ))
+        customField("homepage", "https://github.com/crotwell/OregonDSP-kotlin")
+      }
+      browser {
+      }
+      binaries.executable()
     }
 }
 
 repositories {
-        mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
-    }
-
-/*
-build.doLast {
-    copy {
-        from "${buildDir}/lib/oregondsp.js"
-        from "${buildDir}/lib/oregondsp.js.map"
-        from "${buildDir}/lib/oregondsp.meta.js"
-        into "${projectDir}/lib"
-    }
+    mavenCentral()
+    maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
 }
 
+
+tasks.register<Sync>("copyJsToLib") {
+  from("${buildDir}/js/packages/oregondsp")
+  into("${projectDir}/lib")
+  dependsOn("browserDevelopmentWebpack")
+}
+tasks.get("assemble").dependsOn(tasks.get("copyJsToLib"))
+/*
 build.doLast {
     configurations.compile.each { File file ->
         copy {
