@@ -57,6 +57,7 @@ abstract class EquirippleFIRFilter
     /** float[] containing the FIR filter coefficients  */
     var _coefficients: FloatArray?  = null      // filter coefficients
 
+    @JsName("getCoefficients")
     fun getCoefficients(): FloatArray {
         return _coefficients?.copyOf() ?: throw RuntimeException("Should not happen, access to coefficients before initialized.")
     }

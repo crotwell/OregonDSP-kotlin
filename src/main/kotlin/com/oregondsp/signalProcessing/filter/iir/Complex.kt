@@ -26,6 +26,7 @@ import kotlin.math.*
  * Class to represent complex numbers and certain basic functions of complex numbers.
  * @author David B. Harris    Deschutes Signal Processing  LLC
  */
+@JsExport
 class Complex {
 
     /** Real part of the complex number.  */

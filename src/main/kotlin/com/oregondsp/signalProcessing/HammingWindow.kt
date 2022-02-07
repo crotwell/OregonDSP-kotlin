@@ -26,6 +26,7 @@ import kotlin.math.*
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class HammingWindow
 /**
  * Instantiates a new Hamming window of length N samples.

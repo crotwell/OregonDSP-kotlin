@@ -59,6 +59,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class EquirippleLowpass
 /**
  * Instantiates a new equiripple lowpass filter object.

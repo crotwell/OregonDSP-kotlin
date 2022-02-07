@@ -52,6 +52,7 @@ import kotlin.math.*
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class CenteredDifferentiator
 /**
  * Instantiates a new centered differentiator.

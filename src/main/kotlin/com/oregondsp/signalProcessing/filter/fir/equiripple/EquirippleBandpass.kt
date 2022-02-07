@@ -57,6 +57,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class EquirippleBandpass
 /**
  * Instantiates a new equiripple bandpass FIR filter.

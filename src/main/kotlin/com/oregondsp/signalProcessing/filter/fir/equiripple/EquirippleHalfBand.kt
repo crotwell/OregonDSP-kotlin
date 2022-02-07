@@ -40,6 +40,7 @@ package com.oregondsp.signalProcessing.filter.fir.equiripple
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class EquirippleHalfBand
 /**
  * Instantiates a new equiripple half band filter.

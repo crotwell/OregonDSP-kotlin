@@ -113,6 +113,7 @@ import kotlin.math.*
 
  * @author David B. Harris,  Deschutes Signal Processing LLC
  */
+@JsExport
 class RDFT(log2N: Int) {
 
     private val N: Int

@@ -41,6 +41,7 @@ import kotlin.math.*
 
  * @author David B. Harris,  Deschutes Signal Processing LLC
  */
+@JsExport
 class Polynomial {
 
     /** double array containing the coefficients of the polynomial.  The low _order coefficient is
@@ -57,6 +58,7 @@ class Polynomial {
 
      * @param a    double[] containing the polynomial coefficients.
      */
+    @JsName("Polynomial_ofArray")
     constructor(a: DoubleArray) {
         _order = a.size - 1
         this.a = a.copyOf()
@@ -68,6 +70,7 @@ class Polynomial {
 
      * @param B       Polynomial to be copied into the new Instance.
      */
+    @JsName("Polynomial_ofPolynomial")
     constructor(B: Polynomial) {
         _order = B._order
         this.a = B.a.copyOf()
@@ -79,6 +82,7 @@ class Polynomial {
 
      * @param order     int containing the _order (degree) of the polynomial.
      */
+    @JsName("Polynomial_ofDegree")
     constructor(order: Int) {
         this._order = order
         this.a = DoubleArray(order + 1)
@@ -91,6 +95,7 @@ class Polynomial {
 
      * @param c        double containing the constant.
      */
+    @JsName("Polynomial_ofConstant")
     constructor(c: Double) {
         _order = 0
         a = DoubleArray(1)

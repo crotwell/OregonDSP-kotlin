@@ -50,6 +50,7 @@ import kotlin.math.*
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class StaggeredDifferentiator
 /**
  * Instantiates a new differentiator.

@@ -25,6 +25,7 @@ import kotlin.math.*
 
  * @author David B. Harris,  Deschutes Signal Processing LLC
  */
+@JsExport
 class ChebyshevI
 /**
  * Instantiates a new Chebyshev type I filter.

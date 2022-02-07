@@ -29,6 +29,7 @@ import com.oregondsp.signalProcessing.filter.iir.Complex
 
  * @author David B. Harris,  Deschutes Signal Processing LLC
  */
+@JsExport
 class Rational {
 
     /** Numerator polynomial.  */
@@ -45,6 +46,7 @@ class Rational {
      * *
      * @param denom    double[] specifying coefficients of the denominator polynomial.
      */
+    @JsName("Rational_ofArrays")
     constructor(num: DoubleArray, denom: DoubleArray) {
         N = Polynomial(num)
         D = Polynomial(denom)
@@ -58,6 +60,7 @@ class Rational {
      * *
      * @param D        Polynomial instance specifying the denominator polynomial.
      */
+    @JsName("Rational_ofPolynomials")
     constructor(N: Polynomial, D: Polynomial) {
         this.N = Polynomial(N)
         this.D = Polynomial(D)
@@ -69,6 +72,7 @@ class Rational {
 
      * @param R       Rational function object to be copied.
      */
+    @JsName("Rational_ofRational")
     constructor(R: Rational) {
         this.N = Polynomial(R.N)
         this.D = Polynomial(R.D)
@@ -80,6 +84,7 @@ class Rational {
 
      * @param c      double specifying the constant of the numerator.
      */
+    @JsName("Rational_ofConstant")
     constructor(c: Double) {
         N = Polynomial(c)
         D = Polynomial(1.0)

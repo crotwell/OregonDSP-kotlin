@@ -59,6 +59,7 @@ import com.oregondsp.signalProcessing.filter.Rational
 
  * @author David B. Harris, Deschutes Signal Processing  LLC
  */
+@JsExport
 open class Allpass {
 
     /** double[] containing the reflection coefficients specifying this allpass filter.  */
@@ -80,6 +81,7 @@ open class Allpass {
 
      * @param order     int containing the _order of the filter.
      */
+    @JsName("Allpass_ofOrder")
     constructor(order: Int) {
         this.order = order
         k = DoubleArray(order)
@@ -94,6 +96,7 @@ open class Allpass {
 
      * @param A     Polynomial object containing the polynomial coefficient representation for the allpass filter.
      */
+    @JsName("Allpass_ofPolynomial")
     constructor(A: Polynomial) {
         k = A.reflectionCoefficients()
         order = k.size
@@ -108,6 +111,7 @@ open class Allpass {
 
      * @param k    double[] containing the reflection coefficients.
      */
+    @JsName("Allpass_ofArray")
     constructor(k: DoubleArray) {
         this.k = k.copyOf()
         order = this.k.size

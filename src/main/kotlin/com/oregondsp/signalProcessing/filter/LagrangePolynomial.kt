@@ -29,6 +29,7 @@ import kotlin.math.*
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class LagrangePolynomial
 /**
  * Instantiates a new Lagrange polynomial given the set of ordinate and matching abscissa values that this

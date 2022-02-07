@@ -28,6 +28,7 @@ package com.oregondsp.signalProcessing
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 open class Window {
 
     /** float[] containing the window coefficients.  */
@@ -39,6 +40,7 @@ open class Window {
 
      * @param w     float[] containin the vector of window coefficients.
      */
+    @JsName("Window_fromArray")
     constructor(w: FloatArray) {
         this.w = w.copyOf()
     }
@@ -49,6 +51,7 @@ open class Window {
 
      * @param N     int specifying the window length in samples.
      */
+    @JsName("Window_ofSize")
     constructor(N: Int) {
         w = FloatArray(N)
     }

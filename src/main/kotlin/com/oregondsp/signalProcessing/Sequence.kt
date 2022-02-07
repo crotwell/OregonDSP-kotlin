@@ -33,6 +33,7 @@ import kotlin.math.*
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class Sequence {
 
 
@@ -51,6 +52,7 @@ class Sequence {
 
      * @param x    float[] containing the Sequence values.
      */
+    @JsName("Sequence_fromArray")
     constructor(x: FloatArray) {
         this.array = FloatArray(x.size)
         //System.arraycopy(x, 0, this.array, 0, x.size)
@@ -63,6 +65,7 @@ class Sequence {
 
      * @param N    int specifying the length of the sequence.
      */
+    @JsName("Sequence_ofSize")
     constructor(N: Int) {
         array = FloatArray(N)
     }

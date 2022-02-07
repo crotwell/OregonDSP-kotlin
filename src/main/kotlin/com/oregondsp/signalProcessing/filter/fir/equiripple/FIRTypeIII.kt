@@ -42,6 +42,7 @@ import kotlin.math.*
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 abstract class FIRTypeIII
 /**
  * Instantiates a new FIR type III filter.

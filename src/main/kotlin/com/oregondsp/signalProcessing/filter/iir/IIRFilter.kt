@@ -32,6 +32,7 @@ import kotlin.math.*
 
  * @author David B. Harris, Deschutes Signal Processing LLC
  */
+@JsExport
 open class IIRFilter
 /**
  * Instantiates a new IIR filter.

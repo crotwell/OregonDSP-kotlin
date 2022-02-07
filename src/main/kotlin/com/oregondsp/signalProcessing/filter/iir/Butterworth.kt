@@ -26,6 +26,7 @@ import kotlin.math.*
 
  * @author David B. Harris,  Deschutes Signal Processing LLC
  */
+@JsExport
 class Butterworth
 /**
  * Instantiates a new Butterworth digital filter.

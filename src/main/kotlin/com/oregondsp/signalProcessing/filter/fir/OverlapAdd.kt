@@ -62,6 +62,7 @@ import com.oregondsp.signalProcessing.fft.RDFT
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class OverlapAdd {
 
     private var shiftRegister: FloatArray
@@ -80,6 +81,7 @@ class OverlapAdd {
      * *
      * @param blockSize  int specifying size of data blocks to be filtered
      */
+    @JsName("OverlapAdd_ofArray")
     constructor(H: FloatArray, blockSize: Int) {
 
         kernelLength = H.size
@@ -114,6 +116,7 @@ class OverlapAdd {
      * *
      * @param master     Master OverlapAdd instance - slave obtains fft instances from the master
      */
+    @JsName("OverlapAdd_ofArrayOverlapAdd")
     constructor(H: FloatArray, master: OverlapAdd) {
 
         if (H.size != master.kernelLength)

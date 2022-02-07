@@ -108,6 +108,7 @@ import kotlin.math.*
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class CDFT {
 
     private lateinit var yr: FloatArray
@@ -129,6 +130,7 @@ class CDFT {
      * Constructs a CDFT instance without references to sequence and transform arrays
      * @param log2N       base-2 logarithm of the length of the transform
      */
+    @JsName("CDFT_ofLogSize")
     constructor(log2N: Int) {
 
         if (log2N < 3) throw IllegalArgumentException("DFT size must be >= 8")
@@ -206,6 +208,7 @@ class CDFT {
      * *
      * @param log2N       base-2 logarithm of the length of the transform
      */
+    @JsName("CDFT_ofArrays")
     constructor(xr: FloatArray, xi: FloatArray, yr: FloatArray, yi: FloatArray, log2N: Int) :this(log2N) {
 
         this.yr = yr

@@ -32,6 +32,7 @@ import kotlin.math.*
 
  * @author David B. Harris   Deschutes Signal Processing LLC
  */
+@JsExport
 class ThiranAllpass
 /**
  * constructs a Thiran allpass filter.

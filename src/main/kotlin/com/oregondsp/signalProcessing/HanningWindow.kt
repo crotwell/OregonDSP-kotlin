@@ -26,6 +26,7 @@ import kotlin.math.*
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 class HanningWindow
 /**
  * Instantiates a new Hanning window of length N samples.
