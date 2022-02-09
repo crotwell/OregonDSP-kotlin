@@ -46,6 +46,7 @@ repositories {
 
 
 tasks.register<Sync>("copyJsToLib") {
+  from ("README.md")
   from("${buildDir}/js/packages/oregondsp")
   into("${projectDir}/lib")
   dependsOn("browserDevelopmentWebpack")
