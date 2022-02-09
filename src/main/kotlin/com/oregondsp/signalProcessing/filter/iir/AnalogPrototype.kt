@@ -30,6 +30,7 @@ import kotlin.math.*
 
  * @author David B. Harris,  Deschutes Signal Processing LLC
  */
+@JsExport
 open class AnalogPrototype {
 
     /** Data structure for second-_order sections comprising the filter implementation  */

@@ -30,6 +30,7 @@ import kotlin.random.Random
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 abstract class EquirippleFIRFilter
 /**
  * Instantiates a new equiripple FIR filter.

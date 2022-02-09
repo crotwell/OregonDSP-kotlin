@@ -86,5 +86,4 @@ abstract class FIRTypeIII
         return retval
     }
 
-
 }

@@ -40,6 +40,7 @@ import com.oregondsp.signalProcessing.Sequence
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 abstract class FIRTypeI
 /**
  * Instantiates a new FIR type I filter.

@@ -42,6 +42,7 @@ import kotlin.math.*
 
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
+@JsExport
 abstract class FIRTypeII
 // even length filters with even symmetry
 
