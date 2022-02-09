@@ -1,7 +1,2 @@
-.gradle/
-.idea/
-src/
-build/
-build.gradle
-seisplotjs_*_standalone.js
-example/**/seisplotjs_*_standalone.js
+webpack.config.js
+.DS_Store
