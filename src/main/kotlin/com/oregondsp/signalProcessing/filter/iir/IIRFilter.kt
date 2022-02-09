@@ -55,9 +55,14 @@ open class IIRFilter
     /** Rational object containing the transfer function of the filter.  */
     protected var T: Rational
 
+    protected val delta: Double
+    protected val f1: Double
+    protected val f2: Double
 
     init {
-
+        this.delta = delta
+        this.f1 = f1
+        this.f2 = f2
         val prototype: AnalogPrototype
 
         when (type) {
@@ -116,6 +121,18 @@ open class IIRFilter
     }
 
 
+    @JsName("getDelta")
+    fun getDelta(): Double {
+      return delta
+    }
+    @JsName("getLowCorner")
+    fun getLowCorner(): Double {
+      return f1
+    }
+    @JsName("getHighCorner")
+    fun getHighCorner(): Double {
+      return f2
+    }
     /**
      * Filters a single sample of a sequence.
 
