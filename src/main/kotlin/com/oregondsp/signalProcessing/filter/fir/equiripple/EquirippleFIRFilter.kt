@@ -310,7 +310,7 @@ abstract class EquirippleFIRFilter
     companion object {
 
         /** Constant specifying a tolerance for checking band edge inclusion in the design grid.  */
-        protected var MACHINETOLERANCE = 1.0E-6
+         val MACHINETOLERANCE = 1.0E-6
     }
 
 }

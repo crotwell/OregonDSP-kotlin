@@ -60,7 +60,7 @@ import com.oregondsp.signalProcessing.filter.Rational
  * @author David B. Harris, Deschutes Signal Processing  LLC
  */
 @JsExport
-open class Allpass {
+open class Allpass(order: Int) {
 
     /** double[] containing the reflection coefficients specifying this allpass filter.  */
     protected var k: DoubleArray
@@ -75,20 +75,26 @@ open class Allpass {
     /** A Rational object containing the rational response representation of the filter.  */
     protected lateinit var T: Rational
 
+    init {
+      k = DoubleArray(order)
+      state = DoubleArray(order + 1)
+
+      constructRationalRepresentation()
+    }
 
     /**
      * Instantiates a new allpass filter of a given _order with zero reflection coefficients.
 
      * @param order     int containing the _order of the filter.
      */
-    @JsName("Allpass_ofOrder")
-    constructor(order: Int) {
-        this.order = order
-        k = DoubleArray(order)
-        state = DoubleArray(order + 1)
-
-        constructRationalRepresentation()
-    }
+//    @JsName("Allpass_ofOrder")
+//    constructor(order: Int) {
+//        this.order = order
+//        k = DoubleArray(order)
+//        state = DoubleArray(order + 1)
+//
+//        constructRationalRepresentation()
+//    }
 
 
     /**
@@ -97,9 +103,8 @@ open class Allpass {
      * @param A     Polynomial object containing the polynomial coefficient representation for the allpass filter.
      */
     @JsName("Allpass_ofPolynomial")
-    constructor(A: Polynomial) {
+    constructor(A: Polynomial): this(A.reflectionCoefficients().size) {
         k = A.reflectionCoefficients()
-        order = k.size
         state = DoubleArray(order + 1)
 
         constructRationalRepresentation()
@@ -112,7 +117,7 @@ open class Allpass {
      * @param k    double[] containing the reflection coefficients.
      */
     @JsName("Allpass_ofArray")
-    constructor(k: DoubleArray) {
+    constructor(k: DoubleArray): this(k.size) {
         this.k = k.copyOf()
         order = this.k.size
         state = DoubleArray(order + 1)

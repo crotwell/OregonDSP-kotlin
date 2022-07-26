@@ -29,11 +29,14 @@ package com.oregondsp.signalProcessing
  * @author David B. Harris,   Deschutes Signal Processing LLC
  */
 @JsExport
-open class Window {
+open class Window(N: Int) {
 
     /** float[] containing the window coefficients.  */
     protected var w: FloatArray
 
+    init {
+      this.w = FloatArray(N)
+    }
 
     /**
      * Instantiates a new Window from a vector of coefficients.
@@ -41,7 +44,7 @@ open class Window {
      * @param w     float[] containin the vector of window coefficients.
      */
     @JsName("Window_fromArray")
-    constructor(w: FloatArray) {
+    public constructor(w: FloatArray): this(w.size) {
         this.w = w.copyOf()
     }
 
@@ -51,10 +54,10 @@ open class Window {
 
      * @param N     int specifying the window length in samples.
      */
-    @JsName("Window_ofSize")
-    constructor(N: Int) {
-        w = FloatArray(N)
-    }
+//    @JsName("Window_ofSize")
+//    public constructor(N: Int) {
+//        w = FloatArray(N)
+//    }
 
 
     /**

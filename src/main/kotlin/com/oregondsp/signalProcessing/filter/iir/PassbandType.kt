@@ -24,6 +24,7 @@ package com.oregondsp.signalProcessing.filter.iir
 
  * @author David B. Harris,  Deschutes Signal Processing LLC
  */
+@JsExport
 enum class PassbandType {
 
     /** Specifies a lowpass filter  */
