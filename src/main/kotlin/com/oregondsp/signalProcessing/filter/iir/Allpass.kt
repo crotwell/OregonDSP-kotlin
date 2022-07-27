@@ -60,13 +60,13 @@ import com.oregondsp.signalProcessing.filter.Rational
  * @author David B. Harris, Deschutes Signal Processing  LLC
  */
 @JsExport
-open class Allpass(order: Int) {
+open class Allpass(filterorder: Int) {
 
     /** double[] containing the reflection coefficients specifying this allpass filter.  */
     protected var k: DoubleArray
 
     /** int containing the _order of the filter.  */
-    protected var order: Int = 0
+    protected var order: Int = filterorder
 
     /** double[] containing the state of the filter.  Used to assure continuity in the filtering operation
      * when making repeated calls to the filter methods.  */

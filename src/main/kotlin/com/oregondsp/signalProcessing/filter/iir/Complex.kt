@@ -27,13 +27,13 @@ import kotlin.math.*
  * @author David B. Harris    Deschutes Signal Processing  LLC
  */
 @JsExport
-class Complex {
+class Complex(realpart: Double, imagpart: Double) {
 
     /** Real part of the complex number.  */
-    private var real: Double = 0.toDouble()
+    private var real: Double = realpart
 
     /** Imaginary part of the complex number.  */
-    private var imag: Double = 0.toDouble()
+    private var imag: Double = imagpart
 
     // constructors
 
@@ -44,11 +44,7 @@ class Complex {
      * *
      * @param imag           double specifying the imaginary part.
      */
-    @JsName("Complex_init")
-    constructor(real: Double, imag: Double) {
-        this.real = real
-        this.imag = imag
-    }
+
 
 
     /**
@@ -57,9 +53,7 @@ class Complex {
      * @param real       double specifying the real part.
      */
     @JsName("Complex_fromReal")
-    constructor(real: Double) {
-        this.real = real
-        this.imag = 0.0
+    constructor(real: Double): this(real, 0.0) {
     }
 
 
