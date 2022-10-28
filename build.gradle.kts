@@ -3,7 +3,7 @@
 // arm based mac, so build on 4x4 until kotlin switches to node 16
 
 plugins {
-     kotlin("js") version "1.7.10"
+     kotlin("js") version "1.7.20"
 }
 
 group = "oregondsp"
