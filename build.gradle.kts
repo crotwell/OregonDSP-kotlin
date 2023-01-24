@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "oregondsp"
-version = "1.3.0-beta.2"
+version = "1.3.0"
 
 kotlin {
     js(IR) {
