@@ -7,12 +7,13 @@ plugins {
 }
 
 group = "oregondsp"
-version = "1.3.0"
+version = "1.3.1"
 
 kotlin {
     js(IR) {
       moduleName = "oregondsp"
       compilations["main"].packageJson {
+        customField("type", "commonjs")
         customField("description", "Port of OregonDSP library from java to javascript via kotlin.")
         customField("repository", mapOf("type" to "git",
                                         "url" to "https://github.com/crotwell/OregonDSP-kotlin.git"))
